@@ -1,46 +1,70 @@
-nav{
-    width: 100%;
-    position: relative;
-    /* background-color: yellow; */
+nav {
+  width: 100%;
+  position: relative;
+  /* background-color: yellow; */
 }
 
-.navbar-main{
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1vw 4vw;
+.navbar-main {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1vw 4vw;
 }
 
-.navbar-main .logo img{
-  width: 15vw;
-  height: 5vw;
+.navbar-main .logo img {
+  width: 17vw;
+  /* height: 5vw; */
   object-fit: cover;
 }
 
-.nav-ul{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2vw;
-    list-style: none;
+.nav-ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2vw;
+  list-style: none;
 }
 
-.search-img{
-    width: 2vw;
-    height: 2vw;
-    object-fit: cover;
+.search-icon {
+  width: 2vw;
+  height: 2vw;
+  object-fit: cover;         
+  margin-left: 1vw;
+  cursor: pointer;
 }
 
-.nav-right{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 2vw;
+.nav-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2.7vw;
 }
 
-.nav-right img{
-    width: 3vw;
-    height: 3vw;
-    object-fit: cover;
+.nav-right img {
+  width: 3vw;
+  height: 3vw;
+  object-fit: cover;
 }
+
+.wishlist-icon {
+  width: 2vw;
+  height: 2vw;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.notifications-icon {
+  width: 2vw;
+  height: 2vw;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.profile-icon {
+  width: 2vw;
+  height: 2vw;
+  object-fit: cover;
+  cursor: pointer;
+}
+
