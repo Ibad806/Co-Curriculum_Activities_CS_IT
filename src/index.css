@@ -2,11 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-<<<<<<< Updated upstream
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 
 * {
   margin: 0;
@@ -167,5 +162,3 @@ button:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
 }
-=======
->>>>>>> Stashed changes
