@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../components/navbar/Navbar";
 import EventSlider from "../components/EventSlider";
 import ImageSlider from "../components/ImageSlider";
+import NewsSection from "../components/NewsLetter";
 
 const images = [
   'https://media.licdn.com/dms/image/v2/D4D0BAQHBgWvpjFKFoA/company-logo_200_200/company-logo_200_200/0/1701371739326?e=1740614400&v=beta&t=oWycWdM29ZnyWV-jBEdYk2d8hNgvZ_8zbhU6SJ7sKeI',
@@ -16,8 +17,16 @@ const Home = () => {
     <>
       <Navbar />
       <EventSlider heading={"Available Events"} para={"Explore events here"} />
-      <ImageSlider images={images} />
+      <main className="flex flex-col items-center justify-center p-24 bg-gray-200">
+      <h1 className="text-4xl font-bold mb-8">Amazing Animated Carousel</h1>
+      {/* <ImageSlider images={images} /> */}
+      </main>
       <EventSlider heading={"Upcoming Events"} para={"The best events will be soon!"} />
+      <main className="flex flex-col items-center justify-center p-24 bg-gray-200">
+      <h1 className="text-4xl font-bold mb-8">Amazing Animated Carousel</h1>
+      {/* <ImageSlider images={images} /> */}
+      </main>
+      <NewsSection/>
     </>
   );
 };
