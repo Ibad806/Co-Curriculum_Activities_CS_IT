@@ -1,0 +1,33 @@
+.events-main {
+    width: 100%;
+    min-height: 10vh;
+    /* background-color: yellow; */
+  }
+  
+  .avlbl-event h5{
+    text-align: center;
+  }
+ 
+  .avlbl-event h6 {
+    text-align: center;
+    padding: 1vw 0;
+  }
+  
+  .cards {
+    display: flex;
+    flex-wrap: wrap; /* Force horizontal layout */
+    gap: 2vw; /* Space between cards */
+    padding: 2vw 4vw;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 25%; 
+    height: 320px;
+    border-radius: 10px;   
+    border: 2px solid black;
+    background-color: #fff;
+    text-align: center;
+  }
+  

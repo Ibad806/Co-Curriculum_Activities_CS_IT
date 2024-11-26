@@ -8,27 +8,11 @@
   font-synthesis: none;
 } */
 
-/* @font-face {
-  font-family: "font1";
-  src: url("./assets/fonts/1.woff2") format("woff2"),
-    url("./assets/fonts/1.woff") format("woff");
-} */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-/*
-@font-face {
-  font-family: "font2";
-  src: url("./components/fonts/l-1.woff") format("woff");
-}
 
-@font-face {
-  font-family: "font3";
-  src: url("./components/fonts/l-2.woff") format("woff");
-}
-
-@font-face {
-  font-family: "font4";
-  src: url("./components/fonts/l-3.woff") format("woff");
-} */
 * {
   margin: 0;
   padding: 0;
