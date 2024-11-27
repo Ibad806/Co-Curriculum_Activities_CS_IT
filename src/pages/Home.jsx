@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../components/navbar/Navbar";
 import EventSlider from "../components/EventSlider";
 import ImageSlider from "../components/ImageSlider";
 import NewsSection from "../components/NewsLetter";
@@ -10,7 +9,6 @@ import Footer from "../components/Footer";
 const Home = () => {
   return (
     <>
-      <Navbar />
       <EventSlider heading={"Available Events"} para={"Explore events here"} />
       <TicketSteps />
       <EventSlider
