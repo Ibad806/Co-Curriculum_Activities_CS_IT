@@ -10,7 +10,7 @@ const events = [
     image: 'https://live.staticflickr.com/65535/49049007453_c0c4b272ca_o.jpg',
     author: {
       name: 'Jonathan Willis',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: 'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png',
       date: 'July 17, 2024',
       readTime: '5 min',
     },
@@ -24,7 +24,7 @@ const events = [
       'https://th.bing.com/th/id/OIP.voLVMJX4Uka6I99CIPCv6QHaE8?w=2560&h=1707&rs=1&pid=ImgDetMain',
     author: {
       name: 'Marian Ed',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: 'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png',
       date: 'June 13, 2024',
       readTime: '10 min',
     },
@@ -37,7 +37,7 @@ const events = [
     image: 'https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0',
     author: {
       name: 'Jack Nikelson',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: 'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png',
       date: 'May 08, 2024',
       readTime: '7 min',
     },
@@ -50,7 +50,7 @@ const events = [
     image: 'https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0',
     author: {
       name: 'Jack Nikelson',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: 'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png',
       date: 'May 08, 2024',
       readTime: '7 min',
     },
@@ -63,7 +63,7 @@ const events = [
     image: 'https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0',
     author: {
       name: 'Jack Nikelson',
-      avatar: '/placeholder.svg?height=40&width=40',
+      avatar: 'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png',
       date: 'May 08, 2024',
       readTime: '7 min',
     },
