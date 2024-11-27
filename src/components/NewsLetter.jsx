@@ -68,6 +68,19 @@ const events = [
       readTime: '7 min',
     },
   },
+  {
+    id: 6,
+    title: 'Yanni Will Be in London',
+    description:
+      'Lorem ipsum dolor sit amet consectetur. A vivamus donec bibendum massa erat the ultrices nulla. Velit euismod gravida...',
+    image: 'https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0',
+    author: {
+      name: 'Jack Nikelson',
+      avatar: 'https://png.pngtree.com/png-clipart/20230927/original/pngtree-man-avatar-image-for-profile-png-image_13001882.png',
+      date: 'May 08, 2024',
+      readTime: '7 min',
+    },
+  },
 ]
 
 export default function NewsletterEvents() {
