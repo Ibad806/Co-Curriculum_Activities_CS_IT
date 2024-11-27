@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { FaChevronLeft, FaChevronRight, FaClock } from 'react-icons/fa';
-import events from '../data';
+import React, { useState } from "react";
+import { FaChevronLeft, FaChevronRight, FaClock } from "react-icons/fa";
+import events from "../data";
 
-
-
-const EventSlider = ({ heading , para }) => {
+const EventSlider = ({ heading, para }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const nextSlide = () => {
@@ -12,6 +10,7 @@ const EventSlider = ({ heading , para }) => {
       prevIndex + 3 >= events.length ? 0 : prevIndex + 1
     );
   };
+
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -22,17 +21,13 @@ const EventSlider = ({ heading , para }) => {
   const visibleEvents = events.slice(currentIndex, currentIndex + 3);
 
   return (
-    <div className="relative w-full max-w-7xl mx-auto px-4 py-8">
-      <di className="flex flex-col gap-5 items-center justify-center h-full">
-        <div className='flex flex-col gap-3'>
-          <h1 className='text-3xl font-bold text-center'>
-            {heading}
-          </h1>
-          <p className='text-xl font-semibold text-center'>
-            {para}
-          </p>
+    <div className="relative w-full p-[4vw]">
+      <div className="flex flex-col gap-[1vw] items-center justify-center h-full">
+        <div className="flex flex-col pt-[1vw]">
+          <h1 className="text-center">{heading}</h1>
+          <h6 className="py-[1vw] text-center">{para}</h6>
         </div>
-        <div className="space-x-2">
+        <div className="md:space-x-9 space-x-3">
           <button
             onClick={prevSlide}
             className="p-2 rounded-full border transition-colors text-gold"
@@ -46,13 +41,13 @@ const EventSlider = ({ heading , para }) => {
             <FaChevronRight className="h-4 w-4" />
           </button>
         </div>
-      </di>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-[3vw]">
         {visibleEvents.map((event) => (
           <div
             key={event.id}
-            className="text-white overflow-hidden shadow-lg w-80 "
+            className="text-white overflow-hidden shadow-lg w-[100%] mt-[6vw]"
           >
             <div className="relative w-[90%] m-auto border rounded-lg h-64 bg-black border-purple-300 z-20 ">
               <img
@@ -81,13 +76,11 @@ const EventSlider = ({ heading , para }) => {
                 Explore
               </button>
             </div>
-            </div>
+          </div>
         ))}
       </div>
-
     </div>
   );
 };
 
 export default EventSlider;
-

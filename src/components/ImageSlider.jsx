@@ -33,7 +33,7 @@ function ImageSlider() {
   };
 
   return (
-    <div className="relative w-full mx-auto h-96">
+    <div className="relative w-full object-cover">
       <div className="relative h-full overflow-hidden rounded-xl">
         <img
           src={images[currentIndex]}
