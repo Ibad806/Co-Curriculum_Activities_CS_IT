@@ -1,5 +1,4 @@
 import React from "react";
-import Navbar from "../components/navbar/Navbar";
 import EventSlider from "../components/EventSlider";
 import ImageSlider from "../components/ImageSlider";
 import NewsSection from "../components/NewsLetter";
@@ -9,7 +8,6 @@ import TicketSteps from "../components/TicketSteps";
 const Home = () => {
   return (
     <>
-      <Navbar />
       <EventSlider heading={"Available Events"} para={"Explore events here"} />
       <TicketSteps/>
       <EventSlider heading={"Upcoming Events"} para={"The best events will be soon!"} />
