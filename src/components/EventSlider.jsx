@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { FaChevronLeft, FaChevronRight, FaClock } from "react-icons/fa";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import events from "../data";
+import EventCard from "./EvectsCards";
 
 const EventSlider = ({ heading, para }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -10,7 +11,6 @@ const EventSlider = ({ heading, para }) => {
       prevIndex + 3 >= events.length ? 0 : prevIndex + 1
     );
   };
-
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) =>
@@ -45,38 +45,15 @@ const EventSlider = ({ heading, para }) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-[3vw]">
         {visibleEvents.map((event) => (
-          <div
+          <EventCard
             key={event.id}
-            className="text-white overflow-hidden shadow-lg w-[100%] mt-[6vw]"
-          >
-            <div className="relative w-[90%] m-auto border rounded-lg h-64 bg-black border-purple-300 z-20 ">
-              <img
-                src={event.image}
-                alt="Event image"
-                className="object-cover w-full h-full opacity-80 border rounded-lg"
-              />
-              <div className="absolute bottom-0 left-0 w-full bg-purple-600 border rounded-b-lg border-purple-300 text-black p-2 flex items-center gap-2">
-                <FaClock className="h-4 w-4 " />
-                <span className="text-sm">Time to end</span>
-                <span className="font-mono text-black">{event.timeToEnd}</span>
-              </div>
-            </div>
-            <div className="p-4  text-black">
-              <div className="flex items-center justify-between mb-2">
-                <div>
-                  <h6 className="font-semibold">{event.title}</h6>
-                  <p className="text-sm text-gray-500">{event.location}</p>
-                </div>
-                <p className="text-xl font-bold text-black">{event.price}</p>
-              </div>
-              <p className="text-sm text-gray-500 mb-2">{event.dateRange}</p>
-            </div>
-            <div className="">
-              <button className="w-full bg-purple-100 hover:bg-purple-300 text-black font-bold py-2 px-4 rounded transition-colors">
-                Explore
-              </button>
-            </div>
-          </div>
+            image={event.image}
+            title={event.title}
+            location={event.location}
+            price={event.price}
+            dateRange={event.dateRange}
+            timeToEnd={event.timeToEnd}
+          />
         ))}
       </div>
     </div>

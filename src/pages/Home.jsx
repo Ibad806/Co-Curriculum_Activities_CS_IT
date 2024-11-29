@@ -11,10 +11,7 @@ const Home = () => {
     <>
       <EventSlider heading={"Available Events"} para={"Explore events here"} />
       <TicketSteps />
-      <EventSlider
-        heading={"Upcoming Events"}
-        para={"The best events will be soon!"}
-      />
+      <EventSlider heading={"Upcoming Events"} para={"The best events will be soon!"} />
       <div className="m-10">
         <h1 className="text-4xl font-bold mb-8 text-center mt-8">
           Amazing Carousel
@@ -23,7 +20,7 @@ const Home = () => {
       </div>
       <NewsSection />
       <Faq />
-      <Footer/>
+      <Footer />
     </>
   );
 };
