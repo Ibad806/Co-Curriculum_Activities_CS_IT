@@ -5,12 +5,16 @@ import NewsSection from "../components/NewsLetter";
 import TicketSteps from "../components/TicketSteps";
 import Faq from "../components/Faq";
 import Footer from "../components/Footer";
+import Upcoming from "../components/Upcoming";
+
 
 const Home = () => {
+ 
   return (
     <>
       <EventSlider heading={"Available Events"} para={"Explore events here"} />
       <TicketSteps />
+   <Upcoming/>
       <EventSlider
         heading={"Upcoming Events"}
         para={"The best events will be soon!"}
