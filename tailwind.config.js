@@ -5,9 +5,9 @@ module.exports = {
   theme: {
     extend: {
       colors:{
-        'custom-grey': '#F6F6F6',
+        customBlue: "#2E3195",
       }
     },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/line-clamp')],
 };

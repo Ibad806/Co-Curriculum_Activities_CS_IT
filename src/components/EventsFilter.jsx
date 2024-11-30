@@ -23,7 +23,7 @@ const EventsFilter = ({ onSearch, onDateChange, onSort }) => {
 
   return (
     <div className="flex justify-between md:flex-row gap-4 mb-8">
-            <div className='flex gap-10'>
+            <div className='flex gap-2'>
 
       <div className="relative flex-1">
         <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />

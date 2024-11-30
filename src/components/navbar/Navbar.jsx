@@ -6,8 +6,8 @@ export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   return (
-    <div className="w-full h-96 bg-[#0a0a29] p-4">
-      <nav className="relative z-10 bg-white rounded-full w-[90%] m-auto mt-8 px-6 py-4 flex items-center justify-between shadow-lg">
+    <div className="w-full h-96 bg-[#0a0a29] py-[1.5vw] px-[4vw]">
+      <nav className="relative z-10 bg-white rounded-full w-[100%] m-auto mt-8 px-6 py-4 flex items-center justify-between shadow-lg">
         <Link to="/" className="text-xl font-bold">
           Logo
         </Link>
@@ -22,7 +22,7 @@ export default function Navbar() {
           <Link to="/tickets" className="text-gray-700 hover:text-gray-900 transition-colors">
             Tickets
           </Link>
-          <Link to="/gallery" className="text-gray-700 hover:text-gray-900 transition-colors">
+          <Link to="/generalgames" className="text-gray-700 hover:text-gray-900 transition-colors">
             Gallery
           </Link>
           <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">

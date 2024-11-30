@@ -46,9 +46,9 @@ h5 {
 }
 
 h6 {
-  font-size: 1.5vw;
-  line-height: 1.5vw;
-  letter-spacing: 0.1vw;
+  font-size: 1.3vw;
+  line-height: 1.3vw;
+  letter-spacing: 0.06vw;
 }
 
 li {
@@ -155,4 +155,4 @@ a {
   .button1:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
-}
+}                    

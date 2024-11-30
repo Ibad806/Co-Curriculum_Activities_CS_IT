@@ -2,7 +2,7 @@ import React from "react";
 import { FaClock } from "react-icons/fa";
 
 const EventCard = ({ image, title, location, price, dateRange, timeToEnd }) => {
-  return (
+  return (  
     <div className="max-w-sm mx-auto border rounded-lg overflow-hidden">
       <div className="relative aspect-square ">
         <img

@@ -14,6 +14,7 @@
     "@emotion/styled": "^11.13.5",
     "@material-tailwind/react": "^2.1.10",
     "@mui/material": "^6.1.8",
+    "@tailwindcss/line-clamp": "^0.4.4",
     "flowbite-react": "^0.10.2",
     "framer-motion": "^11.11.17",
     "lucide-react": "^0.461.0",
@@ -36,7 +37,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
     "postcss": "^8.x",
-    "tailwindcss": "^3.x",
+    "tailwindcss": "^3.4.15",
     "vite": "^5.4.11"
   }
 }

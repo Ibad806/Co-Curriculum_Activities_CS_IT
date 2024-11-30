@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import events from "../data";
-import EventCard from "./EvectsCards";
+import EventCard from "./EventCards";
 
 const EventSlider = ({ heading, para }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
