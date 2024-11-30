@@ -87,6 +87,8 @@ const events = [
   },
 ];
 
+export default events;
+
 export const generalgames = [
   {
     id: 1,
@@ -412,4 +414,4 @@ export const geekgames = [
   },
 ]
 
-export default events;
+

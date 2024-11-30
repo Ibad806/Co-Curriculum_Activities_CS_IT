@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { FaSearch, FaBell, FaUser, FaBars } from 'react-icons/fa'
+import { ImCross } from 'react-icons/im'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {
@@ -43,13 +44,16 @@ export default function Navbar() {
           className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          <FaBars className="w-6 h-6 text-gray-700" />
+          {
+            isMobileMenuOpen ? <ImCross className="w-5 h-5 text-gray-700"/>
+              : <FaBars className="w-5 h-5 text-gray-700" />
+          }
         </button>
       </nav>
 
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-20 left-4 right-4 bg-white rounded-lg shadow-lg p-4">
-          <div className="flex flex-col space-y-4">
+        <div className="md:hidden absolute top-20 right-14 w-[50%] flex justify-center bg-white rounded-lg shadow-lg p-4 z-10 mt-10">
+          <div className="flex flex-col space-y-4 ">
             <Link to="/" className="text-gray-700 hover:text-gray-900 transition-colors">
               Home
             </Link>
