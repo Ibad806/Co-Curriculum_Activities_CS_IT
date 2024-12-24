@@ -96,8 +96,6 @@ export default function Navbar() {
         </div>
       )}
       {/* MOBILE RESPONSIVE */}
-
-      <h1 className='text-[100px] py-8'>General Games</h1>
     </div>
   );
 }
