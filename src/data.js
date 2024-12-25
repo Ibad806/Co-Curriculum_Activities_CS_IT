@@ -1,3 +1,7 @@
+import egamecard from './assets/egamecard.png'
+import generalgamecard from './assets/generalgamecard.png'
+import geekcard from './assets/geekcard.png'
+
 const events = [
   {
     id: 1,
@@ -89,329 +93,377 @@ const events = [
 
 export default events;
 
+export const smecgames = [
+  {
+    id: 1,
+    image: egamecard,
+    title: "E-Gaming",
+    url: '/egames',
+  },
+  {
+    id: 2,
+    image: geekcard,
+    title: "Geeks",
+    url: '/geekgames',
+  },
+  {
+    id: 3,
+    image: generalgamecard,
+    title: "General Games",
+    url: '/generalgames',
+  },
+];
+
 export const generalgames = [
   {
     id: 1,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2026',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2026",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 2,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 3,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 4,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 5,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 6,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 7,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 8,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 9,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 10,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
-]
+];
 
 export const egames = [
   {
     id: 1,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 2,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 3,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 4,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 5,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 6,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 7,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
-]
+];
 
 export const geekgames = [
   {
     id: 1,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 2,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 3,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 4,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 5,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 6,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 7,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 8,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 9,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 10,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 11,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
 
   {
     id: 12,
     image: "https://via.placeholder.com/400",
-    title: 'Creative Writing',
-    date: '21-Feb-2025',
-    time: '08:00 PM',
-    gamedesc: 'lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ',
-    winprice: '28K',
-    playerslot: '4v4'
+    title: "Creative Writing",
+    date: "21-Feb-2025",
+    time: "08:00 PM",
+    gamedesc:
+      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
+    winprice: "28K",
+    playerslot: "4v4",
   },
-]
-
-
+];
