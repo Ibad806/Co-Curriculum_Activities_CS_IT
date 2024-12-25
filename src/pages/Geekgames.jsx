@@ -3,6 +3,7 @@ import { geekgames } from "../data";
 import Navbar from "../components/Navbar";
 import geekbanner from "../assets/geeks_banner.png";
 import Gamecard from "../components/Gamecard";
+import Footer from "../components/Footer";
 
 
 const Geekgames = () => {
@@ -48,6 +49,7 @@ const Geekgames = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

@@ -3,6 +3,7 @@ import Gamecard from "../components/Gamecard";
 import { generalgames } from "../data";
 import Navbar from "../components/Navbar";
 import gen from "../assets/gengames_banner.png";
+import Footer from "../components/Footer";
 
 const Generalgames = () => {
   return (
@@ -43,6 +44,7 @@ const Generalgames = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

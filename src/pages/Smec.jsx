@@ -4,6 +4,10 @@ import Navbar from "../components/Navbar";
 import Gamecard from "../components/Gamecard";
 import Smeccard from "../components/Smeccard";
 import Smeccategory from "../components/Smeccategory";
+import Smecslider from "../components/Smecslider";
+import Smecwinners from "../components/Smecwinners";
+import Smecsponsors from "../components/Smecsponsers";
+import Footer from "../components/Footer";
 
 const Smec = () => {
   return (
@@ -11,6 +15,10 @@ const Smec = () => {
       <Navbar />
       <Smec_main />
       <Smeccategory/>
+      <Smecslider/>
+      <Smecwinners/>
+      <Smecsponsors/>
+      <Footer/>
     </>
   );
 };

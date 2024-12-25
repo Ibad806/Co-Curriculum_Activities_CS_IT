@@ -1,6 +1,6 @@
-import egamecard from './assets/egamecard.png'
-import generalgamecard from './assets/generalgamecard.png'
-import geekcard from './assets/geekcard.png'
+import egamecard from "./assets/egamecard.png";
+import generalgamecard from "./assets/generalgamecard.png";
+import geekcard from "./assets/geekcard.png";
 
 const events = [
   {
@@ -98,19 +98,19 @@ export const smecgames = [
     id: 1,
     image: egamecard,
     title: "E-Gaming",
-    url: '/egames',
+    url: "/egames",
   },
   {
     id: 2,
     image: geekcard,
     title: "Geeks",
-    url: '/geekgames',
+    url: "/geekgames",
   },
   {
     id: 3,
     image: generalgamecard,
     title: "General Games",
-    url: '/generalgames',
+    url: "/generalgames",
   },
 ];
 
@@ -466,4 +466,54 @@ export const geekgames = [
     winprice: "28K",
     playerslot: "4v4",
   },
+];
+
+// src/data.js
+export const egameWinners = [
+  { id: 1, name: "Rameez Rafiq", game: "FIFA 25" },
+  { id: 2, name: "Ali Ahmed", game: "FIFA 25" },
+  { id: 3, name: "Sara Khan", game: "FIFA 25" },
+  { id: 4, name: "John Doe", game: "FIFA 25" },
+  { id: 5, name: "Jane Smith", game: "FIFA 25" },
+  { id: 6, name: "Michael Brown", game: "FIFA 25" },
+  { id: 7, name: "Emily Davis", game: "FIFA 25" },
+];
+
+export const geekWinners = [
+  { id: 1, name: "Rameez Rafiq", game: "FIFA 25" },
+  { id: 2, name: "Ali Ahmed", game: "FIFA 25" },
+  { id: 3, name: "Sara Khan", game: "FIFA 25" },
+  { id: 4, name: "John Doe", game: "FIFA 25" },
+  { id: 5, name: "Jane Smith", game: "FIFA 25" },
+  { id: 6, name: "Michael Brown", game: "FIFA 25" },
+  { id: 7, name: "Emily Davis", game: "FIFA 25" },
+  { id: 8, name: "Alice Cooper", game: "FIFA 25" },
+  { id: 9, name: "Steve Rogers", game: "FIFA 25" },
+  { id: 10, name: "Tony Stark", game: "FIFA 25" },
+  { id: 11, name: "Natasha Romanoff", game: "FIFA 25" },
+  { id: 12, name: "Bruce Wayne", game: "FIFA 25" },
+];
+
+export const generalGameWinners = [
+  { id: 1, name: "Rameez Rafiq", game: "FIFA 25" },
+  { id: 2, name: "Ali Ahmed", game: "FIFA 25" },
+  { id: 3, name: "Sara Khan", game: "FIFA 25" },
+  { id: 4, name: "John Doe", game: "FIFA 25" },
+  { id: 5, name: "Jane Smith", game: "FIFA 25" },
+  { id: 6, name: "Michael Brown", game: "FIFA 25" },
+  { id: 7, name: "Emily Davis", game: "FIFA 25" },
+  { id: 8, name: "Alice Cooper", game: "FIFA 25" },
+  { id: 9, name: "Steve Rogers", game: "FIFA 25" },
+  { id: 10, name: "Tony Stark", game: "FIFA 25" },
+];
+
+export const sponsors = [
+  { id: 1, name: "ABC" },
+  { id: 2, name: "ABC" },
+  { id: 3, name: "ABC" },
+  { id: 4, name: "ABC" },
+  { id: 5, name: "ABC" },
+  { id: 6, name: "ABC" },
+  { id: 7, name: "ABC" },
+  { id: 8, name: "ABC" },
 ];
