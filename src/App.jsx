@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from "react";
+import { Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
-import Navbar from "./components/Navbar";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
 import Generalgames from "./pages/Generalgames";
@@ -11,18 +11,64 @@ import ScrollToTop from "./ScrollToTop";
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/gallery" element={<Gallery />} />
-        <Route path="/smec" element={<Smec />} />
-        <Route path="/generalgames" element={<Generalgames />} />
-        <Route path="/egames" element={<Egames />} />
-        <Route path="/geekgames" element={<Geekgames />} />
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <ScrollToTop>
+            <Home />
+          </ScrollToTop>
+        }
+      />
+      <Route
+        path="/events"
+        element={
+          <ScrollToTop>
+            <Events />
+          </ScrollToTop>
+        }
+      />
+      <Route
+        path="/gallery"
+        element={
+          <ScrollToTop>
+            <Gallery />
+          </ScrollToTop>
+        }
+      />
+      <Route
+        path="/smec"
+        element={
+          <ScrollToTop>
+            <Smec />
+          </ScrollToTop>
+        }
+      />
+      <Route
+        path="/generalgames"
+        element={
+          <ScrollToTop>
+            <Generalgames />
+          </ScrollToTop>
+        }
+      />
+      <Route
+        path="/egames"
+        element={
+          <ScrollToTop>
+            <Egames />
+          </ScrollToTop>
+        }
+      />
+      <Route
+        path="/geekgames"
+        element={
+          <ScrollToTop>
+            <Geekgames />
+          </ScrollToTop>
+        }
+      />
+    </Routes>
   );
 }
 
