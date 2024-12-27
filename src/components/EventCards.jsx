@@ -1,39 +1,73 @@
 import React from "react";
-import { FaClock } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaBuilding, FaMapMarkerAlt, FaRegCalendarAlt } from 'react-icons/fa'
 
-const EventCard = ({ image, title, location, price, dateRange, timeToEnd }) => {
+const EventCard = ({ image, title, location, price, dateRange, timeToEnd , daysLeft }) => {
   return (
-    <div className="max-w-sm mx-auto border rounded-lg overflow-hidden">
-      <div className="relative aspect-square ">
-        <img src={image} alt="Event logo" className="w-full h-full" />
-        {/* <div className="absolute bottom-0 left-0 right-0 border-t"> */}
-        <div className="flex items-center gap-2 bg-[#6b21a8] text-gray-200  p-2">
-          <FaClock className="h-4 w-4" />
-          <span className="text-sm">Time to end</span>
-          <span className="font-mono">{timeToEnd}</span>
-          {/* </div> */}
+    <div className="max-w-md overflow-hidden rounded-lg bg-white shadow-lg">
+      {/* Image Container */}
+      <div className="relative">
+        <img
+          src={image}
+          alt="Event venue"
+          className="h-48 w-full object-cover"
+        />
+        {/* Date Badge */}
+        <div className="absolute left-4 top-4 flex flex-col items-center rounded bg-orange-400 px-3 py-1 text-white">
+          <span className="text-2xl font-bold">{daysLeft}</span>
+          <span className="text-sm font-semibold">DAYS</span>
         </div>
       </div>
-      <div className="p-4 space-y-2 bg-white">
-        <div className="flex justify-between items-start">
-          <div>
-            <h2 className="text-lg font-semibold ">{title}</h2>
-            <p className="text-sm text-gray-400">{location}</p>
+
+      {/* Content Container */}
+      <div className="relative p-4">
+        {/* Red Accent Line */}
+        <div className="absolute left-0 top-0 h-full w-1 bg-black"></div>
+        
+        {/* Content with left padding to account for red line */}
+        <div className="pl-4">
+          {/* Title */}
+          <h3 className="mb-2 text-xl font-bold text-gray-800">
+           {title}
+          </h3>
+
+          {/* Price */}
+          <p className="mb-3 text-orange-400">
+            Price Starts from: <span className="">{price}</span>
+          </p>
+
+          {/* Organizer */}
+          <div className="mb-2 flex items-start gap-2">
+          <FaBuilding className="mt-1 h-4 w-4 text-gray-600" />
+            <p className="text-sm text-gray-600">
+              <span className="font-semibold">Organized By:</span> Computer Science Department
+            </p>
           </div>
-          <span className="text-lg font-bold ">{price}</span>
-        </div>
-        <p className="text-sm text-gray-400">{dateRange}</p>
-      </div>
-      <div className=" bg-white">
-        <Link to="/smec">
-          <button className="w-full bg-[#6b21a8] hover:bg-[#7c3aed] text-white font-medium py-2 px-4 rounded transition-colors">
-            Explore
+
+          {/* Location */}
+          <div className="mb-2 flex items-start gap-2">
+          <FaMapMarkerAlt className="mt-1 h-4 w-4 text-gray-600" />
+            <p className="text-sm text-gray-600">
+              <span className="font-semibold">Location:</span> {location}
+            </p>
+          </div>
+
+          {/* Date and Time */}
+          <div className="flex items-start gap-2">
+          <FaRegCalendarAlt className="mt-1 h-4 w-4 text-gray-600" />
+            <p className="text-sm text-gray-600">
+              <span className="font-semibold">{dateRange}</span> {timeToEnd}
+            </p>
+          </div>
+          {/* Explore Event Button */}
+          <button className="w-full mt-5 rounded bg-black py-2 text-white transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50">
+            Explore Event
           </button>
-        </Link>
+        </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default EventCard;
+export default EventCard
+
+

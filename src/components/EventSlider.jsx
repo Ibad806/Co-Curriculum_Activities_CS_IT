@@ -23,9 +23,9 @@ const EventSlider = ({ heading, para }) => {
   return (
     <div className="relative w-full p-[4vw]">
       <div className="flex flex-col gap-[1vw] items-center justify-center h-full">
-        <div className="flex flex-col pt-[1vw]">
+        <div className="flex flex-col ">
           <h1 className="text-center">{heading}</h1>
-          <h6 className="py-[1vw] text-center">{para}</h6>
+          <h6 className=" text-center">{para}</h6>
         </div>
         <div className="md:space-x-9 space-x-3">
           <button
@@ -43,7 +43,7 @@ const EventSlider = ({ heading, para }) => {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-[3vw]">
+      <div className="grid grid-cols-1 md:grid-cols-3 mt-[1VW] gap-[3vw]">
         {visibleEvents.map((event) => (
           <EventCard
             key={event.id}
@@ -53,6 +53,7 @@ const EventSlider = ({ heading, para }) => {
             price={event.price}
             dateRange={event.dateRange}
             timeToEnd={event.timeToEnd}
+            daysLeft={event.daysLeft}
           />
         ))}
       </div>

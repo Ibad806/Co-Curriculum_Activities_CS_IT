@@ -89,6 +89,7 @@ const Allevents = ({ event, desc }) => {
               price={event.price}   
               dateRange={event.dateRange}
               timeToEnd={event.timeToEnd}
+              daysLeft={event.daysLeft}
             />
           ))}
         </div>
