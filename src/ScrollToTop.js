@@ -8,7 +8,7 @@ const ScrollToTop = () => {
     window.scrollTo(0, 0); // Scrolls to the top of the page on route change
   }, [pathname]);
 
-  return null;
+  return <></>;
 };
 
 export default ScrollToTop;

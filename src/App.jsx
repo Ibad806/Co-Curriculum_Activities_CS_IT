@@ -7,7 +7,7 @@ import Generalgames from "./pages/Generalgames";
 import Egames from "./pages/Egames";
 import Geekgames from "./pages/Geekgames";
 import Smec from "./pages/Smec";
-import ScrollToTop from "../Scrolltotop";
+import ScrollToTop from "./ScrollToTop";
 
 function App() {
   return (
