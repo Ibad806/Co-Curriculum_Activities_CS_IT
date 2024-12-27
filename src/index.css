@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import "swiper/swiper-bundle.min.css";
 
 * {
   margin: 0;

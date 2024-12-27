@@ -1,61 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+import React, { useState } from "react";
+import image1 from "../assets/egamecard.png";
+import image2 from "../assets/egaming_banner.png";
+import image3 from "../assets/geekcard.png";
 
-const images = [
-  "https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0",
-  "https://live.staticflickr.com/65535/49049007453_c0c4b272ca_o.jpg",
-  "https://th.bing.com/th/id/OIP.voLVMJX4Uka6I99CIPCv6QHaE8?w=2560&h=1707&rs=1&pid=ImgDetMain",
-  "https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0",
-  "https://live.staticflickr.com/65535/49049007453_c0c4b272ca_o.jpg"
-];
-
-function ImageSlider() {
+const ImageSlider = () => {
+  const images = [image1, image2, image3];
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  const goToPrevious = () => {
-    const isFirstSlide = currentIndex === 0;
-    const newIndex = isFirstSlide ? images.length - 1 : currentIndex - 1;
-    setCurrentIndex(newIndex);
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
   };
 
-  const goToNext = () => {
-    const isLastSlide = currentIndex === images.length - 1;
-    const newIndex = isLastSlide ? 0 : currentIndex + 1;
-    setCurrentIndex(newIndex);
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
-    <div className="relative w-full object-cover">
-      <div className="relative h-full overflow-hidden rounded-xl">
-        <img
-          src={images[currentIndex]}
-          alt={`Slide ${currentIndex + 1}`}
-          className="w-full h-full object-cover transition-opacity duration-500"
-        />
+    <div className="flex items-center justify-center py-5  md:px-0 px-0 w-[100%]">
+      <div className="relative md:w-[100%] w-[100%]">
+        <div
+          className="overflow-hidden"
+          style={{
+            borderWidth: "6px",
+            borderStyle: "solid",
+            borderImage:
+              "linear-gradient(to bottom, grey, rgba(54, 39, 39, 0.8)) 1",
+          }}
+        >
+          <img
+            src={images[currentIndex]}
+            alt={`Slide ${currentIndex + 1}`}
+            className="w-full md:h-[500px] h-[350px] object-cover"
+          />
+        </div>
+
+        {/* Navigation Arrows */}
+        <button
+          onClick={handlePrev}
+          className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"
+        >
+          &#8592; {/* Left Arrow */}
+        </button>
+        <button
+          onClick={handleNext}
+          className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 text-white p-3 rounded-full hover:bg-black/70"
+        >
+          &#8594; {/* Right Arrow */}
+        </button>
       </div>
-      <button
-        onClick={goToPrevious}
-        className="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 transition-all duration-300"
-      >
-        <ChevronLeftIcon className="w-6 h-6 text-gray-800" />
-      </button>
-      <button
-        onClick={goToNext}
-        className="absolute top-1/2 right-4 transform -translate-y-1/2 bg-white bg-opacity-50 hover:bg-opacity-75 rounded-full p-2 transition-all duration-300"
-      >
-        <ChevronRightIcon className="w-6 h-6 text-gray-800" />
-      </button>
     </div>
   );
-}
+};
 
 export default ImageSlider;
-

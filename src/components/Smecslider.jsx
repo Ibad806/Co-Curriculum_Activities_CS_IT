@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import image1 from "../assets/egamecard.png"; // Replace with your image paths
+import image1 from "../assets/egamecard.png";
 import image2 from "../assets/egaming_banner.png";
 import image3 from "../assets/geekcard.png";
 
@@ -8,22 +8,27 @@ const Smecslider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const handlePrev = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === 0 ? images.length - 1 : prevIndex - 1));
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
   };
 
   const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex === images.length - 1 ? 0 : prevIndex + 1));
+    setCurrentIndex((prevIndex) =>
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   return (
     <div className="bg-black flex items-center justify-center py-20 md:px-4 px-0">
       <div className="relative md:w-[97%] w-[100%]">
-      <div
+        <div
           className="overflow-hidden"
           style={{
             borderWidth: "6px",
             borderStyle: "solid",
-            borderImage: "linear-gradient(to bottom, yellow, rgba(54, 39, 39, 0.8)) 1",
+            borderImage:
+              "linear-gradient(to bottom, yellow, rgba(54, 39, 39, 0.8)) 1",
           }}
         >
           <img

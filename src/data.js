@@ -468,7 +468,6 @@ export const geekgames = [
   },
 ];
 
-// src/data.js
 export const egameWinners = [
   { id: 1, name: "Rameez Rafiq", game: "FIFA 25" },
   { id: 2, name: "Ali Ahmed", game: "FIFA 25" },

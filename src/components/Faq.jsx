@@ -40,7 +40,7 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="faq-main flex flex-col md:flex-row min-h-[10vh] w-full bg-purple-50 p-[4vw]">
+    <div className="faq-main flex flex-col md:flex-row min-h-[10vh] w-full bg-purple-50 p-4">
       {/* Left Section */}
       <div className="faq-left w-full md:w-1/2 flex flex-col items-start justify-center p-8 space-y-4">
         <h1>Frequently Asked Questions</h1>
@@ -53,6 +53,10 @@ const FAQ = () => {
           <p>(010) 123-4567</p>
         </div>
         <p>Still Have Questions?</p>
+        <p>
+          Can’t find the answer you’re looking for? Please contact our help
+          center.
+        </p>
         <button className="button1">Contact Us</button>
       </div>
 
