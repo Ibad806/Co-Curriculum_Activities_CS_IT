@@ -1,6 +1,6 @@
 import React from "react";
 import smecban from "../assets/smec_banner.png";
-import borright from '../assets/smec_border_right.png';
+// import borright from '../assets/smec_border_right.png';
 
 const Smec_main = () => {
   return (
@@ -19,7 +19,7 @@ const Smec_main = () => {
           that celebrates innovation and unites a community passionate about the
           cutting edge.
         </p>
-        <img className="absolute top-0 right-0 object-cover" src={borright} alt="" />
+        {/* <img className="absolute top-0 right-0 object-cover" src={borright} alt="" /> */}
       </div>
     </>
   );
