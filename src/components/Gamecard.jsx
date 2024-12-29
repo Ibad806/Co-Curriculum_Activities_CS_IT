@@ -1,5 +1,8 @@
 import React from "react";
 import h from "../assets/h.png";
+import trophy from "../assets/trophy.png";
+import vs from "../assets/vs.png";
+import arrow from "../assets/Buy Arrow.png";
 
 const Gamecard = ({
   title,
@@ -12,60 +15,46 @@ const Gamecard = ({
 }) => {
   return (
     <>
-      <div className="bg-[#313231] md:h-[390px] h-[380px] rounded-[10px] w-80">
+      <div className="bg-[#313231] w-full max-w-[90%] md:max-w-[400px] lg:max-w-[500px] rounded-[10px] h-auto mx-auto">
         <img
-          className="w-full h-[48%] object-cover p-2 rounded-[15px]"
+          className="w-full h-[200px] md:h-[220px] object-cover p-2 rounded-[15px]"
           src={h}
           alt="Game Card"
         />
         <div className="text-white px-3">
-          <h6 className="py-3 text-sm">
-            {date}, <span className="text-white">{time}</span>
+          <h6 className="py-1 text-[#9A9A9A] text-sm">
+            {date}, <span className="text-[#9A9A9A]">{time}</span>
           </h6>
-          <h5 className="py-1 text-lg font-bold">{title}</h5>
-          <h6 className="pb-1 text-sm line-clamp-2 overflow-hidden text-ellipsis">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit uhb lkajsdhfl ljksdhlkjh lkjdh
+          <h5 className="py-1 text-lg font-bold text-white">{title}</h5>
+          <h6 className="py-3 text-[#9A9A9A] text-sm line-clamp-2 overflow-hidden text-ellipsis">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
           </h6>
           <hr />
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between py-3">
             <div className="flex items-center justify-center flex-col">
-              <h6 className="py-2 text-[#141716] text-sm">Win Price</h6>
+              <h6 className="py-2 text-[#9A9A9A] text-sm">Win Price</h6>
               <div className="flex items-center justify-between gap-[0.3vw]">
-                <img
-                  className="w-8"
-                  src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHCAcHBwcHBwcHBwoGBwcHCA8ICQcKIBEWFiARExMYHCggGBolGxMTITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NEA0NFSsZHxkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIALcBEwMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAAAQf/xAAXEAEBAQEAAAAAAAAAAAAAAAAAATER/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAEHBf/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANHVBkLtKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAARSAAAAoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKgAAIAAAAABFSKAACgACiCCgIKAgoCCoAAAAAKgAAACiBQAAEAAAAAAikAAAUAFAQEVAAFAABFQAAAABFQBZqLNBaFEEoUUAAQAAAAABUUAAFABQEBFQABQAARUAAAAARUAWaizQWhRBAooAAgAAAAACpFAABQAUBARUAAUAAEVAAAAAEVAFmos0FoUQSi1FAAEAAAAABYEAAAUAFAQEVKAAoAAIqAAAAAIqALNRZoLQoglCigACAAAAAARUigAAoAKAgIqAAKAACKgAAAACKgCzUWaC0KIJQooAAgAAAAALBFAABQAUQQVAAAAAA4cADhwAOHAA4cADhwFCgIJQFAAEAAAAAAVFAABRAFEAUQBRAFEAUQBRAFEAUQBRAFEAVAAABAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEFQAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//9k="
-                  alt=""
-                />
+                <img className="w-8" src={trophy} alt="trophy" />
                 <h6>{winprice}</h6>
               </div>
             </div>
             <div className="flex items-center justify-center flex-col">
-              <h6 className="py-2 text-[#141716] text-sm">
-                Player Slot
-              </h6>
+              <h6 className="py-2 text-[#9A9A9A] text-sm">Player Slot</h6>
               <div className="flex items-center justify-between gap-1">
-                <img
-                  className="w-8"
-                  src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBwgHCAcHBwcHBwcHBwoGBwcHCA8ICQcKIBEWFiARExMYHCggGBolGxMTITEhJSkrLi4uFx8zODMsNygtLisBCgoKDQ0NEA0NFSsZHxkrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrKysrK//AABEIALcBEwMBIgACEQEDEQH/xAAWAAEBAQAAAAAAAAAAAAAAAAAAAQf/xAAXEAEBAQEAAAAAAAAAAAAAAAAAATER/8QAFwEBAQEBAAAAAAAAAAAAAAAAAAEHBf/EABQRAQAAAAAAAAAAAAAAAAAAAAD/2gAMAwEAAhEDEQA/ANHVBkLtKAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAARSAAAAoCCgIKAgoCCgIKAgoCCgIKAgoCCgIKgAAIAAAAABFSKAACgACiCCgIKAgoCCoAAAAAKgAAACiBQAAEAAAAAAikAAAUAFAQEVAAFAABFQAAAABFQBZqLNBaFEEoUUAAQAAAAABUUAAFABQEBFQABQAARUAAAAARUAWaizQWhRBAooAAgAAAAACpFAABQAUBARUAAUAAEVAAAAAEVAFmos0FoUQSi1FAAEAAAAABYEAAAUAFAQEVKAAoAAIqAAAAAIqALNRZoLQoglCigACAAAAAARUigAAoAKAgIqAAKAACKgAAAACKgCzUWaC0KIJQooAAgAAAAALBFAABQAUQQVAAAAAA4cADhwAOHAA4cADhwFCgIJQFAAEAAAAAAVFAABRAFEAUQBRAFEAUQBRAFEAUQBRAFEAVAAABAAAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEFQAAFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB//9k="
-                  alt=""
-                />
+                <img className="w-8" src={vs} alt="4v4" />
                 <h6>{playerslot}</h6>
               </div>
             </div>
-            {/* <div className="w-[3vw] h-[3vw] rounded-full bg-[#6B00D6] flex items-center justify-center">
-                <h6>Buy</h6>
-            </div> */}
             <div className="flex items-center justify-center flex-col">
-              <h6 className="pt-2 text-sm">Buy</h6>
-              <div className="w-9 h-9 rounded-full bg-[#6B00D6] flex items-center justify-center cursor-pointer">
-                <h6>→</h6>
+              <div className="p-2  rounded-full bg-[#FACB67] flex items-center justify-center cursor-pointer">
+                <img className="w-8" src={arrow} alt="4v4" />
               </div>
             </div>
           </div>
         </div>
       </div>
     </>
-  );
+  ); 
 };
 
 export default Gamecard;
