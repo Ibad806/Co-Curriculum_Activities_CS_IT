@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import message from "../assets/vector.png";
+import message from "../assets/Vector.png";
 import phone from "../assets/phone-telephone.png";
 
 const FAQ = () => {
