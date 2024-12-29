@@ -7,7 +7,7 @@ export default function Navbar(props) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="w-full px-[2vw] pb-6 flex items-center justify-center flex-col relative bg-black">      
+    <div className={`w-full px-[2vw] pb-6 flex items-center justify-center flex-col relative ${props.navcolor}`}>      
       <nav className="relative z-10 bg-white rounded-full w-[100%] m-auto mt-6 px-6 py-4 flex items-center justify-between shadow-lg">
         <Link to="/" className="text-xl font-bold">
           Logo

@@ -12,7 +12,7 @@ import Footer from "../components/Footer";
 const Smec = () => {
   return (
     <>
-      <Navbar />
+      <Navbar navcolor='bg-black'/>
       <Smec_main />
       <Smeccategory/>
       <Smecslider/>

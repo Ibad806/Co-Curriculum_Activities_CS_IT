@@ -1,13 +1,15 @@
 import egamecard from "./assets/egamecard.png";
 import generalgamecard from "./assets/generalgamecard.png";
 import geekcard from "./assets/geekcard.png";
+import smecbanner from "./assets/smec_banner.png";
+import qawalibanner from "./assets/qawali_banner.png";
+import qawali from "./assets/qawali.png";
 
 const events = [
   {
     id: 1,
     title: "SMEC 1",
-    image:
-      "https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0",
+    image: smecbanner,
     location: "London",
     dateRange: "November 13 2024 ",
     price: "$499.99",
@@ -17,8 +19,7 @@ const events = [
   {
     id: 2,
     title: "Qawali Night 1",
-    image:
-      "https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0",
+    image: qawalibanner,
     location: "London",
     dateRange: "November 14 2024",
     price: "$799.99",
@@ -28,8 +29,7 @@ const events = [
   {
     id: 3,
     title: "Annual Dinner 1",
-    image:
-      "https://th.bing.com/th/id/R.6cdf26728f97f5780a69ee333df8eb02?rik=lZuMk4y4hej9Jg&pid=ImgRaw&r=0",
+    image: qawali,
     location: "Bristol",
     dateRange: "November 15 2024 ",
     price: "$199.99",
@@ -39,8 +39,7 @@ const events = [
   {
     id: 4,
     title: "Qawali Night 2",
-    image:
-      "https://th.bing.com/th/id/OIP.voLVMJX4Uka6I99CIPCv6QHaE8?w=2560&h=1707&rs=1&pid=ImgDetMain",
+    image: smecbanner,
     location: "Birmingham",
     dateRange: "November 20 2024 ",
     price: "$299.99",
@@ -50,7 +49,7 @@ const events = [
   {
     id: 5,
     title: "SMEC 2",
-    image: "https://via.placeholder.com/400",
+    image: qawali,
     location: "Bristol",
     dateRange: "November 15 2024 ",
     price: "$199.99",
@@ -60,7 +59,7 @@ const events = [
   {
     id: 6,
     title: "Annual Dinner 2",
-    image: "https://via.placeholder.com/400",
+    image: qawalibanner,
     location: "Birmingham",
     dateRange: "November 20 2024 ",
     price: "$299.99",
@@ -70,33 +69,12 @@ const events = [
   {
     id: 7,
     title: "Qawali Night 3",
-    image:
-      "https://th.bing.com/th/id/OIP.voLVMJX4Uka6I99CIPCv6QHaE8?w=2560&h=1707&rs=1&pid=ImgDetMain",
+    image:smecbanner,
     location: "Birmingham",
     dateRange: "November 20 2024 ",
     price: "$299.99",
     timeToEnd: "12:00 pm - 1:00 pm",
     daysLeft: "10",
-  },
-  {
-    id: 8,
-    title: "SMEC 3",
-    image: "https://via.placeholder.com/400",
-    location: "Bristol",
-    dateRange: "November 15 2024 ",
-    price: "$199.99",
-    timeToEnd: "12:00 pm - 1:00 pm",
-    daysLeft: "7",
-  },
-  {
-    id: 9,
-    title: "Annual Dinner 3",
-    image: "https://via.placeholder.com/400",
-    location: "Birmingham",
-    dateRange: "November 20 2024 ",
-    price: "$299.99",
-    timeToEnd: "12:00 pm - 1:00 pm",
-    daysLeft: "8",
   },
 ];
 
