@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// Dummy sponsor logos
 const sponsors = [
   { id: 1, src: "https://vectorseek.com/wp-content/uploads/2023/07/Bahria-Town-Logo-Vector.svg-.png", alt: "NexaLab" },
   { id: 2, src: "https://seeklogo.com/images/A/allied-bank-limited-abl-logo-BC9B3FF50C-seeklogo.com.png", alt: "CaterSpot" },
@@ -19,12 +18,12 @@ const SponsorSlider = () => {
     dots: false,
     arrows: false,
     infinite: true,
-    speed: 3000, 
+    speed: 3000,
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 0, 
-    cssEase: "linear", 
+    autoplaySpeed: 0,
+    cssEase: "linear",
     responsive: [
       {
         breakpoint: 1024,
@@ -48,22 +47,26 @@ const SponsorSlider = () => {
   };
 
   return (
-    <div className="sponsors bg-gray-800 w-full">
-      <div className="bg-black py-10 px-6 w-[80%] mx-auto z-10">
+    <div className="relative bg-black w-full ">
+      <div className="bg-black py-10 px-6 w-[80%] mx-auto ">
         <h2 className="text-center text-xl md:text-2xl font-semibold mb-8 text-gray-300">
           Gold Sponsor
         </h2>
-        <Slider {...settings}>
-          {sponsors.map((sponsor) => (
-            <div key={sponsor.id} className="flex justify-center gap-10">
-              <img
-                src={sponsor.src}
-                alt={sponsor.alt}
-                className="max-h-[100px] object-contain"
-              />
-            </div>
-          ))}
-        </Slider>
+        <div className="relative">
+          <div className="absolute top-0 left-0 w-[100px] h-full bg-gradient-to-r from-black to-transparent z-10"></div>
+          <div className="absolute top-0 right-0 w-[100px] h-full bg-gradient-to-l from-black to-transparent z-10"></div>
+          <Slider {...settings}>
+            {sponsors.map((sponsor) => (
+              <div key={sponsor.id} className="flex justify-center gap-10">
+                <img
+                  src={sponsor.src}
+                  alt={sponsor.alt}
+                  className="max-h-[100px] object-contain"
+                />
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </div>
   );
