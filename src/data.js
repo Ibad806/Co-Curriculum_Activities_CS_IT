@@ -105,7 +105,7 @@ export const generalgames = [
   {
     id: 1,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Chess",
     date: "21-Feb-2026",
     time: "08:00 PM",
     gamedesc:
@@ -117,7 +117,7 @@ export const generalgames = [
   {
     id: 2,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Tug of War",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -129,7 +129,7 @@ export const generalgames = [
   {
     id: 3,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Brain Games",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -141,7 +141,7 @@ export const generalgames = [
   {
     id: 4,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Arm Wrestling",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -153,7 +153,7 @@ export const generalgames = [
   {
     id: 5,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Sequence",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -165,7 +165,7 @@ export const generalgames = [
   {
     id: 6,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Scrabble",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -177,7 +177,7 @@ export const generalgames = [
   {
     id: 7,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Table Tennis",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -188,30 +188,6 @@ export const generalgames = [
 
   {
     id: 8,
-    image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
-    date: "21-Feb-2025",
-    time: "08:00 PM",
-    gamedesc:
-      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
-    winprice: "28K",
-    playerslot: "4v4",
-  },
-
-  {
-    id: 9,
-    image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
-    date: "21-Feb-2025",
-    time: "08:00 PM",
-    gamedesc:
-      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
-    winprice: "28K",
-    playerslot: "4v4",
-  },
-
-  {
-    id: 10,
     image: "https://via.placeholder.com/400",
     title: "Creative Writing",
     date: "21-Feb-2025",
@@ -227,7 +203,7 @@ export const egames = [
   {
     id: 1,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "FC24",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -239,7 +215,7 @@ export const egames = [
   {
     id: 2,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Tekken-8",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -251,7 +227,7 @@ export const egames = [
   {
     id: 3,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Counter Strike 1.6",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -263,7 +239,7 @@ export const egames = [
   {
     id: 4,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Counter Strike 2",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -275,7 +251,7 @@ export const egames = [
   {
     id: 5,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "PUBG",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -287,7 +263,7 @@ export const egames = [
   {
     id: 6,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Free Fire",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -299,7 +275,7 @@ export const egames = [
   {
     id: 7,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Need for Speed",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -313,7 +289,7 @@ export const geekgames = [
   {
     id: 1,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Speed Programming",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -325,7 +301,7 @@ export const geekgames = [
   {
     id: 2,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Speed Debugging",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -337,7 +313,7 @@ export const geekgames = [
   {
     id: 3,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Logo Designing",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -349,7 +325,7 @@ export const geekgames = [
   {
     id: 4,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Robo War",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -361,7 +337,7 @@ export const geekgames = [
   {
     id: 5,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Code in Dark",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -373,7 +349,7 @@ export const geekgames = [
   {
     id: 6,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Networking Designing",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -385,7 +361,7 @@ export const geekgames = [
   {
     id: 7,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Hackathon",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -397,55 +373,7 @@ export const geekgames = [
   {
     id: 8,
     image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
-    date: "21-Feb-2025",
-    time: "08:00 PM",
-    gamedesc:
-      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
-    winprice: "28K",
-    playerslot: "4v4",
-  },
-
-  {
-    id: 9,
-    image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
-    date: "21-Feb-2025",
-    time: "08:00 PM",
-    gamedesc:
-      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
-    winprice: "28K",
-    playerslot: "4v4",
-  },
-
-  {
-    id: 10,
-    image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
-    date: "21-Feb-2025",
-    time: "08:00 PM",
-    gamedesc:
-      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
-    winprice: "28K",
-    playerslot: "4v4",
-  },
-
-  {
-    id: 11,
-    image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
-    date: "21-Feb-2025",
-    time: "08:00 PM",
-    gamedesc:
-      "lorem ipsum dolor sit amet, consectetur adip lorem ipsum dolor sit ",
-    winprice: "28K",
-    playerslot: "4v4",
-  },
-
-  {
-    id: 12,
-    image: "https://via.placeholder.com/400",
-    title: "Creative Writing",
+    title: "Data Analytics",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:

@@ -8,6 +8,7 @@ import Smecslider from "../components/Smecslider";
 import Smecwinners from "../components/Smecwinners";
 import Smecsponsors from "../components/Smecsponsers";
 import Footer from "../components/Footer";
+import SponsorSlider from "../components/SponsorSlider";
 
 const Smec = () => {
   return (
@@ -17,7 +18,8 @@ const Smec = () => {
       <Smeccategory/>
       <Smecslider/>
       <Smecwinners/>
-      <Smecsponsors/>
+      {/* <Smecsponsors/> */}
+      <SponsorSlider/>
       <Footer/>
     </>
   );

@@ -12,7 +12,7 @@ const Smeccard = (props) => {
           alt=""
         />
         <div className="absolute top-[68%] left-[10px]">
-          <h2 className="py-[10px] text-[30px]">{props.title}</h2>
+          <h2 className="py-[10px] font-bold text-[30px]">{props.title}</h2>
           <Link to={props.url}>
             <button className="w-[90px] h-[37px] bg-[#FFCD5A] rounded-[80px]">
               Explore

@@ -1,18 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import { egames } from "../data";
 import Navbar from "../components/Navbar";
 import egamebanner from "../assets/egaming_banner.png";
 import Gamecard from "../components/Gamecard";
 import Footer from "../components/Footer";
 
-
 const Geekgames = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const filteredGames = egames.filter((egame) =>
+    egame.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
-      <Navbar/>
-      <div className="relative w-[100%]">
-        <img className="w-[100%]" src={egamebanner} alt="" />
-        <div className="absolute z-[10] md:top-[43%] top-[35%] md:left-12 left-6 w-[45%] text-white">
+      <Navbar />
+      <div className="relative w-full">
+        <img className="w-full" src={egamebanner} alt="E-gaming Banner" />
+        <div className="absolute z-10 md:top-[43%] top-[35%] md:left-12 left-6 w-[45%] text-white">
           <h1 className="md:pb-10 pb-2 font-bold md:text-[80px] text-[6vw]">
             Geek Games
           </h1>
@@ -22,20 +26,24 @@ const Geekgames = () => {
           </p>
         </div>
       </div>
-      <div className="px-11 w-[100%] bg-black">
-        <div className="flex items-center justify-between flex-col md:flex-row w-[100%]">
+      <div className="px-4 md:px-11 w-full bg-black">
+        <div className="container mx-auto flex items-center justify-between flex-col md:flex-row">
           <h3 className="py-16 font-bold text-white md:text-[40px] text-[5vw]">
             Currently Available
           </h3>
-          <input
-            type="text"
-            placeholder="Search game..."
-            className="md:w-80 md:h-12 w-[100%] h-11 focus:outline-none border-[1.5px] border-black rounded-[10px] p-2 mb-9 md:mb-0"
-          />
+          <div>
+            <input
+              type="text"
+              placeholder="Search game..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="md:w-80 md:h-12 w-full h-11 focus:outline-none border-[1.5px] border-gray-400 rounded-[10px] p-2 mb-9 md:mb-0"
+            />
+          </div>
         </div>
-        <div className="flex items-center justify-center">
-          <div className="grid lg:grid-cols-3 grid-cols-1 gap-[110px] md:grid-cols-2 justify-items-center">
-            {egames.map((egame) => (
+        <div className="container mx-auto">
+          <div className="grid gap-10 grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 justify-items-center">
+            {filteredGames.map((egame) => (
               <Gamecard
                 key={egame.id}
                 title={egame.title}
@@ -49,7 +57,7 @@ const Geekgames = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </>
   );
 };
