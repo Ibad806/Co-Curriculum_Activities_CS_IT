@@ -25,7 +25,7 @@ const EventSlider = ({ heading, para }) => {
       <div className="flex flex-col gap-[1vw] items-center justify-center h-full">
         <div className="flex flex-col ">
           <h1 className="text-center">{heading}</h1>
-          <h6 className=" text-center">{para}</h6>
+          <h6 className=" text-center py-[20px]">{para}</h6>
         </div>
         <div className="md:space-x-9 space-x-3">
           <button

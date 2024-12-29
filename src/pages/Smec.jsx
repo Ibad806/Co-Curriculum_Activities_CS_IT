@@ -13,7 +13,7 @@ import SponsorSlider from "../components/SponsorSlider";
 const Smec = () => {
   return (
     <>
-      <Navbar />
+      <Navbar navcolor='bg-black'/>
       <Smec_main />
       <Smeccategory/>
       <Smecslider/>
