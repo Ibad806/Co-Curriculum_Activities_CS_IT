@@ -3,19 +3,16 @@ import image from "../assets/smec_banner.png";
 
 const Gamedetails = () => {
   const [quantity, setQuantity] = useState(1);
-  const ticketPrice = 1000; // Price per ticket
+  const ticketPrice = 1000; 
 
-  // Function to handle increment
   const incrementQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
   };
 
-  // Function to handle decrement
   const decrementQuantity = () => {
     setQuantity((prevQuantity) => (prevQuantity > 0 ? prevQuantity - 1 : 0));
   };
 
-  // Calculate total price
   const totalPrice = ticketPrice * quantity;
 
   return (
@@ -55,7 +52,6 @@ const Gamedetails = () => {
             </p>
           </section>
 
-          {/* Ticket Information Section */}
           <section className="mt-8 p-6 rounded-[30px] shadow-md border-[#393939] border-4">
             <div className="pt-6">
               <div className="flex items-center justify-between">

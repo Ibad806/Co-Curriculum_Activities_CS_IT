@@ -8,7 +8,7 @@ import image1 from "../assets/egamecard.png";
 import image2 from "../assets/egaming_banner.png";
 import image3 from "../assets/geekcard.png";
 
-export default function App() {
+const ImageSlider = () => {
   return (
     <div className="h-screen bg-gradient-to-b from-blue-700 via-blue-500 to-gray-200">
       <Swiper
@@ -56,3 +56,5 @@ export default function App() {
     </div>
   );
 }
+
+export default ImageSlider;

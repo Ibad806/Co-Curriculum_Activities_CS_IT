@@ -27,7 +27,7 @@ const Gamecard = ({
           </h6>
           <h5 className="py-1 text-lg font-bold text-white">{title}</h5>
           <h6 className="py-3 text-[#9A9A9A] text-sm line-clamp-2 overflow-hidden text-ellipsis">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+            {gamedesc}
           </h6>
           <hr />
           <div className="flex items-center justify-between py-3">
@@ -54,7 +54,7 @@ const Gamecard = ({
         </div>
       </div>
     </>
-  ); 
+  );
 };
 
 export default Gamecard;

@@ -14,7 +14,11 @@ const Geekgames = () => {
     );
   return (
     <>
-      <Navbar/>
+     <Navbar
+        navcolor="bg-black"
+        bordercolor="border-[#FFCD5A]"
+        linkcolor="text-white"
+      />
       <div className="relative w-full">
         <img className="w-full" src={geekbanner} alt="Geek Game banner" />
         <div className="absolute z-[10] md:top-[43%] top-[35%] md:left-12 left-6 w-[60%] text-white">
@@ -58,7 +62,7 @@ const Geekgames = () => {
           </div>
         </div>
       </div>
-      <Footer/>
+      <Footer footercolor="bg-black" footertext="text-white" />
     </>
   );
 };

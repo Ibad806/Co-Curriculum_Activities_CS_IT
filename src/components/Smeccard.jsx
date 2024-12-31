@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import egamecard from '../assets/egamecard.png'
+import egamecard from "../assets/egamecard.png";
 
 const Smeccard = (props) => {
   return (

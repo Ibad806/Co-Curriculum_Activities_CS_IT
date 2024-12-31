@@ -3,99 +3,109 @@ import { FaSearch, FaBell, FaUser, FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
 
-export default function Navbar(props) {
+const Navbar = (props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className={`w-full px-[2vw] pb-6 flex items-center justify-center flex-col relative ${props.navcolor}`}>      
-      <nav className="relative z-10 bg-white rounded-full w-[100%] m-auto mt-6 px-6 py-4 flex items-center justify-between shadow-lg">
-        <Link to="/" className="text-xl font-bold">
-          Logo
+    <div
+      className={`w-full px-6 py-4 flex items-center justify-center flex-col relative ${props.navcolor}`}
+    >
+      {/* Main Navbar */}
+      <nav
+        className={`relative z-10 border w-full md:w-[90%] lg:w-[87%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${props.navcolor} ${props.bordercolor}`}
+      >
+        {/* Logo */}
+        <Link to="/" className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}>
+          CAC
         </Link>
 
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-8">
           <Link
             to="/"
-            className="text-gray-700 hover:text-gray-900 transition-colors"
+            className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}
           >
             Home
           </Link>
           <Link
             to="/events"
-            className="text-gray-700 hover:text-gray-900 transition-colors"
+            className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}
           >
             Events
           </Link>
           <Link
             to="/tickets"
-            className="text-gray-700 hover:text-gray-900 transition-colors"
+            className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}
           >
             Tickets
           </Link>
           <Link
             to="/gallery"
-            className="text-gray-700 hover:text-gray-900 transition-colors"
+            className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}
           >
             Gallery
           </Link>
-          <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-            <FaSearch className="w-5 h-5 text-gray-700" />
-          </button>
+          {/* <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+            <FaSearch className={`w-5 h-5 ${props.linkcolor}`} />
+          </button> */}
         </div>
 
+        {/* Action Icons */}
         <div className="flex items-center space-x-4">
-          <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-            <FaBell className="w-5 h-5 text-gray-700" />
+          <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+            <FaBell className={`w-5 h-5 ${props.linkcolor}`} />
           </button>
-          <button className="p-2 hover:bg-gray-100 rounded-full transition-colors">
-            <FaUser className="w-5 h-5 text-gray-700" />
+          <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
+            <FaUser className={`w-5 h-5 ${props.linkcolor}`} />
           </button>
         </div>
 
+        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden p-2 hover:bg-gray-100 rounded-full transition-colors"
+          className="md:hidden p-2 hover:bg-white/10 rounded-full transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
-            <ImCross className="w-5 h-5 text-gray-700" />
+            <ImCross className={`w-5 h-5 ${props.linkcolor}`} />
           ) : (
-            <FaBars className="w-5 h-5 text-gray-700" />
+            <FaBars className={`w-5 h-5 ${props.linkcolor}`} />
           )}
         </button>
       </nav>
 
-      {/* MOBILE RESPONSIVE */}
+      {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-20 right-14 w-[50%] flex justify-center bg-white rounded-lg shadow-lg p-4 z-10 mt-10">
-          <div className="flex flex-col space-y-4 ">
+        <div className="md:hidden w-full bg-white shadow-lg mt-4 rounded-lg">
+          <div className="flex flex-col items-start p-6 space-y-4">
             <Link
               to="/"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
+              className={`hover:underline text-sm font-medium ${props.linkcolor}`}
             >
-              Home
+              Homes
             </Link>
             <Link
               to="/events"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
+              className={`hover:underline text-sm font-medium ${props.linkcolor}`}
             >
               Events
             </Link>
             <Link
               to="/tickets"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
+              className={`hover:underline text-sm font-medium ${props.linkcolor}`}
             >
               Tickets
             </Link>
             <Link
               to="/gallery"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
+              className={`hover:underline text-sm font-medium ${props.linkcolor}`}
             >
               Gallery
             </Link>
           </div>
         </div>
       )}
-      {/* MOBILE RESPONSIVE */}
     </div>
   );
 }
+
+export default Navbar;
