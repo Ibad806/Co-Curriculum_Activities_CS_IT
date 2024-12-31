@@ -8,6 +8,7 @@ import Egames from "./pages/Egames";
 import Geekgames from "./pages/Geekgames";
 import Smec from "./pages/Smec";
 import ScrollToTop from "./ScrollToTop";
+import Gamepage from "./pages/Gamepage";
 
 function App() {
   return (
@@ -65,6 +66,15 @@ function App() {
         element={
           <ScrollToTop>
             <Geekgames />
+          </ScrollToTop>
+        }
+      />
+
+      <Route
+        path="/gamepage"
+        element={
+          <ScrollToTop>
+            <Gamepage />
           </ScrollToTop>
         }
       />
