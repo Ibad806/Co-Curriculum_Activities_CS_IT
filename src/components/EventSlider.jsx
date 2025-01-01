@@ -1,62 +1,57 @@
-import React, { useState } from "react";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import { Navigation, Pagination } from "swiper/modules";
 import events from "../data";
 import EventCard from "./EventCards";
+import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 const EventSlider = ({ heading, para }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex + 3 >= events.length ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) =>
-      prevIndex === 0 ? events.length - 3 : prevIndex - 1
-    );
-  };
-
-  const visibleEvents = events.slice(currentIndex, currentIndex + 3);
-
   return (
-    <div className="relative w-full p-[4vw]">
-      <div className="flex flex-col gap-[1vw] items-center justify-center h-full">
-        <div className="flex flex-col ">
-          <h1 className="text-center">{heading}</h1>
-          <h6 className=" text-center py-[20px]">{para}</h6>
-        </div>
-        <div className="md:space-x-9 space-x-3">
-          <button
-            onClick={prevSlide}
-            className="p-2 rounded-full border transition-colors text-gold"
-          >
-            <FaChevronLeft className="h-4 w-4" />
-          </button>
-          <button
-            onClick={nextSlide}
-            className="p-2 rounded-full border transition-colors text-gold"
-          >
-            <FaChevronRight className="h-4 w-4" />
-          </button>
+    <div className="relative w-full py-[4vw]">
+      <div className="flex flex-col gap-[1vw] items-center justify-center">
+        <div className="flex flex-col text-center">
+          <h1 className="text-2xl md:text-3xl font-bold">{heading}</h1>
+          <h6 className="text-sm md:text-base text-gray-600 py-4">{para}</h6>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 mt-[1VW] gap-[3vw]">
-        {visibleEvents.map((event) => (
-          <EventCard
-            key={event.id}
-            image={event.image}
-            title={event.title}
-            location={event.location}
-            price={event.price}
-            dateRange={event.dateRange}
-            timeToEnd={event.timeToEnd}
-            daysLeft={event.daysLeft}
-          />
-        ))}
+      <div className="flex justify-center mt-5 space-x-4">
+        <FaArrowAltCircleLeft className="swiper-prev cursor-pointer text-gray-500 hover:text-gray-800" size={40} />
+        <FaArrowAltCircleRight className="swiper-next cursor-pointer text-gray-500 hover:text-gray-800" size={40} />
       </div>
+
+      <Swiper
+        modules={[Navigation, Pagination]}
+        spaceBetween={20}
+        navigation={{
+          nextEl: ".swiper-next",
+          prevEl: ".swiper-prev",
+        }}
+        pagination={{ clickable: true }}
+        breakpoints={{
+          1024: { slidesPerView: 3 }, 
+          768: { slidesPerView: 2 },  
+          640: { slidesPerView: 1 },  
+        }}
+        className="mt-8"
+      >
+        {events.map((event) => (
+          <SwiperSlide key={event.id} className="flex justify-center">
+            <EventCard
+              image={event.image}
+              title={event.title}
+              location={event.location}
+              price={event.price}
+              dateRange={event.dateRange}
+              timeToEnd={event.timeToEnd}
+              daysLeft={event.daysLeft}
+            />
+          </SwiperSlide>
+        ))}
+      </Swiper>
     </div>
   );
 };
