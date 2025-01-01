@@ -68,25 +68,32 @@ const Allevents = ({ event, desc }) => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <div className="container mx-auto px-[4vw] py-8">
-        <h1 className="text-4xl font-bold text-center mb-4">{event}</h1>
-        <p className="text-center text-gray-600 mb-8">{desc}</p>
+    <div className="bg-gray-100 min-h-screen w-full">
+      <div className="container mx-auto px-4 md:px-8 py-8">
+        {/* Title and Description */}
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4">
+          {event}
+        </h1>
+        <p className="text-center text-gray-600 text-sm sm:text-base lg:text-lg mb-8">
+          {desc}
+        </p>
 
+        {/* Filter Section */}
         <EventsFilter
           onSearch={handleSearch}
           onDateChange={handleDateChange}
           onSort={handleSort}
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Events Grid */}
+        <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredEvents.map((event) => (
             <EventCard
               key={event.id}
               image={event.image}
               title={event.title}
               location={event.location}
-              price={event.price}   
+              price={event.price}
               dateRange={event.dateRange}
               timeToEnd={event.timeToEnd}
               daysLeft={event.daysLeft}
