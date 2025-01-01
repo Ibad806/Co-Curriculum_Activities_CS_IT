@@ -10,17 +10,12 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 const EventSlider = ({ heading, para }) => {
   return (
-    <div className="relative w-full py-[4vw]">
+    <div className="relative w-full py-[4vw] md:px-8 px-4">
       <div className="flex flex-col gap-[1vw] items-center justify-center">
         <div className="flex flex-col text-center">
           <h1 className="text-2xl md:text-3xl font-bold">{heading}</h1>
           <h6 className="text-sm md:text-base text-gray-600 py-4">{para}</h6>
         </div>
-      </div>
-
-      <div className="flex justify-center mt-5 space-x-4">
-        <FaArrowAltCircleLeft className="swiper-prev cursor-pointer text-gray-500 hover:text-gray-800" size={40} />
-        <FaArrowAltCircleRight className="swiper-next cursor-pointer text-gray-500 hover:text-gray-800" size={40} />
       </div>
 
       <Swiper
@@ -39,7 +34,7 @@ const EventSlider = ({ heading, para }) => {
         className="mt-8"
       >
         {events.map((event) => (
-          <SwiperSlide key={event.id} className="flex justify-center">
+          <SwiperSlide key={event.id} className="flex justify-center items-center">
             <EventCard
               image={event.image}
               title={event.title}
@@ -52,7 +47,12 @@ const EventSlider = ({ heading, para }) => {
           </SwiperSlide>
         ))}
       </Swiper>
+      <div className="flex justify-center mt-2 space-x-4">
+        <FaArrowAltCircleLeft className="swiper-prev cursor-pointer text-gray-500 hover:text-gray-800" size={40} />
+        <FaArrowAltCircleRight className="swiper-next cursor-pointer text-gray-500 hover:text-gray-800" size={40} />
+      </div>
     </div>
+    
   );
 };
 

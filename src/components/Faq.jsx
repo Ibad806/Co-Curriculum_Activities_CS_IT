@@ -35,18 +35,18 @@ const FAQ = () => {
   return (
     <div className="faq-main flex flex-col md:flex-row min-h-[10vh] w-full p-4 md:p-8">
       {/* Left Section */}
-      <div className="faq-left w-full md:w-[30%] flex flex-col items-start p-4 md:p-8 space-y-6">
+      <div className="faq-left w-full md:w-[30%] flex flex-col items-start px-4 md:px-8 space-y-6">
         <h1 className="text-2xl md:text-4xl font-semibold">Frequently Asked Questions</h1>
         <div className="flex items-center space-x-4">
           <img src={message} alt="Email" className="w-5 h-5" />
-          <p className="text-gray-700">helpcenter@ticketer.com</p>
+          <p className="text-gray-700 text-[12px] md:text-[17px]">helpcenter@ticketer.com</p>
         </div>
         <div className="flex items-center space-x-4">
           <img src={phone} alt="Phone" className="w-5 h-5" />
-          <p className="text-gray-700">(010) 123-4567</p>
+          <p className="text-gray-700 text-[12px] md:text-[17px]">(010) 123-4567</p>
         </div>
-        <p className="text-gray-600">Still Have Questions?</p>
-        <p className="text-gray-500">
+        <p className="text-gray-600 text-[12px] md:text-[17px]">Still Have Questions?</p>
+        <p className="text-gray-500 text-[12px] md:text-[17px] leading-4">
           Can’t find the answer you’re looking for? Please contact our help center.
         </p>
         <button className="px-6 py-2 bg-purple-800 text-white rounded-md hover:bg-purple-700 transition duration-300">
@@ -55,7 +55,7 @@ const FAQ = () => {
       </div>
 
       {/* Right Section */}
-      <div className="faq-right w-full md:w-[70%] flex flex-col justify-center md:p-8 md:mt-0 mt-[20px] space-y-6">
+      <div className="faq-right w-full md:w-[70%] flex flex-col justify-center md:px-8 md:mt-0 mt-[20px] space-y-6 px-4">
         {questions.map((item, index) => (
           <div
             key={index}

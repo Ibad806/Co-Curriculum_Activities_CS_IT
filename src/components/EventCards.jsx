@@ -52,7 +52,7 @@ const EventCard = ({ image, title, location, price, dateRange, timeToEnd , daysL
               <span className="font-semibold">{dateRange}</span> {timeToEnd}
             </p>
           </div>
-          <button className="w-full mt-5 rounded bg-black font-bold py-2 text-white hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50">
+          <button className="w-full my-5 rounded bg-black font-bold py-2 text-white hover:bg-gray-800 transition-colors focus:outline-none focus:ring-2 focus:ring-black focus:ring-opacity-50">
             Explore Event
           </button>
         </div>

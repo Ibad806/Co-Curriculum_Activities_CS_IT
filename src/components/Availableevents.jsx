@@ -21,30 +21,30 @@ const Availableevents = () => {
           />
           <div className="flex items-center justify-center absolute top-0 right-0 z-[10] bg-yellow-500 md:w-[30%] w-[40%] h-[12%] rounded-bl-[15px] md:p-4 p-1 text-white">
             <img className="w-[30px] px-1" src={watch} alt="" />
-            <h6 className="md:text-[10px] text-[6px]">Time to end</h6>
-            <h6 className="md:text-[10px] text-[6px] md:px-[8px] px-[3px]">
+            <h6 className="md:text-[10px] text-[6px] font-bold">Time to end</h6>
+            <h6 className="md:text-[10px] text-[6px] md:px-[8px] px-[3px] font-bold">
               :
             </h6>
-            <h6 className="md:text-[10px] text-[6px]"> 15 D, 08:45:03</h6>
+            <h6 className="md:text-[10px] text-[6px] font-bold"> 15 D, 08:45:03</h6>
           </div>
           <div className="flex items-center absolute bottom-[-8%] z-[10] bg-[#EBEBF9] md:w-[68%] w-[100%] h-[15%] rounded-r-[100px] md:p-4 p-1">
             <h3 className="md:text-[25px] text-[12px] font-bold">SMEC</h3>
-            <h3 className="px-[10px]">|</h3>
+            <h3 className="px-[10px] font-bold">|</h3>
             <div className="flex items-center justify-center flex-col gap-1">
-              <h6 className="md:text-[15px] text-[6px]">Start Date</h6>
-              <h6 className="md:text-[15px] text-[6px]">10-01-2024</h6>
+              <h6 className="md:text-[15px] text-[6px] font-bold">Start Date</h6>
+              <h6 className="md:text-[15px] text-[6px] font-bold">10-01-2024</h6>
             </div>
-            <h6 className="px-[10px] font-bold">→</h6>
+            <h6 className="md:px-[10px] px-[6px] font-bold">→</h6>
             <div className="flex items-center justify-center flex-col gap-1">
-              <h6 className="md:text-[15px] text-[6px]">End Date</h6>
-              <h6 className="md:text-[15px] text-[6px]">10-01-2024</h6>
+              <h6 className="md:text-[15px] text-[6px] font-bold">End Date</h6>
+              <h6 className="md:text-[15px] text-[6px] font-bold">10-01-2024</h6>
             </div>
-            <h6 className="px-[10px]">|</h6>
+            <h3 className="md:px-[8px] px-[4px] font-bold">|</h3>
             <div className="flex items-center justify-center flex-col gap-1">
-              <h6 className="md:text-[15px] text-[6px]">
+              <h6 className="md:text-[15px] text-[6px] font-bold">
                 Registration Deadline
               </h6>
-              <h6 className="md:text-[15px] text-[6px]">10-01-2024</h6>
+              <h6 className="md:text-[15px] text-[6px] font-bold">10-01-2024</h6>
             </div>
             <div className="w-[50px] h-[50px] flex items-center justify-center absolute right-[5%]">
               <Link to='/smec'>

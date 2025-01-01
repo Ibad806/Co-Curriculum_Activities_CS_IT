@@ -64,7 +64,7 @@ const newsData = [
 
 const NewsSlider = () => {
   return (
-    <div className="bg-gray-100 py-10 px-10 w-[100% ]">
+    <div className="bg-gray-100 py-10 px-6 w-[100% ]">
       {/* Newsletter Section */}
       <div className="mb-10 mx-auto w-[100%]">
         <h2 className="text-2xl font-bold text-gray-800">Subscribe to our Newsletter</h2>
