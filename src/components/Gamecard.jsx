@@ -1,59 +1,82 @@
 import React from "react";
-import h from "../assets/h.png";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { selectGame } from "../redux/gameSlice";
 import trophy from "../assets/trophy.png";
 import vs from "../assets/vs.png";
 import arrow from "../assets/Buy Arrow.png";
 
-const Gamecard = ({
-  title,
-  image,
-  gamedesc,
-  date,
-  time,
-  winprice,
-  playerslot,
-}) => {
+const Gamecard = ({ title, image, gamedesc, date, time, price, playerslot }) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    dispatch(
+      selectGame({
+        title,
+        image,
+        gamedesc,
+        date,
+        time,
+        price,
+        playerslot,
+      })
+    );
+    navigate("/gamepage");
+  };
+
   return (
-    <>
-      <div className="bg-[#313231] w-full max-w-[90%] md:max-w-[400px] lg:max-w-[500px] rounded-[10px] h-auto mx-auto">
+    <div
+      onClick={handleClick}
+      className="bg-[#313231] w-full max-w-[90%] md:max-w-[400px] lg:max-w-[500px] rounded-[15px] h-auto mx-auto shadow-lg hover:scale-[1.02] transition-transform duration-300 cursor-pointer"
+    >
+      {/* Game Image */}
+      <div className="p-2">
         <img
-          className="w-full h-[200px] md:h-[220px] object-cover p-2 rounded-[15px]"
-          src={h}
-          alt="Game Card"
+          className="w-full h-[200px] md:h-[220px] object-cover rounded-[10px]"
+          src={image}
+          alt={title}
         />
-        <div className="text-white px-3">
-          <h6 className="py-1 text-[#9A9A9A] text-sm">
-            {date}, <span className="text-[#9A9A9A]">{time}</span>
-          </h6>
-          <h5 className="py-1 text-lg font-bold text-white">{title}</h5>
-          <h6 className="py-3 text-[#9A9A9A] text-sm line-clamp-2 overflow-hidden text-ellipsis">
-            {gamedesc}
-          </h6>
-          <hr />
-          <div className="flex items-center justify-between py-3">
-            <div className="flex items-center justify-center flex-col">
-              <h6 className="py-2 text-[#9A9A9A] text-sm">Win Price</h6>
-              <div className="flex items-center justify-between gap-[0.3vw]">
-                <img className="w-8" src={trophy} alt="trophy" />
-                <h6>{winprice}</h6>
-              </div>
+      </div>
+
+      {/* Game Details */}
+      <div className="text-white px-4 py-2">
+        <p className="text-sm text-[#9A9A9A]">
+          {date}, <span>{time}</span>
+        </p>
+        <h3 className="text-xl font-bold mt-2">{title}</h3>
+        <p className="text-sm text-[#9A9A9A] mt-2 line-clamp-2 overflow-hidden">
+          {gamedesc}
+        </p>
+        <hr className="my-3 border-[#555]" />
+
+        {/* Game Meta Info */}
+        <div className="flex items-center justify-between py-3">
+          {/* Win Price */}
+          <div className="text-center">
+            <p className="text-sm text-[#9A9A9A]">Win Price</p>
+            <div className="flex items-center gap-2 mt-1">
+              <img src={trophy} alt="Trophy" className="w-6" />
+              <span className="font-medium">{price}</span>
             </div>
-            <div className="flex items-center justify-center flex-col">
-              <h6 className="py-2 text-[#9A9A9A] text-sm">Player Slot</h6>
-              <div className="flex items-center justify-between gap-1">
-                <img className="w-8" src={vs} alt="4v4" />
-                <h6>{playerslot}</h6>
-              </div>
+          </div>
+
+          {/* Player Slot */}
+          <div className="text-center">
+            <p className="text-sm text-[#9A9A9A]">Player Slot</p>
+            <div className="flex items-center gap-2 mt-1">
+              <img src={vs} alt="Player Slot" className="w-6" />
+              <span className="font-medium">{playerslot}</span>
             </div>
-            <div className="flex items-center justify-center flex-col">
-              <div className="p-2  rounded-full bg-[#FACB67] flex items-center justify-center cursor-pointer">
-                <img className="w-8" src={arrow} alt="4v4" />
-              </div>
-            </div>
+          </div>
+
+          {/* Action Button */}
+          <div className="p-2 rounded-full bg-[#FACB67] hover:bg-[#E0AE59] transition-colors duration-300">
+            <img src={arrow} alt="Navigate" className="w-6" />
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

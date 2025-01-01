@@ -47,21 +47,21 @@ const SponsorSlider = () => {
   };
 
   return (
-    <div className="relative bg-black w-full ">
-      <div className="bg-black py-10 px-6 w-[80%] mx-auto ">
-        <h2 className="text-center text-xl md:text-2xl font-semibold mb-8 text-gray-300">
+    <div className="relative bg-black w-full py-[80px]">
+      <div className="bg-black py-8 px-6 w-[80%] mx-auto ">
+        <h2 className="text-center text-[40px] md:text-[60px] font-semibold pb-[100px] text-gray-300">
           Gold Sponsor
         </h2>
         <div className="relative">
-          <div className="absolute top-0 left-0 w-[100px] h-full bg-gradient-to-r from-black to-transparent z-10"></div>
-          <div className="absolute top-0 right-0 w-[100px] h-full bg-gradient-to-l from-black to-transparent z-10"></div>
+          <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-gradient-to-r from-black to-transparent z-10"></div>
+          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-gradient-to-l from-black to-transparent z-10"></div>
           <Slider {...settings}>
             {sponsors.map((sponsor) => (
-              <div key={sponsor.id} className="flex justify-center gap-10">
+              <div key={sponsor.id} className="flex items-center justify-center px-20">
                 <img
                   src={sponsor.src}
                   alt={sponsor.alt}
-                  className="max-h-[100px] object-contain"
+                  className="w-[500px] h-[500px] object-contain"
                 />
               </div>
             ))}

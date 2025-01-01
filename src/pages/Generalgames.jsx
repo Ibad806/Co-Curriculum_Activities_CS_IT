@@ -46,6 +46,7 @@ const Generalgames = () => {
               <Gamecard
                 key={gengame.id}
                 title={gengame.title}
+                price={gengame.price}
                 gamedesc={gengame.gamedesc}
                 image={gengame.image}
                 date={gengame.date}

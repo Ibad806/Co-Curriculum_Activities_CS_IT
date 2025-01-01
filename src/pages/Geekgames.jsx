@@ -52,6 +52,8 @@ const Geekgames = () => {
               <Gamecard
                 key={geekgame.id}
                 title={geekgame.title}
+                price={geekgame.price}
+                gamedesc={geekgame.gamedesc}
                 image={geekgame.image}
                 date={geekgame.date}
                 time={geekgame.time}
