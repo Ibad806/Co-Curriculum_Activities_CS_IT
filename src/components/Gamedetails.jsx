@@ -31,7 +31,7 @@ const Gamedetails = () => {
     rules,
   } = selectedGame;
 
-  const ticketPrice = parseInt(price.replace(",", ""), 10) || 0;
+  const ticketPrice = price;
 
   const incrementQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);

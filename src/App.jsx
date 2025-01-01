@@ -7,78 +7,27 @@ import Generalgames from "./pages/Generalgames";
 import Egames from "./pages/Egames";
 import Geekgames from "./pages/Geekgames";
 import Smec from "./pages/Smec";
-import ScrollToTop from "./ScrollToTop";
+import ScrollToTop from "./components/ScrollToTop";
 import Gamepage from "./pages/Gamepage";
 
 function App() {
   return (
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <ScrollToTop>
-            <Home />
-          </ScrollToTop>
-        }
-      />
-      <Route
-        path="/events"
-        element={
-          <ScrollToTop>
-            <Events />
-          </ScrollToTop>
-        }
-      />
-      <Route
-        path="/gallery"
-        element={
-          <ScrollToTop>
-            <Gallery />
-          </ScrollToTop>
-        }
-      />
-      <Route
-        path="/smec"
-        element={
-          <ScrollToTop>
-            <Smec />
-          </ScrollToTop>
-        }
-      />
-      <Route
-        path="/generalgames"
-        element={
-          <ScrollToTop>
-            <Generalgames />
-          </ScrollToTop>
-        }
-      />
-      <Route
-        path="/egames"
-        element={
-          <ScrollToTop>
-            <Egames />
-          </ScrollToTop>
-        }
-      />
-      <Route
-        path="/geekgames"
-        element={
-          <ScrollToTop>
-            <Geekgames />
-          </ScrollToTop>
-        }
-      />
-
-      <Route
-        path="/gamepage"
-        element={
-          <ScrollToTop>
-            <Gamepage />
-          </ScrollToTop>
-        }
-      />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/events" element={<Events />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/smec">
+          <Route index element={<Smec />} />
+          <Route path="generalgames" element={<Generalgames />} />
+          <Route path="generalgames:id" element={<Gamepage />} />
+          <Route path="egames" element={<Egames />} />
+          <Route path="geekgames" element={<Geekgames />} />
+        </Route>
+        {/* <Route path="gamepage" element={<Gamepage />} /> */}
+      </Routes>
+    </>
   );
 }
 

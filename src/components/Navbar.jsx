@@ -1,21 +1,47 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaSearch, FaBell, FaUser, FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 200) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <div
-      className={`w-full px-6 py-4 flex items-center justify-center flex-col relative ${props.navcolor}`}
+      className={`w-full px-6 flex items-center justify-center flex-col relative ${
+        props.navcolor
+      }`}
     >
       {/* Main Navbar */}
       <nav
-        className={`relative z-10 border w-full md:w-[90%] lg:w-[87%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${props.navcolor} ${props.bordercolor}`}
+        className={`fixed top-5 z-50 border-2 w-full md:w-[90%] lg:w-[90%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${
+          isScrolled ? props.navcolor : "bg-transparent"
+        } transition-colors duration-500 ${props.bordercolor}`}
       >
         {/* Logo */}
-        <Link to="/" className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}>
+        <Link
+          to="/"
+          className={`hover:underline text-lg font-medium transition duration-500 ${
+            props.linkcolor
+          }`}
+        >
           CAC
         </Link>
 
@@ -23,31 +49,36 @@ const Navbar = (props) => {
         <div className="hidden md:flex items-center space-x-8">
           <Link
             to="/"
-            className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}
+            className={`hover:underline text-lg font-medium transition duration-300 ${
+              props.linkcolor
+            }`}
           >
             Home
           </Link>
           <Link
             to="/events"
-            className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}
+            className={`hover:underline text-lg font-medium transition duration-300 ${
+              props.linkcolor
+            }`}
           >
             Events
           </Link>
           <Link
             to="/tickets"
-            className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}
+            className={`hover:underline text-lg font-medium transition duration-300 ${
+              props.linkcolor
+            }`}
           >
             Tickets
           </Link>
           <Link
             to="/gallery"
-            className={`hover:underline text-lg font-medium transition duration-300 ${props.linkcolor}`}
+            className={`hover:underline text-lg font-medium transition duration-300 ${
+              props.linkcolor
+            }`}
           >
             Gallery
           </Link>
-          {/* <button className="p-2 hover:bg-white/10 rounded-full transition-colors">
-            <FaSearch className={`w-5 h-5 ${props.linkcolor}`} />
-          </button> */}
         </div>
 
         {/* Action Icons */}
@@ -106,6 +137,6 @@ const Navbar = (props) => {
       )}
     </div>
   );
-}
+};
 
 export default Navbar;

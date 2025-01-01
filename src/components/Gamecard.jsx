@@ -1,14 +1,25 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { selectGame } from "../redux/gameSlice";
 import trophy from "../assets/trophy.png";
 import vs from "../assets/vs.png";
 import arrow from "../assets/Buy Arrow.png";
 
-const Gamecard = ({ title, image, gamedesc, date, time, price, playerslot }) => {
+const Gamecard = ({
+  title,
+  image,
+  gamedesc,
+  date,
+  time,
+  price,
+  playerslot,
+}) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const params = useParams;
+  const { key } = params;
 
   const handleClick = () => {
     dispatch(
@@ -22,7 +33,7 @@ const Gamecard = ({ title, image, gamedesc, date, time, price, playerslot }) => 
         playerslot,
       })
     );
-    navigate("/gamepage");
+    navigate(`/smec/generalgame/${key}`);
   };
 
   return (

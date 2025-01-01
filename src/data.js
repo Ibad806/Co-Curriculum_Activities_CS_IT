@@ -85,19 +85,19 @@ export const smecgames = [
     id: 1,
     image: egamecard,
     title: "E-Gaming",
-    url: "/egames",
+    url: "/smec/egames",
   },
   {
     id: 2,
     image: geekcard,
     title: "Geeks",
-    url: "/geekgames",
+    url: "/smec/geekgames",
   },
   {
     id: 3,
     image: generalgamecard,
     title: "General Games",
-    url: "/generalgames",
+    url: "/smec/generalgames",
   },
 ];
 

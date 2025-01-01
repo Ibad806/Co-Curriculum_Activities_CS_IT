@@ -18,7 +18,7 @@ const Generalgames = () => {
         linkcolor="text-white"
       />
       <div className="relative w-full">
-        <img className="w-full md:h-[80vh] h-[60vh]" src={gen} alt="General Games Banner" />
+        <img className="w-full md:h-[100vh] h-[60vh]" src={gen} alt="General Games Banner" />
         <div className="absolute z-[10] md:top-[43%] top-[35%] md:left-12 left-6 w-[60%] text-white">
           <h1 className="md:pb-10 pb-2 font-bold md:text-[80px] text-[6vw]">General Games</h1>
           <p className="md:text-[20px] text-[2vw] leading-[2.5vw]">

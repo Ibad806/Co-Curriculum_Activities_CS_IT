@@ -5,7 +5,7 @@ import smecban from "../assets/smec_banner.png";
 const Smec_main = () => {
   return (
     <>
-      <img className="w-[100%] h-[80vh] object-cover" src={smecban} alt="" />
+      <img className="w-[100%] h-[100vh] object-cover" src={smecban} alt="" />
       <div className="bg-black text-white flex items-center justify-center flex-col relative w-[100%] overflow-hidden">
         <h1 className="md:text-[110px] text-[70px] md:py-[70px] py-[50px] font-bold text-transparent bg-clip-text bg-gradient-to-t from-black/50 via-[#FECC5A] to-[#FECC5A]">
           SMEC
