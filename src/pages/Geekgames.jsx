@@ -55,6 +55,7 @@ const Geekgames = () => {
                 price={geekgame.price}
                 gamedesc={geekgame.gamedesc}
                 image={geekgame.image}
+                category={geekgame.category}
                 date={geekgame.date}
                 time={geekgame.time}
                 winprice={geekgame.winprice}

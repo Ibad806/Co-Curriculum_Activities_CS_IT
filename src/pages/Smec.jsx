@@ -23,8 +23,8 @@ const Smec = () => {
       <Smeccategory />
       <ImageSlider/>
       <Smecwinners />
-      {/* <Smecsponsors/> */}
-      <SponsorSlider />
+      <Smecsponsors/>
+      {/* <SponsorSlider /> */}
       <Footer footercolor="bg-black" footertext="text-white" />
     </>
   );

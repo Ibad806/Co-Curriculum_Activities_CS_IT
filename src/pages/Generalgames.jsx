@@ -49,6 +49,7 @@ const Generalgames = () => {
                 price={gengame.price}
                 gamedesc={gengame.gamedesc}
                 image={gengame.image}
+                category={gengame.category}
                 date={gengame.date}
                 time={gengame.time}
                 winprice={gengame.winprice}

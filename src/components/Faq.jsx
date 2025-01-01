@@ -33,10 +33,10 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="faq-main flex flex-col md:flex-row min-h-[10vh] w-full bg-purple-50 p-4 md:p-8">
+    <div className="faq-main flex flex-col md:flex-row min-h-[10vh] w-full p-4 md:p-8">
       {/* Left Section */}
-      <div className="faq-left w-full md:w-1/2 flex flex-col items-start justify-center p-4 md:p-8 space-y-6">
-        <h1 className="text-2xl md:text-4xl font-semibold text-purple-800">Frequently Asked Questions</h1>
+      <div className="faq-left w-full md:w-[30%] flex flex-col items-start p-4 md:p-8 space-y-6">
+        <h1 className="text-2xl md:text-4xl font-semibold">Frequently Asked Questions</h1>
         <div className="flex items-center space-x-4">
           <img src={message} alt="Email" className="w-5 h-5" />
           <p className="text-gray-700">helpcenter@ticketer.com</p>
@@ -55,7 +55,7 @@ const FAQ = () => {
       </div>
 
       {/* Right Section */}
-      <div className="faq-right w-full md:w-1/2 flex flex-col justify-center md:p-8 md:mt-0 mt-[20px] space-y-6">
+      <div className="faq-right w-full md:w-[70%] flex flex-col justify-center md:p-8 md:mt-0 mt-[20px] space-y-6">
         {questions.map((item, index) => (
           <div
             key={index}
@@ -65,11 +65,11 @@ const FAQ = () => {
             onClick={() => toggleFAQ(index)}
           >
             <div className="flex justify-between items-center">
-              <h6 className="text-[12px] leading-[16px] md:text-xl font-semibold text-purple-900">{item.question}</h6>
+              <h6 className="text-[12px] leading-[16px] md:text-xl font-semibold">{item.question}</h6>
               <span
                 className={`transform transition-transform ${
                   activeIndex === index ? "rotate-180" : "rotate-0"
-                } text-purple-700`}
+                } bg-[#F3F4F6]`}
               >
                 ▼
               </span>

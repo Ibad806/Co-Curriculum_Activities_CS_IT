@@ -14,12 +14,10 @@ const Gamecard = ({
   time,
   price,
   playerslot,
+  category,
 }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const params = useParams;
-  const { key } = params;
 
   const handleClick = () => {
     dispatch(
@@ -33,7 +31,7 @@ const Gamecard = ({
         playerslot,
       })
     );
-    navigate(`/smec/generalgame/${key}`);
+    navigate(`/smec/${category}/${title}`);
   };
 
   return (

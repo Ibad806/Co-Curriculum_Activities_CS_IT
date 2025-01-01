@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import image from "../assets/smec_banner.png";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 
 const Gamedetails = () => {
+  const { category } = useParams();
 
   const selectedGame = useSelector((state) => state.game.selectedGame);
 
   if (!selectedGame) {
     return (
       <div className="min-h-screen bg-black text-white flex items-center justify-center">
-        <p className="text-xl">No game selected. Please choose a game to view details!</p>
+        <p className="text-xl">
+          No game selected. Please choose a game to view details!
+        </p>
       </div>
     );
   }
@@ -21,7 +25,7 @@ const Gamedetails = () => {
     image,
     gamedesc,
     price,
-    date, 
+    date,
     time,
     winprice,
     playerslot,
@@ -31,7 +35,7 @@ const Gamedetails = () => {
     rules,
   } = selectedGame;
 
-  const ticketPrice = price;
+  const ticketPrice = parseInt(price.replace(",", ""), 10) || 0;
 
   const incrementQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -49,7 +53,7 @@ const Gamedetails = () => {
         <main className="mx-auto md:px-28 px-4">
           {/* Game Image Section */}
           <div className="relative pt-4">
-            <div className="border-8 p-2 border-[#393939] rounded-[30px]">
+            <div className="border-8 p-2 border-[#393939] rounded-[30px] mt-28">
               <img
                 src={image}
                 alt="FC 25 Game"
@@ -65,12 +69,8 @@ const Gamedetails = () => {
           </div>
 
           <section className="mt-8">
-            <h2 className="text-2xl font-semibold mb-2">
-              Game Description:
-            </h2>
-            <p className="text-sm md:text-lg">
-            {gamedesc}
-            </p>
+            <h2 className="text-2xl font-semibold mb-2">Game Description:</h2>
+            <p className="text-sm md:text-lg">{gamedesc}</p>
           </section>
 
           <section className="mt-8 p-6 rounded-[30px] shadow-md border-[#393939] border-4">

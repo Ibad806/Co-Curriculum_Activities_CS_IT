@@ -115,6 +115,7 @@ export const egames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Esports Arena",
+    category: "egames",
     organizer: "EA Sports",
     rules: [
       "Match duration: 15 minutes.",
@@ -135,6 +136,7 @@ export const egames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Fighter's Ring",
+    category: "egames",
     organizer: "Namco Bandai",
     rules: [
       "Rounds: Best of 3.",
@@ -155,6 +157,7 @@ export const egames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Speedway Arena",
+    category: "egames",
     organizer: "EA Sports",
     rules: [
       "No shortcuts or track cutting allowed.",
@@ -175,6 +178,7 @@ export const egames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Wrestling Ring",
+    category: "egames",
     organizer: "2K Sports",
     rules: [
       "No pausing or disconnecting.",
@@ -195,6 +199,7 @@ export const egames = [
     playerslot: "5v5",
     registrationDeadline: "20-Jan-2025",
     venue: "CyberZone Arena",
+    category: "egames",
     organizer: "Valve",
     rules: [
       "Match duration: 30 minutes.",
@@ -215,6 +220,7 @@ export const egames = [
     playerslot: "5v5",
     registrationDeadline: "20-Jan-2025",
     venue: "CyberZone Arena",
+    category: "egames",
     organizer: "Valve",
     rules: [
       "Match duration: 30 minutes.",
@@ -235,6 +241,7 @@ export const egames = [
     playerslot: "4v4",
     registrationDeadline: "20-Jan-2025",
     venue: "Virtual Arena",
+    category: "egames",
     organizer: "Battle Games Inc.",
     rules: [
       "No cheating or use of third-party software.",
@@ -255,6 +262,7 @@ export const egames = [
     playerslot: "5v5",
     registrationDeadline: "20-Jan-2025",
     venue: "Esports Hub",
+    category: "egames",
     organizer: "Riot Games",
     rules: [
       "No toxic behavior or foul language.",
@@ -275,6 +283,7 @@ export const egames = [
     playerslot: "4v4",
     registrationDeadline: "20-Jan-2025",
     venue: "Mobile Gaming Arena",
+    category: "egames",
     organizer: "Garena",
     rules: [
       "No cheating or hacks allowed.",
@@ -298,6 +307,7 @@ export const geekgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Tech Arena",
+    category: "geekgames",
     organizer: "Code Masters",
     rules: [
       "No use of online resources.",
@@ -318,6 +328,7 @@ export const geekgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Debuggers' Hub",
+    category: "geekgames",
     organizer: "Code Gurus",
     rules: [
       "No external debugging tools allowed.",
@@ -328,7 +339,7 @@ export const geekgames = [
   {
     id: 3,
     image: "https://via.placeholder.com/400",
-    title: "UI/UX Designing",
+    title: "UI-UX Designing",
     date: "21-Feb-2025",
     time: "08:00 PM",
     gamedesc:
@@ -338,6 +349,7 @@ export const geekgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Design Studio",
+    category: "geekgames",
     organizer: "Creative Minds",
     rules: [
       "Designs must be original.",
@@ -358,6 +370,7 @@ export const geekgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Art Studio",
+    category: "geekgames",
     organizer: "Design Gurus",
     rules: [
       "Submissions must be in vector format.",
@@ -378,6 +391,7 @@ export const geekgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Networking Lab",
+    category: "geekgames",
     organizer: "IT Wizards",
     rules: [
       "Participants must use provided tools.",
@@ -398,6 +412,7 @@ export const geekgames = [
     playerslot: "Team",
     registrationDeadline: "20-Jan-2025",
     venue: "Innovation Hub",
+    category: "geekgames",
     organizer: "Tech Innovators",
     rules: [
       "Teams must present a functional prototype.",
@@ -418,6 +433,7 @@ export const geekgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Analytics Arena",
+    category: "geekgames",
     organizer: "Data Wizards",
     rules: [
       "Use of external libraries is prohibited.",
@@ -438,6 +454,7 @@ export const geekgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Battle Arena",
+    category: "geekgames",
     organizer: "Robotics Club",
     rules: [
       "Robots must adhere to size and weight limits.",
@@ -461,6 +478,7 @@ export const generalgames = [
     playerslot: "5v5",
     registrationDeadline: "20-Jan-2025",
     venue: "Outdoor Arena",
+    category: "generalgames",
     organizer: "Sports Club",
     rules: [
       "Match duration: 20 minutes.",
@@ -481,6 +499,7 @@ export const generalgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Mind Sports Hall",
+    category: "generalgames",
     organizer: "Board Game Club",
     rules: [
       "Match duration: 20 minutes.",
@@ -501,6 +520,7 @@ export const generalgames = [
     playerslot: "Team",
     registrationDeadline: "20-Jan-2025",
     venue: "Sports Ground",
+    category: "generalgames",
     organizer: "Strength Society",
     rules: [
       "Teams must have equal members.",
@@ -521,6 +541,7 @@ export const generalgames = [
     playerslot: "Individual",
     registrationDeadline: "20-Jan-2025",
     venue: "Exhibition Hall",
+    category: "generalgames",
     organizer: "Creative Visionaries",
     rules: [
       "Photos must be original.",
@@ -541,6 +562,7 @@ export const generalgames = [
     playerslot: "Individual",
     registrationDeadline: "20-Jan-2025",
     venue: "Logic Lounge",
+    category: "generalgames",
     organizer: "Puzzle Masters",
     rules: [
       "No use of calculators or electronic devices.",
@@ -561,6 +583,7 @@ export const generalgames = [
     playerslot: "Team",
     registrationDeadline: "20-Jan-2025",
     venue: "Adventure Zone",
+    category: "generalgames",
     organizer: "Explorers Club",
     rules: [
       "All team members must participate.",
@@ -581,6 +604,7 @@ export const generalgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Wordsmith Hall",
+    category: "generalgames",
     organizer: "Linguistic Society",
     rules: [
       "Official Scrabble dictionary will be used.",
@@ -601,6 +625,7 @@ export const generalgames = [
     playerslot: "1v1",
     registrationDeadline: "20-Jan-2025",
     venue: "Strength Arena",
+    category: "generalgames",
     organizer: "Fitness Club",
     rules: [
       "Elbows must remain on the table at all times.",
@@ -621,6 +646,7 @@ export const generalgames = [
     playerslot: "Individual",
     registrationDeadline: "20-Jan-2025",
     venue: "Writers' Den",
+    category: "generalgames",
     organizer: "Literary Society",
     rules: [
       "Topics will be assigned on the spot.",

@@ -56,6 +56,7 @@ const Geekgames = () => {
                 image={egame.image}
                 date={egame.date}
                 time={egame.time}
+                category={egame.category}
                 winprice={egame.winprice}
                 playerslot={egame.playerslot}
               />
