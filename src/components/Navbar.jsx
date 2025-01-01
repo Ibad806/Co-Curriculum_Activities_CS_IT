@@ -9,7 +9,7 @@ const Navbar = (props) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 200) {
+      if (window.scrollY > 250) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -31,14 +31,14 @@ const Navbar = (props) => {
     >
       {/* Main Navbar */}
       <nav
-        className={`fixed top-5 z-50 border-2 w-full md:w-[94%] lg:w-[94%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${
+        className={`fixed top-5 z-50 border-2 w-[93%] md:w-[94%] lg:w-[94%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${
           isScrolled ? props.navcolor : "bg-transparent"
         } transition-colors duration-500 ${props.bordercolor}`}
       >
         {/* Logo */}
         <Link
           to="/"
-          className={`hover:underline text-lg font-medium transition duration-500 ${
+          className={`text-lg font-medium transition duration-500 ${
             props.linkcolor
           }`}
         >
@@ -49,7 +49,7 @@ const Navbar = (props) => {
         <div className="hidden md:flex items-center space-x-8">
           <Link
             to="/"
-            className={`hover:underline text-lg font-medium transition duration-300 ${
+            className={`text-lg font-medium transition duration-300 ${
               props.linkcolor
             }`}
           >
@@ -57,7 +57,7 @@ const Navbar = (props) => {
           </Link>
           <Link
             to="/events"
-            className={`hover:underline text-lg font-medium transition duration-300 ${
+            className={`text-lg font-medium transition duration-300 ${
               props.linkcolor
             }`}
           >
@@ -65,7 +65,7 @@ const Navbar = (props) => {
           </Link>
           <Link
             to="/tickets"
-            className={`hover:underline text-lg font-medium transition duration-300 ${
+            className={`text-lg font-medium transition duration-300 ${
               props.linkcolor
             }`}
           >
@@ -73,7 +73,7 @@ const Navbar = (props) => {
           </Link>
           <Link
             to="/gallery"
-            className={`hover:underline text-lg font-medium transition duration-300 ${
+            className={`text-lg font-medium transition duration-300 ${
               props.linkcolor
             }`}
           >

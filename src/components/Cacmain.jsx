@@ -4,7 +4,7 @@ import ssuetlogo from '../assets/ssuetlogo.png'
 const Cacmain = () => {
   return (
     <>
-      <section className="relative bg-gradient-to-r from-[#0B0D2C] to-indigo-900 text-white h-[80vh] flex items-center justify-center flex-col px-8">
+      <section className="relative bg-gradient-to-r from-[#0B0D2C] to-indigo-900 text-white h-[100vh] flex items-center justify-center flex-col px-8">
         <div className="container mx-auto flex flex-col items-center justify-center text-center">
           <div className="flex items-center space-x-4 md:flex-row flex-col gap-20">
             {/* Replace `logoPath` with your logo path */}

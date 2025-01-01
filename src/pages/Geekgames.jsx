@@ -42,7 +42,7 @@ const Geekgames = () => {
               placeholder="Search game..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="md:w-80 md:h-12 w-full h-11 focus:outline-none border-[1.5px] border-gray-400 rounded-[10px] p-2 mb-9 md:mb-0"
+              className="md:w-80 bg-[#554f55] md:h-12 w-full h-11 focus:outline-none border-[1.5px] border-gray-400 rounded-[10px] p-2 mb-9 md:mb-0"
             />
           </div>
         </div>
