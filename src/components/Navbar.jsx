@@ -31,7 +31,7 @@ const Navbar = (props) => {
     >
       {/* Main Navbar */}
       <nav
-        className={`fixed top-5 z-50 border-2 w-full md:w-[90%] lg:w-[90%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${
+        className={`fixed top-5 z-50 border-2 w-full md:w-[94%] lg:w-[94%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${
           isScrolled ? props.navcolor : "bg-transparent"
         } transition-colors duration-500 ${props.bordercolor}`}
       >
