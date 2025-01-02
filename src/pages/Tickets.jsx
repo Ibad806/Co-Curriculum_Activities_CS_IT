@@ -1,17 +1,19 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 const Tickets = () => {
   const tickets = useSelector((state) => state.tickets.tickets);
 
   if (tickets.length === 0) {
     return (
-        <div className="min-h-screen bg-black text-white flex items-center justify-center">
-          <p className="text-xl">
-            No tickets available. Buy a ticket to see it here!
-          </p>
-        </div>
-      );
+      <div className="min-h-screen bg-black text-white flex items-center justify-center">
+        <p className="text-xl">
+          No tickets available. Buy a ticket to see it here!
+        </p>
+      </div>
+    );
   }
 
   return (
