@@ -9,6 +9,8 @@ import Geekgames from "./pages/Geekgames";
 import Smec from "./pages/Smec";
 import ScrollToTop from "./components/ScrollToTop";
 import Gamepage from "./pages/Gamepage";
+import Payment from "./pages/Payment";
+import Tickets from "./pages/Tickets";
 
 function App() {
   return (
@@ -25,6 +27,10 @@ function App() {
           <Route path="geekgames" element={<Geekgames />} />
           <Route path=":category/:title" element={<Gamepage />} />
         </Route>
+
+        <Route path="/payment" element={<Payment />} />
+
+        <Route path="/tickets" element={<Tickets />} />
       </Routes>
     </>
   );

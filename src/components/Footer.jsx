@@ -59,16 +59,16 @@ const Footer = (props) => {
 
       {/* Social Icons */}
       <div className="flex justify-center space-x-10 mt-10">
-        <a href="#" className="hover:text-blue-500">
+        <a href="#" className="hover:text-blue-500 bg-white rounded-[50%] p-2">
           <FaTwitter />
         </a>
-        <a href="#" className="hover:text-blue-600">
+        <a href="#" className="hover:text-blue-600 bg-white rounded-[50%] p-2">
           <FaFacebookF />
         </a>
-        <a href="#" className=" hover:text-pink-500">
+        <a href="#" className=" hover:text-pink-500 bg-white rounded-[50%] p-2">
           <FaInstagram />
         </a>
-        <a href="#" className="hover:text-gray-500">
+        <a href="#" className="hover:text-gray-500 bg-white rounded-[50%] p-2">
           <FaGithub />
         </a>
       </div>
