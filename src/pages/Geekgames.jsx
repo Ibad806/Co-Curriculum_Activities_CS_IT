@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { geekgames } from "../data";
-import Navbar from "../components/Navbar";
 import geekbanner from "../assets/geeks_banner.png";
 import Gamecard from "../components/Gamecard";
 import Footer from "../components/Footer";
+import BlackNavbar from "../components/BlackNavbar";
 
 
 const Geekgames = () => {
@@ -14,11 +14,7 @@ const Geekgames = () => {
     );
   return (
     <>
-     <Navbar
-        navcolor="bg-black"
-        bordercolor="border-[#FFCD5A]"
-        linkcolor="text-white"
-      />
+    <BlackNavbar/>
       <div className="relative w-full">
         <img className="w-full" src={geekbanner} alt="Geek Game banner" />
         <div className="absolute z-[10] md:top-[43%] top-[35%] md:left-12 left-6 w-[60%] text-white">

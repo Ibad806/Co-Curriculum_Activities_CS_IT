@@ -49,6 +49,7 @@ const Gamedetails = () => {
   };
 
   return (
+    <>
     <div className="min-h-screen bg-black text-white">
       <main className="mx-auto md:px-28 px-4">
         {/* Game Image Section */}
@@ -113,7 +114,13 @@ const Gamedetails = () => {
             </ul>
           </div>
         </section>
-
+        <div className="border-4 p-2 border-[#393939] rounded-[55px] mt-8">
+          <div className="w-full bg-[#393939] rounded-[50px] p-4 ">
+            <h2 className="text-[25px] font-medium text-center">
+              Ticket Information
+            </h2>
+          </div>
+        </div>
         {/* Ticket Information */}
         <section className="mt-8 p-6 rounded-[30px] shadow-md border-[#393939] border-4">
           <div className="pt-6">
@@ -121,7 +128,9 @@ const Gamedetails = () => {
               <h3 className="md:text-lg sm:text-sm font-medium pb-9">
                 Ticket Price:
               </h3>
-              <p className="text-gray-300 md:text-lg text-sm pb-9">Rs {price}</p>
+              <p className="text-gray-300 md:text-lg text-sm pb-9">
+                Rs {price}
+              </p>
             </div>
             <div className="flex items-center justify-between mt-4">
               <div className="flex items-center gap-4">
@@ -161,6 +170,7 @@ const Gamedetails = () => {
         </section>
       </main>
     </div>
+    </>
   );
 };
 

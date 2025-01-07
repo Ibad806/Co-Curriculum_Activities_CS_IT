@@ -10,20 +10,17 @@ import Smecsponsors from "../components/Smecsponsers";
 import Footer from "../components/Footer";
 import SponsorSlider from "../components/SponsorSlider";
 import ImageSlider from "../components/ImageSlider";
+import BlackNavbar from "../components/BlackNavbar";
 
 const Smec = () => {
   return (
     <>
-      <Navbar
-        navcolor="bg-black"
-        bordercolor="border-[#FFCD5A]"
-        linkcolor="text-white"
-      />
+      <BlackNavbar />
       <Smec_main />
       <Smeccategory />
-      <ImageSlider/>
+      <ImageSlider />
       <Smecwinners />
-      <Smecsponsors/>
+      <Smecsponsors />
       {/* <SponsorSlider /> */}
       <Footer footercolor="bg-black" footertext="text-white" />
     </>

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { egames } from "../data";
-import Navbar from "../components/Navbar";
 import egamebanner from "../assets/egaming_banner.png";
 import Gamecard from "../components/Gamecard";
 import Footer from "../components/Footer";
+import BlackNavbar from "../components/BlackNavbar";
 
 const Geekgames = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -13,11 +13,7 @@ const Geekgames = () => {
 
   return (
     <>
-     <Navbar
-        navcolor="bg-black"
-        bordercolor="border-[#FFCD5A]"
-        linkcolor="text-white"
-      />
+    <BlackNavbar/>
       <div className="relative w-full">
         <img className="w-full" src={egamebanner} alt="E-gaming Banner" />
         <div className="absolute z-10 md:top-[43%] top-[35%] md:left-12 left-6 w-[45%] text-white">
