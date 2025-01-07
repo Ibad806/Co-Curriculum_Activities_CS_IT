@@ -11,6 +11,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import Gamepage from "./pages/Gamepage";
 import Payment from "./pages/Payment";
 import Tickets from "./pages/Tickets";
+import PaymentSuccessful from "./pages/PaymentSuccessful";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
 
         <Route path="/tickets" element={<Tickets />} />
+        <Route path="/paymentsuccess" element={<PaymentSuccessful />} />
       </Routes>
     </>
   );

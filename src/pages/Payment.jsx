@@ -4,9 +4,12 @@ import { addTicket } from "../redux/ticketsSlice";
 import { useSelector } from "react-redux";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import easypaisa from '../assets/easypaisalogo.png'
+import easypaisa from "../assets/easypaisalogo.png";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
+  const navigate = useNavigate();
+
   const selectedGame = useSelector((state) => state.game.selectedGame);
 
   if (!selectedGame) {
@@ -23,7 +26,7 @@ const Payment = () => {
   const dispatch = useDispatch();
 
   const [userName, setUserName] = useState("");
-  const [rollNo, setRollNo] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
   const [selectedMethod, setSelectedMethod] = useState("");
   const [agreeTerms, setAgreeTerms] = useState(false);
 
@@ -57,7 +60,7 @@ const Payment = () => {
     const ticket = {
       id: Date.now(),
       userName,
-      rollNo,
+      phoneNo,
       title,
       price,
       paymentMethod: selectedMethod,
@@ -70,38 +73,38 @@ const Payment = () => {
     // Dispatch the ticket to the Redux store
     dispatch(addTicket(ticket));
 
-    alert(`Payment successful for ${title}. Ticket generated!`);
+    navigate("/paymentsuccess");
   };
 
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-white mt-28">
+      <div className="min-h-screen bg-white mt-20">
         {/* Progress Bar */}
-        <div className="w-full flex items-center justify-center py-6 px-4 md:px-0">
-          <div className="flex items-center justify-between w-full max-w-xs md:max-w-md lg:max-w-lg space-x-3 md:space-x-6">
+        <div className="w-full flex items-center justify-center py-8">
+          <div className="flex items-center md:space-x-6 space-x-1">
             {/* Select */}
             <div className="flex flex-col items-center">
-              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm md:text-base">
+              <div className="md:w-8 md:h-8 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center text-white">
                 ✓
               </div>
-              <p className="text-xs md:text-sm mt-2">Select</p>
+              <p className="text-sm mt-2">Select</p>
             </div>
-            <div className="w-10 h-[2px] md:w-16 bg-blue-500" />
+            <div className="w-16 h-[2px] bg-blue-500" />
             {/* Checkout */}
             <div className="flex flex-col items-center">
-              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-gray-400 flex items-center justify-center text-gray-400 text-sm md:text-base">
-                2
+              <div className="md:w-8 md:h-8 w-6 h-6 rounded-full flex items-center bg-blue-500 justify-center text-white">
+                
               </div>
-              <p className="text-xs md:text-sm mt-2">Checkout</p>
+              <p className="text-sm mt-2">Payment</p>
             </div>
-            <div className="w-10 h-[2px] md:w-16 bg-gray-400" />
+            <div className="w-16 h-[2px] bg-gray-400" />
             {/* Get Ticket */}
             <div className="flex flex-col items-center">
-              <div className="w-6 h-6 md:w-8 md:h-8 rounded-full border-2 border-gray-400 flex items-center justify-center text-gray-400 text-sm md:text-base">
-                3
+              <div className="md:w-8 md:h-8 w-6 h-6 rounded-full flex items-center border-2 border-gray-400 justify-center text-white">
+                
               </div>
-              <p className="text-xs md:text-sm mt-2">Get Ticket</p>
+              <p className="text-sm mt-2">Get Ticket</p>
             </div>
           </div>
         </div>
@@ -128,9 +131,7 @@ const Payment = () => {
               </p>
               <p className="text-sm md:text-lg mt-1">Price: Rs {price}</p>
               <p className="text-sm md:text-lg mt-1">Venue: {venue}</p>
-              <p className="text-sm md:text-lg mt-1">
-                Organizer: {organizer}
-              </p>
+              <p className="text-sm md:text-lg mt-1">Organizer: {organizer}</p>
             </div>
           </div>
 
@@ -151,13 +152,13 @@ const Payment = () => {
               </div>
               <div>
                 <label className="block text-sm font-semibold mb-2">
-                  Roll No
+                  Phone No
                 </label>
                 <input
-                  type="text"
-                  value={rollNo}
-                  onChange={(e) => setRollNo(e.target.value)}
-                  placeholder="Enter your roll number (optional)"
+                  type="phone"
+                  value={phoneNo}
+                  onChange={(e) => setPhoneNo(e.target.value)}
+                  placeholder="Enter your Phone number"
                   className="w-full p-3 border rounded-lg focus:outline-none"
                 />
               </div>
@@ -174,7 +175,9 @@ const Payment = () => {
                     alt="Easypaisa"
                     className="md:w-8 md:h-8 w-4 h-4 object-contain"
                   />
-                  <span className="text-gray-700 md:font-medium text-sm md:px-2">Easypaisa</span>
+                  <span className="text-gray-700 md:font-medium text-sm md:px-2">
+                    Easypaisa
+                  </span>
                   <input
                     type="radio"
                     name="paymentMethod"
@@ -191,7 +194,9 @@ const Payment = () => {
                     alt="Credit Card"
                     className="w-4 h-4 md:w-8 md:h-8 object-contain"
                   />
-                  <span className="text-gray-700 text-sm md:font-medium ">Credit Card</span>
+                  <span className="text-gray-700 text-sm md:font-medium ">
+                    Credit Card
+                  </span>
                   <input
                     type="radio"
                     name="paymentMethod"

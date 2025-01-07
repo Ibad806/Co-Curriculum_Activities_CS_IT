@@ -46,7 +46,7 @@ const Navbar = () => {
           <Link
             to="/"
             className={`text-lg font-medium transition duration-300 ${
-              isScrolled ? "text-black" : "text-black hover:text-white"
+              isScrolled ? "text-black" : "text-black"
             }`}
           >
             Home

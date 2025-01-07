@@ -18,8 +18,8 @@ const Tickets = () => {
 
   return (
     <>
-      <Navbar navcolor="bg-white" />
-      <div className="min-h-screen bg-black text-white">
+      <Navbar />
+      <div className="min-h-screen mt-20">
         <main className="max-w-4xl mx-auto p-6">
           <h1 className="text-4xl font-bold text-center text-yellow-400 mb-8">
             My Tickets

@@ -21,7 +21,7 @@ body {
   position: relative;
 }
 
-h1 {
+/* h1 {
   font-size: 4vw;
   line-height: 4vw;
 }
@@ -158,4 +158,4 @@ a {
   .button1:focus-visible {
     outline: 4px auto -webkit-focus-ring-color;
   }
-}                    
+}                     */
