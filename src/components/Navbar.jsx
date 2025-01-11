@@ -60,12 +60,12 @@ const Navbar = () => {
             Events
           </Link>
           <Link
-            to="/tickets"
+            to="/userpanel"
             className={`text-lg font-medium transition duration-300 ${
               isScrolled ? "text-black" : "text-black hover:text-black"
             }`}
           >
-            Tickets
+            User Panel
           </Link>
           <Link
             to="/gallery"

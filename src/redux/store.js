@@ -1,10 +1,28 @@
-import { configureStore } from '@reduxjs/toolkit';
-import gameReducer from './gameSlice';
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage"; // Default localStorage for web
+import gameReducer from "./gameSlice";
 import ticketsReducer from "./ticketsSlice";
 
-export const store = configureStore({
-  reducer: {
-    game: gameReducer,
-    tickets: ticketsReducer,
-  },
+// Config for redux-persist
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
+// Combine all reducers
+const rootReducer = combineReducers({
+  game: gameReducer,
+  tickets: ticketsReducer,
 });
+
+// Persisted reducer
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+// Create the store
+export const store = configureStore({
+  reducer: persistedReducer,
+});
+
+// Create the persistor
+export const persistor = persistStore(store);

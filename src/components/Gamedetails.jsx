@@ -30,6 +30,9 @@ const Gamedetails = () => {
     organizer,
     venue,
     rules,
+    genre,
+    ageRating,
+    contactInfo,
   } = selectedGame;
 
   const ticketPrice = parseInt(price.replace(",", ""), 10) || 0;
@@ -111,6 +114,7 @@ const Gamedetails = () => {
             <ul className="space-y-2">
               <li className="text-sm">Venue: {venue}</li>
               <li className="text-sm">Organizer: {organizer}</li>
+              <li className="text-sm">Contact: {contactInfo}</li>
             </ul>
           </div>
         </section>
@@ -166,6 +170,27 @@ const Gamedetails = () => {
             >
               Checkout
             </button>
+          </div>
+        </section>
+        {/* Additional Information */}
+        <section className="mt-8 p-6 rounded-[30px] shadow-md border-[#393939] border-4">
+          <div className="pt-6">
+            <div className="flex items-center justify-between">
+              <h3 className="md:text-lg sm:text-sm font-medium pb-9">
+                Genre:
+              </h3>
+              <p className="text-gray-300 md:text-lg text-sm pb-9">
+                {genre}
+              </p>
+            </div>
+            <div className="flex items-center justify-between mt-4">
+              <h3 className="md:text-lg sm:text-sm font-medium pb-9">
+                Age Rating:
+              </h3>
+              <p className="text-gray-300 md:text-lg text-sm pb-9">
+                {ageRating}
+              </p>
+            </div>
           </div>
         </section>
       </main>

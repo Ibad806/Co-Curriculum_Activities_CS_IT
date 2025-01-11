@@ -10,8 +10,10 @@ import Smec from "./pages/Smec";
 import ScrollToTop from "./components/ScrollToTop";
 import Gamepage from "./pages/Gamepage";
 import Payment from "./pages/Payment";
-import Tickets from "./pages/Tickets";
 import PaymentSuccessful from "./pages/PaymentSuccessful";
+import UserPanel from "./dashboard/userpanel/usercomponents/UserPanel";
+import Ticket from "./dashboard/userpanel/userpages/Ticket";
+import UserHome from "./dashboard/userpanel/userpages/UserHome";
 
 function App() {
   return (
@@ -28,14 +30,26 @@ function App() {
           <Route path="geekgames" element={<Geekgames />} />
           <Route path=":category/:title" element={<Gamepage />} />
         </Route>
-
         <Route path="/payment" element={<Payment />} />
-
-        <Route path="/tickets" element={<Tickets />} />
         <Route path="/paymentsuccess" element={<PaymentSuccessful />} />
+
+        {/* userpanel */}
+        {/*         
+        <Route path="/userpanel">
+          <Route index element={<UserPanel />} />
+          <Route path="ticket" element={<Ticket />} />
+        </Route> */}
+
+        {/* User Panel Layout */}
+        <Route path="/userpanel" element={<UserPanel />}>
+          {/* Child Routes */}
+          <Route path="home" element={<UserHome />} />
+          <Route path="ticket" element={<Ticket />} />
+        </Route>
       </Routes>
     </>
   );
 }
 
 export default App;
+

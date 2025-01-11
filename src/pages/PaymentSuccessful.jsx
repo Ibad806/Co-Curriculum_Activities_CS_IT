@@ -141,7 +141,7 @@ const PaymentSuccessful = () => {
                   <button className="w-[100px] text-sm px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600">
                     Download Ticket
                   </button>
-                  <Link to='/tickets'>
+                  <Link to='/userpanel/ticket'>
                     <button className="w-[100px] text-sm px-4 py-2 bg-gray-500 text-white rounded-lg shadow hover:bg-gray-600">
                       View Ticket
                     </button>

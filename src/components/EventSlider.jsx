@@ -52,7 +52,6 @@ const EventSlider = ({ heading, para }) => {
         <FaArrowAltCircleRight className="swiper-next cursor-pointer text-gray-500 hover:text-gray-800" size={40} />
       </div>
     </div>
-    
   );
 };
 

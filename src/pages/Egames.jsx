@@ -20,6 +20,8 @@ const Geekgames = () => {
           <h1 className="md:pb-10 pb-2 font-bold md:text-[80px] text-[6vw]">
             E-Gaming
           </h1>
+
+          <h1></h1>
           <p className="md:text-[20px] text-[2vw] leading-[2.5vw]">
             Discover our extraordinary digital products that will revolutionize
             your design process like never before
