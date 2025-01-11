@@ -14,6 +14,7 @@ import PaymentSuccessful from "./pages/PaymentSuccessful";
 import UserPanel from "./dashboard/userpanel/usercomponents/UserPanel";
 import Ticket from "./dashboard/userpanel/userpages/Ticket";
 import UserHome from "./dashboard/userpanel/userpages/UserHome";
+import UserProfile from "./dashboard/userpanel/userpages/UserProfile";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           {/* Child Routes */}
           <Route path="home" element={<UserHome />} />
           <Route path="ticket" element={<Ticket />} />
+          <Route path="profile" element={<UserProfile />} />
         </Route>
       </Routes>
     </>

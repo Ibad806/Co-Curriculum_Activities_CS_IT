@@ -60,7 +60,7 @@ const Navbar = () => {
             Events
           </Link>
           <Link
-            to="/userpanel"
+            to="/userpanel/home"
             className={`text-lg font-medium transition duration-300 ${
               isScrolled ? "text-black" : "text-black hover:text-black"
             }`}

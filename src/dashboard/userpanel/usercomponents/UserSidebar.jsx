@@ -1,96 +1,145 @@
-import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
-import { FaHome, FaTicketAlt, FaBell } from "react-icons/fa";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
+import { FaHome, FaTicketAlt, FaCog, FaUser, FaBars } from "react-icons/fa";
+import h from "../../../assets/smec_banner.png"
 
 const UserSidebar = () => {
-  const location = useLocation();
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  // Function to determine active style
-  const isActive = (path) => location.pathname === path;
+  const toggleSidebar = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   return (
-    <div className="bg-white overflow-y-auto shadow-md h-screen w-16 lg:w-64 flex flex-col items-center lg:items-start py-4">
-      {/* Sidebar Header */}
-      <div className="hidden lg:block mb-6 pl-4">
-        <h1 className="text-xl font-bold text-gray-800">User Panel</h1>
+    <>
+      {/* Sidebar for Large Screens */}
+      <div className="hidden md:flex bg-[#0B0D2C] text-white h-screen w-64 fixed top-0 left-0 flex-col">
+        {/* Profile Section */}
+        <div className="p-6 flex flex-col items-center border-b border-indigo-700">
+          <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
+            {/* Replace with dynamic profile image */}
+            <img
+              src={h}
+              alt="Profile"
+              className="rounded-full w-full h-full object-cover"
+            />
+          </div>
+          <h2 className="text-lg font-semibold mt-3">Rameez Rafiq</h2>
+          <p className="text-sm text-gray-300">rameez123@gmail.com</p>
+        </div>
+
+        {/* Navigation */}
+        <nav className="mt-6 flex-1">
+          <NavLink
+            to="/userpanel/home"
+            className={({ isActive }) =>
+              `flex items-center p-4 text-base font-medium ${
+                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
+              }`
+            }
+          >
+            <FaHome className="mr-3 text-lg" />
+            Home
+          </NavLink>
+          <NavLink
+            to="/userpanel/ticket"
+            className={({ isActive }) =>
+              `flex items-center p-4 text-base font-medium ${
+                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
+              }`
+            }
+          >
+            <FaTicketAlt className="mr-3 text-lg" />
+            Tickets
+          </NavLink>
+          <NavLink
+            to="/userpanel/settings"
+            className={({ isActive }) =>
+              `flex items-center p-4 text-base font-medium ${
+                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
+              }`
+            }
+          >
+            <FaCog className="mr-3 text-lg" />
+            Settings
+          </NavLink>
+          <NavLink
+            to="/userpanel/profile"
+            className={({ isActive }) =>
+              `flex items-center p-4 text-base font-medium ${
+                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
+              }`
+            }
+          >
+            <FaUser className="mr-3 text-lg" />
+            Profile
+          </NavLink>
+        </nav>
       </div>
 
-      {/* Navigation Links */}
-      <nav className="flex flex-col items-center lg:items-start space-y-2 w-full">
-        {/* Home */}
-        <NavLink
-          to="/userpanel"
-          className={`flex flex-col items-center lg:flex-row lg:items-center lg:justify-start p-3 w-full rounded-lg ${
-            isActive("/userpanel")
-              ? "bg-blue-100 text-blue-500"
-              : "text-gray-600 hover:bg-gray-100"
-          }`}
+      {/* Sidebar for Small Screens */}
+      <div
+        className={`md:hidden bg-[#0B0D2C] text-white h-screen ${
+          isExpanded ? "w-64" : "w-16"
+        } fixed top-0 left-0 flex flex-col items-center transition-all duration-300`}
+      >
+        {/* Toggle Button */}
+        <button
+          onClick={toggleSidebar}
+          className="text-white text-2xl p-2 mt-4 focus:outline-none"
         >
-          <FaHome
-            className={`text-2xl ${
-              isActive("/userpanel") ? "text-blue-500" : "text-gray-600"
-            }`}
-          />
-          <span
-            className={`text-xs lg:text-base lg:ml-4 ${
-              isActive("/userpanel") ? "text-blue-500" : "text-gray-600"
-            }`}
-          >
-            Home
-          </span>
-        </NavLink>
+          <FaBars />
+        </button>
 
-        {/* Tickets */}
-        <NavLink
-          to="/userpanel/ticket"
-          className={`flex flex-col items-center lg:flex-row lg:items-center lg:justify-start p-3 w-full rounded-lg ${
-            isActive("/userpanel/ticket")
-              ? "bg-blue-100 text-blue-500"
-              : "text-gray-600 hover:bg-gray-100"
-          }`}
-        >
-          <FaTicketAlt
-            className={`text-2xl ${
-              isActive("/userpanel/ticket") ? "text-blue-500" : "text-gray-600"
-            }`}
-          />
-          <span
-            className={`text-xs lg:text-base lg:ml-4 ${
-              isActive("/userpanel/ticket") ? "text-blue-500" : "text-gray-600"
-            }`}
+        {/* Navigation */}
+        <nav className="mt-6 flex-1 flex flex-col space-y-4 items-center">
+          <NavLink
+            to="/userpanel/home"
+            className={({ isActive }) =>
+              `flex flex-col items-center ${
+                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
+              }`
+            }
           >
-            Tickets
-          </span>
-        </NavLink>
-
-        {/* Notifications */}
-        <NavLink
-          to="/userpanel/notifications"
-          className={`flex flex-col items-center lg:flex-row lg:items-center lg:justify-start p-3 w-full rounded-lg ${
-            isActive("/userpanel/notifications")
-              ? "bg-blue-100 text-blue-500"
-              : "text-gray-600 hover:bg-gray-100"
-          }`}
-        >
-          <FaBell
-            className={`text-2xl ${
-              isActive("/userpanel/notifications")
-                ? "text-blue-500"
-                : "text-gray-600"
-            }`}
-          />
-          <span
-            className={`text-xs lg:text-base lg:ml-4 ${
-              isActive("/userpanel/notifications")
-                ? "text-blue-500"
-                : "text-gray-600"
-            }`}
+            <FaHome className="text-xl" />
+            {isExpanded && <span className="mt-1 text-sm">Home</span>}
+          </NavLink>
+          <NavLink
+            to="/userpanel/ticket"
+            className={({ isActive }) =>
+              `flex flex-col items-center ${
+                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
+              }`
+            }
           >
-            Notifications
-          </span>
-        </NavLink>
-      </nav>
-    </div>
+            <FaTicketAlt className="text-xl" />
+            {isExpanded && <span className="mt-1 text-sm">Tickets</span>}
+          </NavLink>
+          {/* <NavLink
+            to="/userpanel/settings"
+            className={({ isActive }) =>
+              `flex flex-col items-center ${
+                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
+              }`
+            }
+          >
+            <FaCog className="text-xl" />
+            {isExpanded && <span className="mt-1 text-sm">Settings</span>}
+          </NavLink> */}
+          <NavLink
+            to="/userpanel/profile"
+            className={({ isActive }) =>
+              `flex flex-col items-center ${
+                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
+              }`
+            }
+          >
+            <FaUser className="text-xl" />
+            {isExpanded && <span className="mt-1 text-sm">Profile</span>}
+          </NavLink>
+        </nav>
+      </div>
+    </>
   );
 };
 
