@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import SmecWinnerCard from './SmecWinnerCard';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { egameWinners, geekWinners, generalGameWinners } from '../data';
 
