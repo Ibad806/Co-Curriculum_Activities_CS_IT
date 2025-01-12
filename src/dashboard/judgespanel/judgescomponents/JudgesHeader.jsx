@@ -6,7 +6,7 @@ const JudgesHeader = () => {
   return (
     <header className="bg-white shadow-md p-4 flex justify-between items-center sticky top-0 z-10 ml-64">
       <div>
-        <h1 className="text-xl font-bold text-gray-800">Dashboard</h1>
+        <h1 className="text-xl font-bold text-gray-800">Judge Dashboard</h1>
       </div>
       <div className="flex items-center space-x-6">
         <div className="relative">
