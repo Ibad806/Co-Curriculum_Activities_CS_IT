@@ -18,7 +18,7 @@ const JudgesSidebar = () => {
           <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center">
             <img src={h} alt="Profile" className="rounded-full w-full h-full object-cover" />
           </div>
-          <h2 className="text-lg font-semibold mt-3">Judge Rafiq</h2>
+          <h2 className="text-lg font-semibold mt-3">Judge Ibad</h2>
           <p className="text-sm text-gray-300">judge123@gmail.com</p>
         </div>
         <nav className="mt-6 flex-1">

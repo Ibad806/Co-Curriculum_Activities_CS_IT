@@ -16,7 +16,7 @@ const JudgesHeader = () => {
         <div className="flex items-center space-x-2">
           <img src={h} alt="Profile" className="w-10 h-10 rounded-full object-cover" />
           <div>
-            <p className="text-gray-800 font-medium">Rameez</p>
+            <p className="text-gray-800 font-medium">Ibad</p>
             <p className="text-gray-500 text-sm">Judge</p>
           </div>
         </div>
