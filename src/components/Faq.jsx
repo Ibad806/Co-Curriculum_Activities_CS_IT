@@ -59,7 +59,7 @@ const FAQ = () => {
         {questions.map((item, index) => (
           <div
             key={index}
-            className={`faq-item border-b border-gray-300 pb-4 cursor-pointer ${
+            className={`faq-item border-b border-gray-300 rounded-xl p-4 cursor-pointer ${
               activeIndex === index ? "bg-purple-100" : "hover:bg-purple-100"
             }`}
             onClick={() => toggleFAQ(index)}
@@ -69,7 +69,7 @@ const FAQ = () => {
               <span
                 className={`transform transition-transform ${
                   activeIndex === index ? "rotate-180" : "rotate-0"
-                } bg-[#F3F4F6]`}
+                }`}
               >
                 ▼
               </span>

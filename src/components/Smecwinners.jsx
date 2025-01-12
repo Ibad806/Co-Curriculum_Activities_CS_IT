@@ -1,26 +1,46 @@
-import React from "react";
-import SmecWinnerCard from "./Smecwinnercard";
-import { egameWinners, geekWinners, generalGameWinners } from "../data";
+import React, { useState } from 'react';
+import SmecWinnerCard from './SmecWinnerCard';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { egameWinners, geekWinners, generalGameWinners } from '../data';
 
-const Smecwinners = () => {
+const SmecWinners = () => {
+  const [activeCategory, setActiveCategory] = useState('E-GAMING');
+  const categories = {
+    'E-GAMING': egameWinners,
+    'GEEKS': geekWinners,
+    'GENERAL GAMES': generalGameWinners
+  };
+
   return (
-    <section className="py-12 bg-gradient-to-r from-yellow-600 via-black to-yellow-600 text-white px-6">
+    <section className="py-12 bg-black text-white px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-12">
-        <h2 className="md:text-[60px] text-[10vw] font-extrabold tracking-wider">
+        <h2 className="text-4xl sm:text-6xl font-extrabold tracking-wider">
           WINNERS '24
         </h2>
-        <p className="text-lg text-gray-300 mt-4 max-w-2xl mx-auto">
+        <p className="text-sm sm:text-xl text-gray-300 mt-4 max-w-2xl mx-auto">
           Hall of Fame: Celebrating Our Past Champions
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <SmecWinnerCard title="E-GAMING" winners={egameWinners} />
-        <SmecWinnerCard title="GEEKS" winners={geekWinners} />
-        <SmecWinnerCard title="GENERAL GAMES" winners={generalGameWinners} />
+      <div className="flex flex-wrap justify-center gap-4 mb-6">
+        {Object.keys(categories).map((category) => (
+          <button
+            key={category}
+            className={`py-2 px-4 text-lg sm:text-xl font-semibold rounded-lg ${activeCategory === category ? 'bg-yellow-500 text-black' : 'bg-gray-800 text-yellow-400'}`}
+            onClick={() => setActiveCategory(category)}
+          >
+            {category}
+          </button>
+        ))}
       </div>
+
+      <TransitionGroup>
+        <CSSTransition key={activeCategory} timeout={500} classNames="fade">
+          <SmecWinnerCard title={activeCategory} winners={categories[activeCategory]} />
+        </CSSTransition>
+      </TransitionGroup>
     </section>
   );
 };
 
-export default Smecwinners;
+export default SmecWinners;

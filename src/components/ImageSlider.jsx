@@ -10,7 +10,7 @@ import image3 from "../assets/geekcard.png";
 
 const ImageSlider = () => {
   return (
-    <div className="h-screen bg-gradient-to-b from-blue-700 via-blue-500 to-gray-200">
+    <div className="md:h-[85vh] h-[50vh] bg-gradient-to-b from-blue-700 via-blue-500 to-gray-200">
       <Swiper
         navigation={true}
         effect="fade"
