@@ -15,13 +15,13 @@ import UserPanel from "./dashboard/userpanel/usercomponents/UserPanel";
 import Ticket from "./dashboard/userpanel/userpages/Ticket";
 import UserHome from "./dashboard/userpanel/userpages/UserHome";
 import UserProfile from "./dashboard/userpanel/userpages/UserProfile";
-import JudgesPanel from "./dashboard/judgespanel/judgescomponents/Judgespanel";
 import JudgesHome from "./dashboard/judgespanel/judgespages/JudgesHome";
 import JudgesTournament from "./dashboard/judgespanel/judgespages/JudgesTournament";
 import JudgesMatches from "./dashboard/judgespanel/judgespages/JudgesMatches";
 import JudgesScoreboard from "./dashboard/judgespanel/judgespages/JudgesScoreboard";
 import JudgesProfile from "./dashboard/judgespanel/judgespages/JudgesProfile";
 import UserWinners from "./dashboard/userpanel/userpages/UserWinners";
+import JudgesLayout from "./dashboard/judgespanel/judgescomponents/JudgesLayout";
 
 function App() {
   return (
@@ -51,7 +51,7 @@ function App() {
         </Route>
 
         {/* Judges Panel Layout */}
-        <Route path="/judgespanel" element={<JudgesPanel />}>
+        <Route path="/judgespanel" element={<JudgesLayout />}>
           {/* Child Routes */}
           <Route path="home" element={<JudgesHome />} />
           <Route path="tournaments" element={<JudgesTournament />} />

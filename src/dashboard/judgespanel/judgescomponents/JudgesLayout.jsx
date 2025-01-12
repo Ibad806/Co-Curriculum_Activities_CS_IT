@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import JudgesHeader from "./JudgesHeader";
 import JudgesSidebar from "./JudgesSidebar";
 
-const Judgespanel = () => {
+const JudgesLayout = () => {
   return (
     <div className="flex flex-col h-screen">
       {/* Header */}
@@ -22,4 +22,4 @@ const Judgespanel = () => {
   );
 };
 
-export default Judgespanel;
+export default JudgesLayout;
