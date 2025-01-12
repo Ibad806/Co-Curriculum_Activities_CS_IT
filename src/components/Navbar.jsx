@@ -75,19 +75,27 @@ const Navbar = () => {
           >
             Gallery
           </Link>
+          <Link
+            to="/judgespanel/home"
+            className={`text-lg font-medium transition duration-300 ${
+              isScrolled ? "text-black" : "text-black hover:text-black"
+            }`}
+          >
+            Judges Panel
+          </Link>
         </div>
 
         {/* Action Icons */}
         <div className="flex items-center space-x-4">
           <button className="p-2 hover:bg-gray-200 rounded-full transition-colors">
-            <FaBell className={`w-5 h-5 ${
-              isScrolled ? "text-black" : "text-black"
-            }`} />
+            <FaBell
+              className={`w-5 h-5 ${isScrolled ? "text-black" : "text-black"}`}
+            />
           </button>
           <button className="p-2 hover:bg-gray-200 rounded-full transition-colors">
-            <FaUser className={`w-5 h-5 ${
-              isScrolled ? "text-black" : "text-black"
-            }`} />
+            <FaUser
+              className={`w-5 h-5 ${isScrolled ? "text-black" : "text-black"}`}
+            />
           </button>
         </div>
 
@@ -97,13 +105,13 @@ const Navbar = () => {
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
           {isMobileMenuOpen ? (
-            <ImCross className={`w-5 h-5 ${
-              isScrolled ? "text-black" : "text-black"
-            }`} />
+            <ImCross
+              className={`w-5 h-5 ${isScrolled ? "text-black" : "text-black"}`}
+            />
           ) : (
-            <FaBars className={`w-5 h-5 ${
-              isScrolled ? "text-black" : "text-black"
-            }`} />
+            <FaBars
+              className={`w-5 h-5 ${isScrolled ? "text-black" : "text-black"}`}
+            />
           )}
         </button>
       </nav>

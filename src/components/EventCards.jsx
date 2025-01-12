@@ -3,6 +3,7 @@ import { FaBuilding, FaMapMarkerAlt, FaRegCalendarAlt } from 'react-icons/fa'
 import smecbanner from "../assets/smec_banner.png";
 import qawalibanner from "../assets/qawali_banner.png";
 import qawali from "../assets/qawali.png";
+import Button from "./Button";
 
 const EventCard = ({ image, title, location, price, dateRange, timeToEnd , daysLeft }) => {
   return (

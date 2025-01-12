@@ -15,6 +15,12 @@ import UserPanel from "./dashboard/userpanel/usercomponents/UserPanel";
 import Ticket from "./dashboard/userpanel/userpages/Ticket";
 import UserHome from "./dashboard/userpanel/userpages/UserHome";
 import UserProfile from "./dashboard/userpanel/userpages/UserProfile";
+import JudgesPanel from "./dashboard/judgespanel/judgescomponents/Judgespanel";
+import JudgesHome from "./dashboard/judgespanel/judgespages/JudgesHome";
+import JudgesTournament from "./dashboard/judgespanel/judgespages/JudgesTournament";
+import JudgesMatches from "./dashboard/judgespanel/judgespages/JudgesMatches";
+import JudgesScoreboard from "./dashboard/judgespanel/judgespages/JudgesScoreboard";
+import JudgesProfile from "./dashboard/judgespanel/judgespages/JudgesProfile";
 
 function App() {
   return (
@@ -34,13 +40,6 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/paymentsuccess" element={<PaymentSuccessful />} />
 
-        {/* userpanel */}
-        {/*         
-        <Route path="/userpanel">
-          <Route index element={<UserPanel />} />
-          <Route path="ticket" element={<Ticket />} />
-        </Route> */}
-
         {/* User Panel Layout */}
         <Route path="/userpanel" element={<UserPanel />}>
           {/* Child Routes */}
@@ -48,10 +47,19 @@ function App() {
           <Route path="ticket" element={<Ticket />} />
           <Route path="profile" element={<UserProfile />} />
         </Route>
+
+        {/* Judges Panel Layout */}
+        <Route path="/judgespanel" element={<JudgesPanel />}>
+          {/* Child Routes */}
+          <Route path="home" element={<JudgesHome />} />
+          <Route path="tournaments" element={<JudgesTournament />} />
+          <Route path="matches" element={<JudgesMatches />} />
+          <Route path="scoreboard" element={<JudgesScoreboard />} />
+          <Route path="profile" element={<JudgesProfile />} />
+        </Route>
       </Routes>
     </>
   );
 }
 
 export default App;
-

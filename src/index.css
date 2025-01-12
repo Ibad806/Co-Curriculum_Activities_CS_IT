@@ -39,6 +39,68 @@ body {
   transition: opacity 500ms, transform 500ms;
 }
 
+/* Button */
+
+.fancy {
+  @apply bg-transparent border-2 border-black rounded-none box-border text-white cursor-pointer inline-block  font-bold tracking-wider m-0 outline-none overflow-visible p-2 relative text-center no-underline text-sm transition-all duration-300 select-none;
+  color: #000; /* Tailwind text-color utility here for normal state */
+}
+
+.fancy::before {
+  content: " ";
+  @apply absolute bg-black w-16 h-0.5 top-1/2 left-6 -translate-y-1/2 origin-center transition-all duration-300;
+}
+
+.fancy .text {
+  @apply block text-lg leading-8 pl-8 text-left transition-all duration-300 uppercase no-underline;
+  color: white; /* Tailwind text-color utility here for normal state */
+}
+
+.fancy .top-key,
+.fancy .bottom-key-1,
+.fancy .bottom-key-2 {
+  @apply absolute bg-gray-300 h-0.5 transition-all ease-out duration-500;
+}
+
+.fancy .top-key {
+  @apply w-16 top-0 left-2.5;
+}
+
+.fancy .bottom-key-1 {
+  @apply w-16 right-20 bottom-0;
+}
+
+.fancy .bottom-key-2 {
+  @apply w-2.5 right-2.5 bottom-0;
+}
+
+.fancy:hover {
+  @apply bg-black text-white;
+}
+
+.fancy:hover::before,
+.fancy:hover .text,
+.fancy:hover .top-key,
+.fancy:hover .bottom-key-1,
+.fancy:hover .bottom-key-2 {
+  @apply bg-white;
+}
+
+.fancy:hover::before {
+  width: 3rem; /* Adjust width on hover */
+}
+
+.fancy:hover .text {
+  padding-left: 3rem; /* Adjust padding on hover */
+  color: black;
+}
+
+.fancy:hover .top-key,
+.fancy:hover .bottom-key-1,
+.fancy:hover .bottom-key-2 {
+  width: 0; /* Disappear on hover */
+}
+
 
 /* h1 {
   font-size: 4vw;

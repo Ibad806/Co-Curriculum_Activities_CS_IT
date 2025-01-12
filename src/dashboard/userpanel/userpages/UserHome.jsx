@@ -23,7 +23,7 @@ const UserHome = () => {
   ];
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen ml-64">
+    <div className="p-4 bg-gray-100 min-h-screen">
       {/* Welcome Section */}
       <div className="bg-white shadow-md rounded-lg p-6 flex flex-wrap justify-between items-center mb-6">
         <div>

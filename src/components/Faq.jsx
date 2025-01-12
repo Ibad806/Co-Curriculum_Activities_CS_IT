@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import message from "../assets/Vector.png";
 import phone from "../assets/phone-telephone.png";
+import Button from "./Button";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -55,7 +56,7 @@ const FAQ = () => {
       </div>
 
       {/* Right Section */}
-      <div className="faq-right w-full md:w-[70%] flex flex-col justify-center md:px-8 md:mt-0 mt-[20px] space-y-6 px-4">
+      <div className="relative faq-right w-full md:w-[70%] flex flex-col justify-center md:px-8 md:mt-0 mt-[20px] space-y-6 px-4">
         {questions.map((item, index) => (
           <div
             key={index}
@@ -86,6 +87,7 @@ const FAQ = () => {
           </div>
         ))}
       </div>
+     
     </div>
   );
 };

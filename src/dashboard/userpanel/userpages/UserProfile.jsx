@@ -27,7 +27,7 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="ml-64 p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gray-100 min-h-screen">
       <div className="bg-white shadow-md rounded-lg p-6">
         <h2 className="text-2xl font-bold text-gray-800 mb-4">Account</h2>
         <hr className="border-gray-300 mb-6" />
