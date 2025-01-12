@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaHome, FaTicketAlt, FaCog, FaUser, FaBars } from "react-icons/fa";
-import h from "../../../assets/smec_banner.png"
+import { FaHome, FaTicketAlt, FaCog, FaUser, FaBars, FaTrophy } from "react-icons/fa";
+import h from "../../../assets/smec_banner.png";
 
 const UserSidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -53,16 +53,17 @@ const UserSidebar = () => {
             Tickets
           </NavLink>
           <NavLink
-            to="/userpanel/settings"
+            to="/userpanel/winners"
             className={({ isActive }) =>
               `flex items-center p-4 text-base font-medium ${
                 isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
               }`
             }
           >
-            <FaCog className="mr-3 text-lg" />
-            Settings
+            <FaTrophy className="mr-3 text-lg" /> {/* Updated icon */}
+            Winners
           </NavLink>
+
           <NavLink
             to="/userpanel/profile"
             className={({ isActive }) =>
@@ -97,7 +98,9 @@ const UserSidebar = () => {
             to="/userpanel/home"
             className={({ isActive }) =>
               `flex flex-col items-center ${
-                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
+                isActive
+                  ? "text-indigo-500"
+                  : "text-white hover:text-indigo-500"
               }`
             }
           >
@@ -108,29 +111,35 @@ const UserSidebar = () => {
             to="/userpanel/ticket"
             className={({ isActive }) =>
               `flex flex-col items-center ${
-                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
+                isActive
+                  ? "text-indigo-500"
+                  : "text-white hover:text-indigo-500"
               }`
             }
           >
             <FaTicketAlt className="text-xl" />
             {isExpanded && <span className="mt-1 text-sm">Tickets</span>}
           </NavLink>
-          {/* <NavLink
-            to="/userpanel/settings"
+          <NavLink
+            to="/userpanel/winners"
             className={({ isActive }) =>
               `flex flex-col items-center ${
-                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
+                isActive
+                  ? "text-indigo-500"
+                  : "text-white hover:text-indigo-500"
               }`
             }
           >
             <FaCog className="text-xl" />
-            {isExpanded && <span className="mt-1 text-sm">Settings</span>}
-          </NavLink> */}
+            {isExpanded && <span className="mt-1 text-sm">Winners</span>}
+          </NavLink>
           <NavLink
             to="/userpanel/profile"
             className={({ isActive }) =>
               `flex flex-col items-center ${
-                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
+                isActive
+                  ? "text-indigo-500"
+                  : "text-white hover:text-indigo-500"
               }`
             }
           >

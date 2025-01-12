@@ -21,6 +21,7 @@ import JudgesTournament from "./dashboard/judgespanel/judgespages/JudgesTourname
 import JudgesMatches from "./dashboard/judgespanel/judgespages/JudgesMatches";
 import JudgesScoreboard from "./dashboard/judgespanel/judgespages/JudgesScoreboard";
 import JudgesProfile from "./dashboard/judgespanel/judgespages/JudgesProfile";
+import UserWinners from "./dashboard/userpanel/userpages/UserWinners";
 
 function App() {
   return (
@@ -45,6 +46,7 @@ function App() {
           {/* Child Routes */}
           <Route path="home" element={<UserHome />} />
           <Route path="ticket" element={<Ticket />} />
+          <Route path="winners" element={<UserWinners />} />
           <Route path="profile" element={<UserProfile />} />
         </Route>
 
