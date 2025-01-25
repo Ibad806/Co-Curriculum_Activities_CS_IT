@@ -28,7 +28,7 @@ const BlackNavbar = () => {
       {/* Main Navbar */}
       <nav
         className={`fixed top-5 z-50 border-2 w-[93%] md:w-[94%] lg:w-[94%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${
-          isScrolled ? "bg-black" : "bg-transparent"
+          isScrolled ? "bg-black" : "bg-black"
         } transition-colors duration-500 border-[#FFCD5A] transform ease-in-out ${
           isScrolled ? "scale-95" : "scale-100"
         }`}

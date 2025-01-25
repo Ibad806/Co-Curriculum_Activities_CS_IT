@@ -1,6 +1,14 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaHome, FaTicketAlt, FaCog, FaUser, FaBars, FaTrophy } from "react-icons/fa";
+import {
+  FaHome,
+  FaTicketAlt,
+  FaCog,
+  FaUser,
+  FaBars,
+  FaTrophy,
+  FaUserTie,
+} from "react-icons/fa";
 import h from "../../../assets/smec_banner.png";
 
 const UserSidebar = () => {
@@ -62,6 +70,18 @@ const UserSidebar = () => {
           >
             <FaTrophy className="mr-3 text-lg" /> {/* Updated icon */}
             Winners
+          </NavLink>
+
+          <NavLink
+            to="/userpanel/applyforposts"
+            className={({ isActive }) =>
+              `flex items-center p-4 text-base font-medium ${
+                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
+              }`
+            }
+          >
+            <FaUserTie className="mr-3 text-lg" />
+            Apply for Posts
           </NavLink>
 
           <NavLink

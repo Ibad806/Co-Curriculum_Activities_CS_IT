@@ -22,6 +22,11 @@ import JudgesScoreboard from "./dashboard/judgespanel/judgespages/JudgesScoreboa
 import JudgesProfile from "./dashboard/judgespanel/judgespages/JudgesProfile";
 import UserWinners from "./dashboard/userpanel/userpages/UserWinners";
 import JudgesLayout from "./dashboard/judgespanel/judgescomponents/JudgesLayout";
+import ApplyforPosts from "./dashboard/userpanel/userpages/ApplyForPosts";
+import AdminLayout from "./dashboard/adminpanel/admincomponents/AdminLayout";
+import AdminHome from "./dashboard/adminpanel/adminpages/AdminHome";
+import AdminUsers from "./dashboard/adminpanel/adminpages/AdminUsers";
+import AdminJudges from "./dashboard/judgespanel/judgespages/AdminJudges";
 
 function App() {
   return (
@@ -48,6 +53,7 @@ function App() {
           <Route path="ticket" element={<Ticket />} />
           <Route path="winners" element={<UserWinners />} />
           <Route path="profile" element={<UserProfile />} />
+          <Route path="applyforposts" element={<ApplyforPosts />} />
         </Route>
 
         {/* Judges Panel Layout */}
@@ -58,6 +64,14 @@ function App() {
           <Route path="matches" element={<JudgesMatches />} />
           <Route path="scoreboard" element={<JudgesScoreboard />} />
           <Route path="profile" element={<JudgesProfile />} />
+        </Route>
+
+        {/* Judges Panel Layout */}
+        <Route path="/adminpanel" element={<AdminLayout />}>
+          {/* Child Routes */}
+          <Route path="home" element={<AdminHome />} />
+          <Route path="users" element={<AdminUsers />} />
+          <Route path="judges" element={<AdminJudges />} />
         </Route>
       </Routes>
     </>
