@@ -10,7 +10,7 @@ import { FaArrowAltCircleLeft, FaArrowAltCircleRight } from "react-icons/fa";
 
 const EventSlider = ({ heading, para }) => {
   return (
-    <div className="relative w-full py-[4vw] md:px-8 px-4">
+    <div className="relative w-full py-[3vw] md:px-8 px-4 ">
       <div className="flex flex-col gap-[1vw] items-center justify-center">
         <div className="flex flex-col text-center">
           <h1 className="text-2xl md:text-3xl font-bold">{heading}</h1>

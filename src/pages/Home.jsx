@@ -1,6 +1,6 @@
 import React from "react";
 import EventSlider from "../components/EventSlider";
-import ImageSlider from "../components/ImageSlider";
+// import ImageSlider from "../components/ImageSlider";
 import NewsSection from "../components/NewsLetter";
 import TicketSteps from "../components/TicketSteps";
 import Faq from "../components/Faq";
@@ -8,6 +8,8 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 import Availableevents from "../components/Availableevents";
 import Cacmain from "../components/Cacmain";
+import Gallery from "../components/Gallery";
+import Testinomal from "../components/Testimonials";
 
 const Home = () => {
   return (
@@ -20,10 +22,11 @@ const Home = () => {
         heading={"Upcoming Events"}
         para={"The best events will be soon!"}
       />
-
-      <ImageSlider />
+      <Gallery/>
+      {/* <ImageSlider /> */}
 
       <NewsSection />
+      <Testinomal/>
       <Faq />
       <Footer footercolor="bg-white" footertext="text-blac" />
     </>
