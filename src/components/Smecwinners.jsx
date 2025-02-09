@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { egameWinners, geekWinners, generalGameWinners } from '../data';
+import SmecWinnerCard from './Smecwinnercard';
 
 const SmecWinners = () => {
   const [activeCategory, setActiveCategory] = useState('E-GAMING');
