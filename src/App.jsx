@@ -22,6 +22,8 @@ import JudgesScoreboard from "./dashboard/judgespanel/judgespages/JudgesScoreboa
 import JudgesProfile from "./dashboard/judgespanel/judgespages/JudgesProfile";
 import UserWinners from "./dashboard/userpanel/userpages/UserWinners";
 import JudgesLayout from "./dashboard/judgespanel/judgescomponents/JudgesLayout";
+import Register from "./pages/Auth/Register";
+import LoginForm from "./pages/Auth/login";
 
 function App() {
   return (
@@ -31,6 +33,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path="/smec">
           <Route index element={<Smec />} />
           <Route path="generalgames" element={<Generalgames />} />
