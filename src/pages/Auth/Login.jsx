@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { FiUser, FiMail, FiEye, FiEyeOff, FiLock } from "react-icons/fi"
+import { FiMail, FiEye, FiEyeOff, FiLock } from "react-icons/fi"
 import { FcGoogle } from "react-icons/fc"
 import { Link } from "react-router-dom"
 import Cacmain from "../../components/Cacmain"
