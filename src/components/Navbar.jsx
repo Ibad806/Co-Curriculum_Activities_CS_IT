@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-import { FaBell, FaUserAlt, FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
 import { useState, useEffect, useRef } from "react";
 import { FaSearch, FaBell, FaUser, FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
