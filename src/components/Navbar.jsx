@@ -52,7 +52,7 @@ const Navbar = () => {
         
         {/* Logo */}
         <Link to="/" className="text-lg font-medium transition duration-500 ">
-          CAC
+          CACasasakldjf
         </Link>
 
         {/* Desktop Menu */}
@@ -63,7 +63,7 @@ const Navbar = () => {
               isScrolled ? "text-black" : "text-black"
             }`}
           >
-            Home
+            Homeaskdnv
           </Link>
           <Link
             to="/events"
