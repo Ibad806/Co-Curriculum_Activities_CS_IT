@@ -22,7 +22,7 @@ import JudgesScoreboard from "./dashboard/judgespanel/judgespages/JudgesScoreboa
 import JudgesProfile from "./dashboard/judgespanel/judgespages/JudgesProfile";
 import UserWinners from "./dashboard/userpanel/userpages/UserWinners";
 import JudgesLayout from "./dashboard/judgespanel/judgescomponents/JudgesLayout";
-import LoginForm from "./pages/Auth/login";
+import LoginForm from "./pages/Auth/Login";
 import RegisterForm from "./pages/Auth/Register";
 
 function App() {
