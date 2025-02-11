@@ -13,7 +13,7 @@ export default function LoginForm() {
       <Navbar/>
 
       <div className="text-center mt-28 mb-6">
-        <h1 className="text-2xl font-semibold mb-1">Welcome Back</h1>
+        <h1 className="text-2xl font-semibold mb-1">Welcome Back a</h1>
         <p className="text-gray-600">Access your personal account by logging in</p>
       </div>
 
