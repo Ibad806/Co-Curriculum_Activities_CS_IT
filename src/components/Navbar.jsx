@@ -1,10 +1,15 @@
 import { useState, useEffect } from "react";
 import { FaBell, FaUserAlt, FaSignInAlt, FaSignOutAlt, FaUser } from "react-icons/fa";
+import { useState, useEffect, useRef } from "react";
+import { FaSearch, FaBell, FaUser, FaBars } from "react-icons/fa";
+import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const userDropdownRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +27,22 @@ const Navbar = () => {
     };
   }, []);
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(event.target)
+      ) {
+        setIsUserDropdownOpen(false);
+      }
+    };
+    
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
     <div className="w-full px-6 flex items-center justify-center flex-col relative">
       {/* Main Navbar */}
@@ -30,13 +51,9 @@ const Navbar = () => {
           isScrolled ? "bg-white text-black" : "bg-white text-white"
         }`}
       >    
+        
         {/* Logo */}
-        <Link
-          to="/"
-          className={`text-lg font-medium transition duration-500 ${
-            isScrolled ? "text-black" : "text-black hover:text-black"
-          }`}
-        >
+        <Link to="/" className="text-lg font-medium transition duration-500 ">
           CAC
         </Link>
 
@@ -70,70 +87,56 @@ const Navbar = () => {
 
         {/* Action Icons */}
         <div className="flex items-center space-x-4 relative">
-          <button className="p-2 hover:bg-gray-200 rounded-full transition-colors">
-            <FaBell
-              className={`w-5 h-5 ${isScrolled ? "text-black" : "text-black"}`}
-            />
+          <button className="p-2 hover:bg-gray-200 hover:text-black rounded-full transition-colors">
+            <FaBell className="w-5 h-5 " />
           </button>
-
-          {/* User Dropdown on Hover (Profile Icon Only) */}
-          <div className="relative group">
-            <button className="p-2 hover:bg-gray-200 rounded-full transition-colors">
-              <FaUserAlt
-                className={`w-5 h-5 ${
-                  isScrolled ? "text-black" : "text-black"
-                }`}
-              />
-            </button>
-            <div
-              className="absolute top-12 right-0 bg-white text-black shadow-lg rounded-lg w-64 p-6 transition-transform transform origin-top-right scale-95 opacity-0 group-hover:scale-100 group-hover:opacity-100 duration-300"
+          <div className="relative" ref={userDropdownRef}>
+            <button
+              className="p-2 hover:bg-gray-200 hover:text-black rounded-full transition-colors"
+              onClick={() => setIsUserDropdownOpen(!isUserDropdownOpen)}
             >
-              {/* User Info */}
-              <div className="flex items-center space-x-4 mb-4">
-                <FaUserAlt className="w-10 h-10 text-gray-700" />
-                <div>
-                  <p className="text-lg font-medium truncate">Rameez Rafiq</p>
-                  <p className="text-sm text-gray-500 truncate">
-                    rameez123@gmail.com
-                  </p>
-                </div>
-              </div>
-              {/* Menu Options */}
-              <div className="space-y-4">
+              <FaUser className="w-5 h-5" />
+            </button>
+            {isUserDropdownOpen && (
+              <div className="absolute right-0 mt-2 w-40 bg-white text-black shadow-lg rounded-lg py-2">
                 <Link
                   to="/login"
-                  className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                  onClick={() => setIsUserDropdownOpen(false)}
                 >
-                  <FaSignInAlt className="text-lg" />
-                  <span>Login</span>
+                  Login
                 </Link>
                 <Link
-                  to="/adminpanel/home"
-                  className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100"
+                  to="/register"
+                  className="block px-4 py-2 hover:bg-gray-100"
+                  onClick={() => setIsUserDropdownOpen(false)}
                 >
-                  <FaUserAlt className="text-lg" />
-                  <span>Admin Panel</span>
-                </Link>
-                <Link
-                  to="/userpanel/home"
-                  className="flex items-center space-x-2 p-2 rounded-lg hover:bg-gray-100"
-                >
-                  <FaUser className="text-lg" />
-                  <span>Your Dashboard</span>
+                  Register
                 </Link>
               </div>
-              {/* Logout Button */}
-              <button
-                onClick={() => alert("Logged out!")}
-                className="flex items-center justify-center w-full p-2 mt-6 bg-red-500 text-white rounded-lg hover:bg-red-600 transition"
-              >
-                <FaSignOutAlt className="text-lg mr-2" />
-                Logout
-              </button>
-            </div>
+            )}
           </div>
         </div>
+
+        {/* Mobile Menu Toggle */}
+        <button
+          className="md:hidden p-2 hover:bg-gray-200 rounded-full transition-colors"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <ImCross className="w-5 h-5 text-white" /> : <FaBars className="w-5 h-5 text-white" />}
+        </button>
       </nav>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden fixed top-20 right-0 left-0 bg-white text-black shadow-lg rounded-lg animate-slideIn transition-all duration-300 z-40">
+          <div className="flex flex-col items-start p-6 space-y-4">
+            <Link to="/" className="hover:underline text-sm font-medium hover:text-gray-600 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+            <Link to="/events" className="hover:underline text-sm font-medium hover:text-gray-600 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Events</Link>
+            <Link to="/tickets" className="hover:underline text-sm font-medium hover:text-gray-600 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Tickets</Link>
+            <Link to="/gallery" className="hover:underline text-sm font-medium hover:text-gray-600 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
+          </div>
+        </div>)}
     </div>
   );
 };

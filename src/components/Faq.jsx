@@ -1,36 +1,24 @@
 import React, { useState } from "react";
 import message from "../assets/Vector.png";
 import phone from "../assets/phone-telephone.png";
-import Button from "./Button";
 
 const FAQ = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleFAQ = (index) => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   const questions = [
-    {
-      question: "I haven’t received any order confirmation yet. Did my booking go through?",
-      answer: "Lorem ipsum dolor sit amet consectetur. Eleifend nunc habi loremut egestas.",
-    },
-    {
-      question: "I am not able/do not want to attend an already booked event for personal reasons. Is there a possibility to cancel/rebook the tickets?",
-      answer: "You can contact our help center for assistance with cancellations or rebooking.",
-    },
-    {
-      question: "I lost my e-Ticket. What can I do?",
-      answer: "You can retrieve your e-Ticket by logging into your account or contacting support.",
-    },
-    {
-      question: "An event was canceled/postponed/relocated, and I am not able/do not want to attend the event. Is it possible to cancel my tickets?",
-      answer: "Yes, tickets can be canceled under specific conditions. Reach out to our team.",
-    },
-    {
-      question: "I’ve already ordered tickets and now want to add another one. Is it possible yet to sit together?",
-      answer: "You can try booking an additional ticket close to your previous booking.",
-    },
+    { question: "I haven’t received any order confirmation yet. Did my booking go through?", answer: "Your booking confirmation may take a few minutes to arrive. Check your spam folder or contact support if needed." },
+    { question: "I am not able/do not want to attend an already booked event for personal reasons. Is there a possibility to cancel/rebook the tickets?", answer: "You can contact our help center for assistance with cancellations or rebooking." },
+    { question: "I lost my e-Ticket. What can I do?", answer: "You can retrieve your e-Ticket by logging into your account or contacting support." },
+    { question: "An event was canceled/postponed/relocated, and I am not able/do not want to attend the event. Is it possible to cancel my tickets?", answer: "Yes, tickets can be canceled under specific conditions. Reach out to our team." },
+    { question: "I’ve already ordered tickets and now want to add another one. Is it possible yet to sit together?", answer: "You can try booking an additional ticket close to your previous booking." },
   ];
 
   return (
@@ -47,16 +35,16 @@ const FAQ = () => {
           <p className="text-gray-700 text-[12px] md:text-[17px]">(010) 123-4567</p>
         </div>
         <p className="text-gray-600 text-[12px] md:text-[17px]">Still Have Questions?</p>
-        <p className="text-gray-500 text-[12px] md:text-[17px] leading-4">
-          Can’t find the answer you’re looking for? Please contact our help center.
-        </p>
-        <button className="px-6 py-2 bg-purple-800 text-white rounded-md hover:bg-purple-700 transition duration-300">
+        <p className="text-gray-500 text-[12px] md:text-[17px] leading-4">Can’t find the answer you’re looking for? Please contact our help center.</p>
+        <button 
+          onClick={openModal} 
+          className="px-6 py-2 bg-purple-800 text-white rounded-md hover:bg-purple-700 transition duration-300">
           Contact Us
         </button>
       </div>
 
       {/* Right Section */}
-      <div className="relative faq-right w-full md:w-[70%] flex flex-col justify-center md:px-8 md:mt-0 mt-[20px] space-y-6 px-4">
+      <div className="faq-right w-full md:w-[70%] flex flex-col justify-center md:px-8 md:mt-0 mt-[20px] space-y-6 px-4">
         {questions.map((item, index) => (
           <div
             key={index}
@@ -75,19 +63,32 @@ const FAQ = () => {
                 ▼
               </span>
             </div>
-
-            {/* Answer section with transition */}
-            <div
-              className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                activeIndex === index ? "max-h-[300px] opacity-100 mt-4" : "max-h-0 opacity-0"
-              }`}
-            >
+            <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeIndex === index ? "max-h-[300px] opacity-100 mt-4" : "max-h-0 opacity-0"}`}>
               <p className="text-gray-600 text-[11px] md:text-[15px] md:leading-[18px] leading-[15px]">{item.answer}</p>
             </div>
           </div>
         ))}
       </div>
-     
+
+      {/* Modal */}
+      {isModalOpen && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white w-[90%] md:w-[50%] p-6 rounded-lg shadow-lg transform transition-transform animate-slideIn">
+            <h2 className="text-2xl font-bold mb-4 text-center">Contact Us</h2>
+            <form className="space-y-4">
+              <input type="text" placeholder="Name" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" />
+              <input type="email" placeholder="Email" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" />
+              <input type="text" placeholder="Department" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" />
+              <input type="text" placeholder="Subject" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500" />
+              <textarea placeholder="Message" rows="4" className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+              <div className="flex justify-end space-x-4">
+                <button type="button" onClick={closeModal} className="px-4 py-2 bg-gray-300 rounded-md hover:bg-gray-400">Cancel</button>
+                <button type="submit" className="px-6 py-2 bg-purple-800 text-white rounded-md hover:bg-purple-700 transition duration-300">Submit</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

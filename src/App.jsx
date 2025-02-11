@@ -27,6 +27,8 @@ import AdminLayout from "./dashboard/adminpanel/admincomponents/AdminLayout";
 import AdminHome from "./dashboard/adminpanel/adminpages/AdminHome";
 import AdminUsers from "./dashboard/adminpanel/adminpages/AdminUsers";
 import AdminJudges from "./dashboard/judgespanel/judgespages/AdminJudges";
+import LoginForm from "./pages/Auth/Login";
+import RegisterForm from "./pages/Auth/Register";
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
         <Route path="/gallery" element={<Gallery />} />
+        <Route path="/register" element={<RegisterForm />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path="/smec">
           <Route index element={<Smec />} />
           <Route path="generalgames" element={<Generalgames />} />
