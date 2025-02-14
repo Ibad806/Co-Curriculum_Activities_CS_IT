@@ -27,7 +27,7 @@ import AdminLayout from "./dashboard/adminpanel/admincomponents/AdminLayout";
 import AdminHome from "./dashboard/adminpanel/adminpages/AdminHome";
 import LoginForm from "./pages/Auth/Login";
 import RegisterForm from "./pages/Auth/Register";
-import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddnewEvent";
+import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddNewEvent";
 import ManageEvents from "./dashboard/adminpanel/admincomponents/ManageEvents";
 import CreateSmecGame from "./dashboard/adminpanel/admincomponents/CreateSmecGame";
 
