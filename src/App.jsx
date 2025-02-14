@@ -29,6 +29,9 @@ import AdminUsers from "./dashboard/adminpanel/adminpages/AdminUsers";
 import AdminJudges from "./dashboard/judgespanel/judgespages/AdminJudges";
 import LoginForm from "./pages/Auth/Login";
 import RegisterForm from "./pages/Auth/Register";
+import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddnewEvent";
+import ManageEvents from "./dashboard/adminpanel/admincomponents/ManageEvents";
+import CreateSmecGame from "./dashboard/adminpanel/admincomponents/CreateSmecGame";
 
 function App() {
   return (
@@ -74,8 +77,9 @@ function App() {
         <Route path="/adminpanel" element={<AdminLayout />}>
           {/* Child Routes */}
           <Route path="home" element={<AdminHome />} />
-          <Route path="users" element={<AdminUsers />} />
-          <Route path="judges" element={<AdminJudges />} />
+          <Route path="addnewevent" element={<AddNewEvent/>}/>
+          <Route path="manageevents" element={<ManageEvents/>}/>
+          <Route path="creategame" element={<CreateSmecGame/>}/>
         </Route>
       </Routes>
     </>
