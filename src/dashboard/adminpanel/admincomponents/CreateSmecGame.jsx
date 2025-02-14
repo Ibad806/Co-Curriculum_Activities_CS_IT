@@ -135,6 +135,7 @@ const CreateSmecGame = () => {
       </form>
     </div>
   );
+  
 };
 
 export default CreateSmecGame;

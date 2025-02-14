@@ -30,6 +30,7 @@ import RegisterForm from "./pages/Auth/Register";
 import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddNewEvent";
 import ManageEvents from "./dashboard/adminpanel/admincomponents/ManageEvents";
 import CreateSmecGame from "./dashboard/adminpanel/admincomponents/CreateSmecGame";
+import ManageSmecGame from "./dashboard/adminpanel/admincomponents/ManageSmecGame";
 
 function App() {
   return (
@@ -78,6 +79,7 @@ function App() {
           <Route path="addnewevent" element={<AddNewEvent/>}/>
           <Route path="manageevents" element={<ManageEvents/>}/>
           <Route path="creategame" element={<CreateSmecGame/>}/>
+          <Route path="managegame" element={<ManageSmecGame/>}/>
         </Route>
       </Routes>
     </>

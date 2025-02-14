@@ -45,7 +45,7 @@ const AdminSidebar = () => {
       icon: <FaProjectDiagram className="md:mr-3 text-lg" />,
       submenu: [
         { title: "Create Game", path: "/adminpanel/creategame" },
-        { title: "Competition Details", path: "/admin/smec/competition" },
+        { title: "Manage Game", path: "/adminpanel/managegame" },
         { title: "Judges Panel", path: "/admin/smec/judges" },
         { title: "Sponsorships", path: "/admin/smec/sponsors" },
         { title: "Ticketing", path: "/admin/smec/ticketing" },
