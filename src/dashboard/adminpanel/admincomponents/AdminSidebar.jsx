@@ -1,239 +1,225 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaHome, FaUsers, FaGamepad, FaClipboardList, FaCog, FaBell, FaFileAlt, FaCaretDown } from "react-icons/fa";
+import {
+  FaHome,
+  FaUsers,
+  FaCalendarAlt,
+  FaProjectDiagram,
+  FaTicketAlt,
+  FaImage,
+  FaCalendarCheck,
+  FaCog,
+  FaChevronDown,
+  FaChevronUp,
+  FaBars,
+  FaTimes
+} from "react-icons/fa";
+import h from "../../../assets/smec_banner.png";
 
 const AdminSidebar = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isJudgesMenuOpen, setIsJudgesMenuOpen] = useState(false);
-  const [isGamesMenuOpen, setIsGamesMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState(null);
 
-  const toggleSidebar = () => {
-    setIsExpanded(!isExpanded);
-  };
+  const toggleSidebar = () => setIsExpanded(!isExpanded);
+  const toggleDropdown = (menu) => setOpenDropdown(openDropdown === menu ? null : menu);
 
-  const toggleJudgesMenu = () => {
-    setIsJudgesMenuOpen(!isJudgesMenuOpen);
-  };
-
-  const toggleGamesMenu = () => {
-    setIsGamesMenuOpen(!isGamesMenuOpen);
-  };
+  const adminMenu = [
+    { 
+      title: "Dashboard", 
+      icon: <FaHome className="md:mr-3 text-lg" />, 
+      path: "/Adminpanel/home" 
+    },
+    {
+      title: "Event Management",
+      icon: <FaCalendarAlt className="md:mr-3 text-lg" />,
+      submenu: [
+        { title: "Add New Event", path: "/adminpanel/addnewevent" },
+        { title: "Manage Events", path: "/adminpanel/manageevents" },
+        { title: "Calendar View", path: "/admin/calendar" },
+        { title: "Event Resources", path: "/admin/resources" },
+        { title: "Event Reports", path: "/admin/reports" }
+      ]
+    },
+    {
+      title: "SMEC Management",
+      icon: <FaProjectDiagram className="md:mr-3 text-lg" />,
+      submenu: [
+        { title: "Create Game", path: "/adminpanel/creategame" },
+        { title: "Competition Details", path: "/admin/smec/competition" },
+        { title: "Judges Panel", path: "/admin/smec/judges" },
+        { title: "Sponsorships", path: "/admin/smec/sponsors" },
+        { title: "Ticketing", path: "/admin/smec/ticketing" },
+        { title: "Event Reports", path: "/admin/smec/reports" }
+      ]
+    },
+    {
+      title: "Qawali Night",
+      icon: <FaTicketAlt className="md:mr-3 text-lg" />,
+      submenu: [
+        { title: "Ticketing", path: "/admin/qawali/tickets" },
+        { title: "Seating", path: "/admin/qawali/seating" },
+        { title: "Logistics", path: "/admin/qawali/logistics" },
+        { title: "Guest List", path: "/admin/qawali/guests" }
+      ]
+    },
+    {
+      title: "Gallery",
+      icon: <FaImage className="md:mr-3 text-lg" />,
+      submenu: [
+        { title: "Upload Media", path: "/admin/gallery/upload" },
+        { title: "Organize", path: "/admin/gallery/organize" },
+        { title: "Moderate", path: "/admin/gallery/moderate" }
+      ]
+    },
+    {
+      title: "Dynamic Events",
+      icon: <FaCalendarCheck className="md:mr-3 text-lg" />,
+      submenu: [
+        { title: "Calendar", path: "/admin/events/calendar" },
+        { title: "Featured Events", path: "/admin/events/featured" },
+        { title: "Event Status", path: "/admin/events/status" }
+      ]
+    },
+    { 
+      title: "Website Content", 
+      icon: <FaCog className="md:mr-3 text-lg" />,
+      submenu: [
+        { title: "Homepage", path: "/admin/content/home" },
+        { title: "About Us", path: "/admin/content/about" },
+        { title: "Committees", path: "/admin/content/committees" },
+        { title: "Announcements", path: "/admin/content/announcements" }
+      ]
+    }
+  ];
 
   return (
     <>
-      {/* Sidebar for Large Screens */}
-      <div className="overflow-y-auto md:flex bg-[#0B0D2C] text-white h-screen w-64 fixed top-0 left-0 flex-col">
-        {/* Sidebar Header */}
-        <div className="p-6 border-b border-indigo-700">
-          <h2 className="text-lg font-semibold">Admin Dashboard</h2>
+      {/* Mobile Toggle */}
+      <button
+        onClick={toggleSidebar}
+        className="md:hidden fixed top-4 left-4 z-50 text-white bg-indigo-700 p-2 rounded-lg"
+      >
+        {isExpanded ? <FaTimes className="text-2xl" /> : <FaBars className="text-2xl" />}
+      </button>
+
+      {/* Desktop Sidebar */}
+      <div className="hidden md:flex bg-[#0B0D2C] text-white h-screen w-64 fixed top-0 left-0 flex-col z-40">
+        <div className="p-6 flex flex-col items-center border-b border-indigo-700">
+          <img src={h} alt="Admin" className="w-16 h-16 rounded-full object-cover" />
+          <h2 className="text-lg font-semibold mt-3">Admin Panel</h2>
+          <p className="text-sm text-gray-300">admin@smec.com</p>
         </div>
 
-        {/* Navigation Links */}
-        <nav className="mt-6 flex-1">
-          <NavLink
-            to="/adminpanel/home"
-            className={({ isActive }) =>
-              `flex items-center p-4 text-base font-medium ${
-                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
-              }`
-            }
-          >
-            <FaHome className="mr-3 text-lg" />
-            Home
-          </NavLink>
-          <NavLink
-            to="/adminpanel/users"
-            className={({ isActive }) =>
-              `flex items-center p-4 text-base font-medium ${
-                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
-              }`
-            }
-          >
-            <FaUsers className="mr-3 text-lg" />
-            User Management
-          </NavLink>
-          
-          {/* Judges Management Dropdown */}
-          <div className="flex flex-col">
-            <button
-              onClick={toggleJudgesMenu}
-              className="flex items-center p-4 text-base font-medium justify-between w-full hover:bg-indigo-700"
-            >
-              <span className="flex items-center">
-                <FaGamepad className="mr-3 text-lg" />
-                Judges Management
-              </span>
-              <FaCaretDown className={`${isJudgesMenuOpen ? 'transform rotate-180' : ''}`} />
-            </button>
-            {isJudgesMenuOpen && (
-              <div className="flex flex-col">
+        <nav className="mt-6 flex-1 overflow-y-auto">
+          {adminMenu.map((item) => (
+            <div key={item.title}>
+              {item.submenu ? (
+                <div className="relative border-b border-indigo-800">
+                  <button
+                    onClick={() => toggleDropdown(item.title)}
+                    className={`flex items-center justify-between w-full p-4 text-base ${
+                      openDropdown === item.title ? "bg-indigo-700" : "hover:bg-indigo-700"
+                    }`}
+                  >
+                    <div className="flex items-center">
+                      {item.icon}
+                      {item.title}
+                    </div>
+                    {openDropdown === item.title ? <FaChevronUp /> : <FaChevronDown />}
+                  </button>
+                  
+                  {openDropdown === item.title && item.submenu.map((subItem) => (
+                    <NavLink
+                      key={subItem.title}
+                      to={subItem.path}
+                      className={({ isActive }) =>
+                        `block pl-16 pr-4 py-3 text-sm ${
+                          isActive ? "bg-indigo-800" : "hover:bg-indigo-700"
+                        }`
+                      }
+                    >
+                      {subItem.title}
+                    </NavLink>
+                  ))}
+                </div>
+              ) : (
                 <NavLink
-                  to="/adminpanel/judges/create"
+                  to={item.path}
                   className={({ isActive }) =>
-                    `ml-6 p-4 text-sm font-medium ${
-                      isActive ? "bg-indigo-800" : "hover:bg-indigo-800"
+                    `flex items-center p-4 text-base ${
+                      isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
                     }`
                   }
                 >
-                  Create Judge
+                  {item.icon}
+                  {item.title}
                 </NavLink>
-                <NavLink
-                  to="/adminpanel/judges/assign"
-                  className={({ isActive }) =>
-                    `ml-6 p-4 text-sm font-medium ${
-                      isActive ? "bg-indigo-800" : "hover:bg-indigo-800"
-                    }`
-                  }
-                >
-                  Assign Tournaments
-                </NavLink>
-                <NavLink
-                  to="/adminpanel/judges/list"
-                  className={({ isActive }) =>
-                    `ml-6 p-4 text-sm font-medium ${
-                      isActive ? "bg-indigo-800" : "hover:bg-indigo-800"
-                    }`
-                  }
-                >
-                  Judges List
-                </NavLink>
-              </div>
-            )}
-          </div>
-
-          {/* Games Management Dropdown */}
-          <div className="flex flex-col">
-            <button
-              onClick={toggleGamesMenu}
-              className="flex items-center p-4 text-base font-medium justify-between w-full hover:bg-indigo-700"
-            >
-              <span className="flex items-center">
-                <FaGamepad className="mr-3 text-lg" />
-                Games Management
-              </span>
-              <FaCaretDown className={`${isGamesMenuOpen ? 'transform rotate-180' : ''}`} />
-            </button>
-            {isGamesMenuOpen && (
-              <div className="flex flex-col">
-                <NavLink
-                  to="/adminpanel/games/list"
-                  className={({ isActive }) =>
-                    `ml-6 p-4 text-sm font-medium ${
-                      isActive ? "bg-indigo-800" : "hover:bg-indigo-800"
-                    }`
-                  }
-                >
-                  Game List
-                </NavLink>
-                <NavLink
-                  to="/adminpanel/games/add"
-                  className={({ isActive }) =>
-                    `ml-6 p-4 text-sm font-medium ${
-                      isActive ? "bg-indigo-800" : "hover:bg-indigo-800"
-                    }`
-                  }
-                >
-                  Add Game
-                </NavLink>
-                <NavLink
-                  to="/adminpanel/games/edit"
-                  className={({ isActive }) =>
-                    `ml-6 p-4 text-sm font-medium ${
-                      isActive ? "bg-indigo-800" : "hover:bg-indigo-800"
-                    }`
-                  }
-                >
-                  Edit/Delete Game
-                </NavLink>
-              </div>
-            )}
-          </div>
-
-          <NavLink
-            to="/adminpanel/posts"
-            className={({ isActive }) =>
-              `flex items-center p-4 text-base font-medium ${
-                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
-              }`
-            }
-          >
-            <FaFileAlt className="mr-3 text-lg" />
-            Post Applications
-          </NavLink>
-          <NavLink
-            to="/adminpanel/settings"
-            className={({ isActive }) =>
-              `flex items-center p-4 text-base font-medium ${
-                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
-              }`
-            }
-          >
-            <FaCog className="mr-3 text-lg" />
-            Ticket Management
-          </NavLink>
-          <NavLink
-            to="/adminpanel/announcements"
-            className={({ isActive }) =>
-              `flex items-center p-4 text-base font-medium ${
-                isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
-              }`
-            }
-          >
-            <FaCog className="mr-3 text-lg" />
-            Announcements
-          </NavLink>
+              )}
+            </div>
+          ))}
         </nav>
       </div>
 
-      {/* Sidebar for Small Screens */}
-      <div
-        className={`md:hidden bg-[#0B0D2C] text-white h-screen ${
-          isExpanded ? "w-64" : "w-16"
-        } fixed top-0 left-0 flex flex-col items-center transition-all duration-300`}
-      >
-        {/* Toggle Button */}
-        <button
-          onClick={toggleSidebar}
-          className="text-white text-2xl p-2 mt-4 focus:outline-none"
-        >
-          ☰
-        </button>
+      {/* Mobile Sidebar */}
+      <div className={`md:hidden bg-[#0B0D2C] text-white h-screen w-64 fixed top-0 left-0 transform ${
+        isExpanded ? "translate-x-0" : "-translate-x-full"
+      } transition-transform duration-300 z-40`}>
+        <div className="p-6 border-b border-indigo-700">
+          <div className="flex items-center justify-between">
+            <img src={h} alt="Admin" className="w-12 h-12 rounded-full" />
+            <button onClick={toggleSidebar} className="text-white">
+              <FaTimes className="text-2xl" />
+            </button>
+          </div>
+        </div>
 
-        {/* Navigation Links */}
-        <nav className="mt-6 flex-1 flex flex-col space-y-4 items-center">
-          <NavLink
-            to="/adminpanel/home"
-            className={({ isActive }) =>
-              `flex flex-col items-center ${
-                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
-              }`
-            }
-          >
-            <FaHome className="text-xl" />
-            {isExpanded && <span className="mt-1 text-sm">Home</span>}
-          </NavLink>
-          <NavLink
-            to="/adminpanel/users"
-            className={({ isActive }) =>
-              `flex flex-col items-center ${
-                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
-              }`
-            }
-          >
-            <FaUsers className="text-xl" />
-            {isExpanded && <span className="mt-1 text-sm">Users</span>}
-          </NavLink>
-          <NavLink
-            to="/adminpanel/games"
-            className={({ isActive }) =>
-              `flex flex-col items-center ${
-                isActive ? "text-indigo-500" : "text-white hover:text-indigo-500"
-              }`
-            }
-          >
-            <FaGamepad className="text-xl" />
-            {isExpanded && <span className="mt-1 text-sm">Games</span>}
-          </NavLink>
+        <nav className="mt-6 flex-1 overflow-y-auto">
+          {adminMenu.map((item) => (
+            <div key={item.title} className="border-b border-indigo-800">
+              {item.submenu ? (
+                <div className="relative">
+                  <button
+                    onClick={() => toggleDropdown(item.title)}
+                    className="flex items-center justify-between w-full p-4 text-base"
+                  >
+                    <div className="flex items-center">
+                      {item.icon}
+                      {item.title}
+                    </div>
+                    {openDropdown === item.title ? <FaChevronUp /> : <FaChevronDown />}
+                  </button>
+                  
+                  {openDropdown === item.title && item.submenu.map((subItem) => (
+                    <NavLink
+                      key={subItem.title}
+                      to={subItem.path}
+                      className={({ isActive }) =>
+                        `block pl-16 pr-4 py-3 text-sm ${
+                          isActive ? "bg-indigo-800" : "hover:bg-indigo-700"
+                        }`
+                      }
+                      onClick={toggleSidebar}
+                    >
+                      {subItem.title}
+                    </NavLink>
+                  ))}
+                </div>
+              ) : (
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `flex items-center p-4 text-base ${
+                      isActive ? "bg-indigo-700" : "hover:bg-indigo-700"
+                    }`
+                  }
+                  onClick={toggleSidebar}
+                >
+                  {item.icon}
+                  {item.title}
+                </NavLink>
+              )}
+            </div>
+          ))}
         </nav>
       </div>
     </>
