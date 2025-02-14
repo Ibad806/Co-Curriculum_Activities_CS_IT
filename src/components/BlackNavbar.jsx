@@ -62,8 +62,10 @@ const BlackNavbar = () => {
     <div className="w-full px-6 flex items-center justify-center flex-col relative bg-black">
       <nav
         className={`fixed top-5 z-50 border-2 w-[93%] md:w-[94%] lg:w-[94%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${
-          isScrolled ? "bg-black" : "bg-transparent"
-        } transition-all duration-500 border-[#FFCD5A] transform ${isScrolled ? "scale-95" : "scale-100"}`}
+          isScrolled ? "bg-black" : "bg-black"
+        } transition-colors duration-500 border-[#FFCD5A] transform ease-in-out ${
+          isScrolled ? "scale-95" : "scale-100"
+        }`}
       >
         <Link to="/" className="text-lg font-medium text-white hover:text-[#FFCD5A] transition duration-500">
          <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
