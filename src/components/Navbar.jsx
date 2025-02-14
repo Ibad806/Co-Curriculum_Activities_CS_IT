@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { FaBell, FaBars, FaUser } from "react-icons/fa";
+import { FaBell, FaUser, FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
 
@@ -56,10 +56,6 @@ const Navbar = () => {
           <Link to="/" className="text-lg font-medium">Home</Link>
           <Link to="/events" className="text-lg font-medium">Events</Link>
           <Link to="/gallery" className="text-lg font-medium">Gallery</Link>
-          isScrolled ? "bg-white text-black" : "bg-white text-white"
-        }`}
-      >    
-       
         </div>
         <div className="flex items-center space-x-4 relative">
           <div className="relative" ref={notificationRef}>
@@ -120,7 +116,8 @@ const Navbar = () => {
             <Link to="/events" className="hover:underline text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Events</Link>
             <Link to="/gallery" className="hover:underline text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
           </div>
-        </div>)}
+        </div>
+      )}
     </div>
   );
 };
