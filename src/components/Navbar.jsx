@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { FaSearch, FaBell, FaUser, FaBars } from "react-icons/fa";
+import { FaBell, FaUser, FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
 import { Link } from "react-router-dom";
 
@@ -7,22 +7,22 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isUserDropdownOpen, setIsUserDropdownOpen] = useState(false);
+  const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const userDropdownRef = useRef(null);
+  const notificationRef = useRef(null);
+
+  const notifications = [
+    { id: 1, content: "New event added!", time: "2 hours ago" },
+    { id: 2, content: "Your ticket has been confirmed.", time: "1 day ago" },
+    { id: 3, content: "Reminder: Event starts tomorrow!", time: "3 days ago" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 50) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 50);
     };
-
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
@@ -33,41 +33,60 @@ const Navbar = () => {
       ) {
         setIsUserDropdownOpen(false);
       }
+      if (
+        notificationRef.current &&
+        !notificationRef.current.contains(event.target)
+      ) {
+        setIsNotificationOpen(false);
+      }
     };
-    
     document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
+    return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
   return (
     <div className="w-full px-6 flex items-center justify-center flex-col relative">
-      {/* Main Navbar */}
       <nav
         className={`fixed top-5 z-50 border-2 w-[93%] md:w-[94%] lg:w-[94%] rounded-full flex items-center justify-between px-8 py-3 shadow-lg ${
           isScrolled ? "bg-white text-black" : "bg-black text-white"
         } `}
       >
-        {/* Logo */}
-        <Link to="/" className="text-lg font-medium transition duration-500 ">
-          CAC
-        </Link>
-
-        {/* Desktop Menu */}
+        <Link to="/" className="text-lg font-medium">CAC</Link>
         <div className="hidden md:flex items-center space-x-8">
-          <Link to="/" className="text-lg font-medium ">Home</Link>
-          <Link to="/events" className="text-lg font-medium ">Events</Link>
-          {/* <Link to="/userpanel/home" className="text-lg font-medium text-black">User Panel</Link> */}
-          <Link to="/gallery" className="text-lg font-medium ">Gallery</Link>
-          {/* <Link to="/judgespanel/home" className="text-lg font-medium text-black">Judges Panel</Link> */}
+          <Link to="/" className="text-lg font-medium">Home</Link>
+          <Link to="/events" className="text-lg font-medium">Events</Link>
+          <Link to="/gallery" className="text-lg font-medium">Gallery</Link>
         </div>
-
-        {/* Action Icons */}
         <div className="flex items-center space-x-4 relative">
-          <button className="p-2 hover:bg-gray-200 hover:text-black rounded-full transition-colors">
-            <FaBell className="w-5 h-5 " />
-          </button>
+          <div className="relative" ref={notificationRef}>
+            <button
+              className="p-2 hover:bg-gray-200 hover:text-black rounded-full transition-colors relative"
+              onClick={() => setIsNotificationOpen(!isNotificationOpen)}
+            >
+              <FaBell className="w-5 h-5" />
+              <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                {notifications.length}
+              </span>
+            </button>
+            {isNotificationOpen && (
+              <div className="absolute right-0 mt-2 bg-white text-black shadow-lg rounded-lg w-72 max-h-80 overflow-hidden">
+                <div className="p-4 flex justify-between items-center border-b border-gray-300">
+                  <h2 className="text-lg font-bold">Notifications</h2>
+                </div>
+                <div className="overflow-y-auto max-h-60">
+                  {notifications.map((notification) => (
+                    <div key={notification.id} className="px-4 py-2 hover:bg-gray-100">
+                      <p className="text-sm">{notification.content}</p>
+                      <p className="text-xs text-gray-500">{notification.time}</p>
+                    </div>
+                  ))}
+                </div>
+                <button className="w-full p-3 text-center hover:bg-gray-100 border-t border-gray-300 text-sm text-gray-600">
+                  See previous notifications
+                </button>
+              </div>
+            )}
+          </div>
           <div className="relative" ref={userDropdownRef}>
             <button
               className="p-2 hover:bg-gray-200 hover:text-black rounded-full transition-colors"
@@ -77,42 +96,25 @@ const Navbar = () => {
             </button>
             {isUserDropdownOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white text-black shadow-lg rounded-lg py-2">
-                <Link
-                  to="/login"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                  onClick={() => setIsUserDropdownOpen(false)}
-                >
-                  Login
-                </Link>
-                <Link
-                  to="/register"
-                  className="block px-4 py-2 hover:bg-gray-100"
-                  onClick={() => setIsUserDropdownOpen(false)}
-                >
-                  Register
-                </Link>
+                <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">Login</Link>
+                <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">Register</Link>
               </div>
             )}
           </div>
         </div>
-
-        {/* Mobile Menu Toggle */}
         <button
           className="md:hidden p-2 hover:bg-gray-200 rounded-full transition-colors"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
         >
-          {isMobileMenuOpen ? <ImCross className="w-5 h-5 text-white" /> : <FaBars className="w-5 h-5 text-white" />}
+          {isMobileMenuOpen ? <ImCross className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
         </button>
       </nav>
-
-      {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div className="md:hidden fixed top-20 right-0 left-0 bg-white text-black shadow-lg rounded-lg animate-slideIn transition-all duration-300 z-40">
           <div className="flex flex-col items-start p-6 space-y-4">
-            <Link to="/" className="hover:underline text-sm font-medium hover:text-gray-600 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
-            <Link to="/events" className="hover:underline text-sm font-medium hover:text-gray-600 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Events</Link>
-            <Link to="/tickets" className="hover:underline text-sm font-medium hover:text-gray-600 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Tickets</Link>
-            <Link to="/gallery" className="hover:underline text-sm font-medium hover:text-gray-600 w-full text-center" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
+            <Link to="/" className="hover:underline text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Home</Link>
+            <Link to="/events" className="hover:underline text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Events</Link>
+            <Link to="/gallery" className="hover:underline text-sm font-medium" onClick={() => setIsMobileMenuOpen(false)}>Gallery</Link>
           </div>
         </div>
       )}
