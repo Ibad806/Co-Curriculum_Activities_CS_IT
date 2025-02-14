@@ -1,17 +1,6 @@
 import { useEffect, useState } from "react"
 import { sponsors } from "../data"
 
-    // const sponsors = [
-    //   {
-    //     name: "Bareeze",
-    //   },
-    //   {
-    //     name: "Nishat Linen",
-    //   },
-    //   {
-    //     name: "Lime Light",
-    //   },
-    // ]
 
     export default function SmecSponsors() {
       const [currentIndex, setCurrentIndex] = useState(0)
