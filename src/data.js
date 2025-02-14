@@ -695,12 +695,12 @@ export const generalGameWinners = [
 ];
 
 export const sponsors = [
-  { id: 1, name: "ABC" },
-  { id: 2, name: "ABC" },
-  { id: 3, name: "ABC" },
-  { id: 4, name: "ABC" },
-  { id: 5, name: "ABC" },
-  { id: 6, name: "ABC" },
-  { id: 7, name: "ABC" },
-  { id: 8, name: "ABC" },
-];
+  { id: 1, name: "Asim Fragrance" },
+  { id: 2, name: "NBP" },
+  { id: 3, name: "PowerPlay" },
+  { id: 4, name: "Uzma Enterprises" },
+  { id: 5, name: "Tech 20Four" },
+  { id: 6, name: "P@SHA" },
+  { id: 7, name: "HBL" },
+  { id: 8, name: "Bano Qabil" },
+]
