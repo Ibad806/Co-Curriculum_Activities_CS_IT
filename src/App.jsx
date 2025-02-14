@@ -25,8 +25,6 @@ import JudgesLayout from "./dashboard/judgespanel/judgescomponents/JudgesLayout"
 import ApplyforPosts from "./dashboard/userpanel/userpages/ApplyForPosts";
 import AdminLayout from "./dashboard/adminpanel/admincomponents/AdminLayout";
 import AdminHome from "./dashboard/adminpanel/adminpages/AdminHome";
-import AdminUsers from "./dashboard/adminpanel/adminpages/AdminUsers";
-import AdminJudges from "./dashboard/judgespanel/judgespages/AdminJudges";
 import LoginForm from "./pages/Auth/Login";
 import RegisterForm from "./pages/Auth/Register";
 import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddnewEvent";
