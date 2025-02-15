@@ -25,11 +25,17 @@ import JudgesLayout from "./dashboard/judgespanel/judgescomponents/JudgesLayout"
 import ApplyforPosts from "./dashboard/userpanel/userpages/ApplyForPosts";
 import AdminLayout from "./dashboard/adminpanel/admincomponents/AdminLayout";
 import AdminHome from "./dashboard/adminpanel/adminpages/AdminHome";
-import AdminUsers from "./dashboard/adminpanel/adminpages/AdminUsers";
-import AdminJudges from "./dashboard/judgespanel/judgespages/AdminJudges";
 import LoginForm from "./pages/Auth/Login";
 import RegisterForm from "./pages/Auth/Register";
 import EventsDetails from "./pages/EventsDetails";
+import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddNewEvent";
+import ManageEvents from "./dashboard/adminpanel/admincomponents/ManageEvents";
+import CreateSmecGame from "./dashboard/adminpanel/admincomponents/CreateSmecGame";
+import ManageSmecGame from "./dashboard/adminpanel/admincomponents/ManageSmecGame";
+import JudgesManagement from "./dashboard/adminpanel/admincomponents/JudgesManagement";
+import PostApplications from "./dashboard/adminpanel/admincomponents/PostApplications";
+import TicketManagement from "./dashboard/adminpanel/admincomponents/TicketManagement";
+import Announcements from "./dashboard/adminpanel/admincomponents/Announcements";
 
 function App() {
   return (
@@ -76,8 +82,14 @@ function App() {
         <Route path="/adminpanel" element={<AdminLayout />}>
           {/* Child Routes */}
           <Route path="home" element={<AdminHome />} />
-          <Route path="users" element={<AdminUsers />} />
-          <Route path="judges" element={<AdminJudges />} />
+          <Route path="addnewevent" element={<AddNewEvent/>}/>
+          <Route path="manageevents" element={<ManageEvents/>}/>
+          <Route path="creategame" element={<CreateSmecGame/>}/>
+          <Route path="managegame" element={<ManageSmecGame/>}/>
+          <Route path="judgesmanagement" element={<JudgesManagement/>}/>
+          <Route path="postapplication" element={<PostApplications />}/>
+          <Route path="ticketmanagement" element={<TicketManagement/>}/>
+          <Route path="announcements" element={<Announcements/>}/>
         </Route>
       </Routes>
     </>
