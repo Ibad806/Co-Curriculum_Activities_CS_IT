@@ -29,6 +29,7 @@ import AdminUsers from "./dashboard/adminpanel/adminpages/AdminUsers";
 import AdminJudges from "./dashboard/judgespanel/judgespages/AdminJudges";
 import LoginForm from "./pages/Auth/Login";
 import RegisterForm from "./pages/Auth/Register";
+import EventsDetails from "./pages/EventsDetails";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/events/:title" element={<EventsDetails />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />

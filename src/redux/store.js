@@ -3,6 +3,7 @@ import { persistStore, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"; // Default localStorage for web
 import gameReducer from "./gameSlice";
 import ticketsReducer from "./ticketsSlice";
+import dynamicPageReducer from "./dynamicpageSlice";
 
 // Config for redux-persist
 const persistConfig = {
@@ -14,6 +15,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
   game: gameReducer,
   tickets: ticketsReducer,
+  dynamicPage: dynamicPageReducer
 });
 
 // Persisted reducer

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import events from "../data";
 import EventCard from "./EventCards";
 import EventsFilter from "./EventsFilter";
+import { Link } from "react-router-dom";
 
 const Allevents = ({ event, desc }) => {
   const [filteredEvents, setFilteredEvents] = useState(events);
@@ -88,6 +89,8 @@ const Allevents = ({ event, desc }) => {
         {/* Events Grid */}
         <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredEvents.map((event) => (
+            <>
+            <Link to={`/events/${filteredEvents[0].title}`}>
             <EventCard
               key={event.id}
               image={event.image}
@@ -98,6 +101,8 @@ const Allevents = ({ event, desc }) => {
               timeToEnd={event.timeToEnd}
               daysLeft={event.daysLeft}
             />
+          </Link>
+          </>
           ))}
         </div>
       </div>
