@@ -31,6 +31,10 @@ import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddNewEvent";
 import ManageEvents from "./dashboard/adminpanel/admincomponents/ManageEvents";
 import CreateSmecGame from "./dashboard/adminpanel/admincomponents/CreateSmecGame";
 import ManageSmecGame from "./dashboard/adminpanel/admincomponents/ManageSmecGame";
+import JudgesManagement from "./dashboard/adminpanel/admincomponents/JudgesManagement";
+import PostApplications from "./dashboard/adminpanel/admincomponents/PostApplications";
+import TicketManagement from "./dashboard/adminpanel/admincomponents/TicketManagement";
+import Announcements from "./dashboard/adminpanel/admincomponents/Announcements";
 
 function App() {
   return (
@@ -80,6 +84,10 @@ function App() {
           <Route path="manageevents" element={<ManageEvents/>}/>
           <Route path="creategame" element={<CreateSmecGame/>}/>
           <Route path="managegame" element={<ManageSmecGame/>}/>
+          <Route path="judgesmanagement" element={<JudgesManagement/>}/>
+          <Route path="postapplication" element={<PostApplications />}/>
+          <Route path="ticketmanagement" element={<TicketManagement/>}/>
+          <Route path="announcements" element={<Announcements/>}/>
         </Route>
       </Routes>
     </>

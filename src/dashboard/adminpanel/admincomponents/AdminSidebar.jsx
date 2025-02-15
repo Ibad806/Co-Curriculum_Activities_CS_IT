@@ -43,14 +43,14 @@ const AdminSidebar = () => {
     {
       title: "SMEC Management",
       icon: <FaProjectDiagram className="md:mr-3 text-lg" />,
-      submenu: [
-        { title: "Create Game", path: "/adminpanel/creategame" },
-        { title: "Manage Game", path: "/adminpanel/managegame" },
-        { title: "Judges Panel", path: "/admin/smec/judges" },
-        { title: "Sponsorships", path: "/admin/smec/sponsors" },
-        { title: "Ticketing", path: "/admin/smec/ticketing" },
-        { title: "Event Reports", path: "/admin/smec/reports" }
-      ]
+        submenu: [
+          { title: "Create Game", path: "/adminpanel/creategame" },
+          { title: "Manage Game", path: "/adminpanel/managegame" },
+          { title: "Judges Panel", path: "/adminpanel/judgesmanagement" },
+          { title: "Post Applications", path: "/adminpanel/postapplication" },
+          { title: "Ticketing", path: "/adminpanel/ticketmanagement" },
+          { title: "Announcements", path: "/adminpanel/announcements" }
+        ]
     },
     {
       title: "Qawali Night",
