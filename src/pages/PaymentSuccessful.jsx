@@ -3,6 +3,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import ModrenTicket from "../components/ModrenTicket";
+import { ChevronRight } from "lucide-react";
 
 const PaymentSuccessful = () => {
   // Fetch the latest ticket (most recent ticket added) from the tickets slice
@@ -19,15 +21,14 @@ const PaymentSuccessful = () => {
     );
   }
 
-  // Destructure ticket details
+  // Destructure ticket details from the latest ticket
   const {
     title,
     price,
-    image,
     date,
     time,
-    organizer,
     venue,
+    organizer,
     userName,
     phoneNo,
   } = latestTicket;
@@ -75,82 +76,85 @@ const PaymentSuccessful = () => {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row gap-8">
+        <div className="max-w-7xl mx-auto bg-white rounded-xl shadow-sm">
+        <div className="flex flex-col lg:flex-row">
           {/* Left Section */}
-          <div className="w-full md:w-1/2 rounded-lg shadow-lg p-6">
-            <h3 className="text-xl font-semibold mb-4">Ticket Details</h3>
-            <div className="flex flex-col items-start space-y-4">
-              <p className="text-sm">
-                <span className="font-bold">Game: </span>
-                {title}
-              </p>
-              <p className="text-sm">
-                <span className="font-bold">Price: </span>
-                Rs {price}
-              </p>
-              <p className="text-sm">
-                <span className="font-bold">Date: </span>
-                {date}
-              </p>
-              <p className="text-sm">
-                <span className="font-bold">Time: </span>
-                {time}
-              </p>
-              <p className="text-sm">
-                <span className="font-bold">Venue: </span>
-                {venue}
-              </p>
-              <p className="text-sm">
-                <span className="font-bold">Organizer: </span>
-                {organizer}
-              </p>
-            </div>
-          </div>
-
-          {/* Right Section */}
-          <div className="w-full md:w-1/2 rounded-lg shadow-lg p-6">
-            <h3 className="text-xl font-semibold mb-4">Customer Details</h3>
-            <div className="flex flex-col items-start space-y-4">
-              <p className="text-sm">
-                <span className="font-bold">Name: </span>
-                {userName}
-              </p>
-              <p className="text-sm">
-                <span className="font-bold">Phone No: </span>
-                {phoneNo}
-              </p>
-            </div>
-
-            <h3 className="text-xl font-semibold mt-6">Download Your Ticket</h3>
-            <div className="mt-6 flex justify-center">
-              <div className="bg-white rounded-lg shadow-md p-6">
-                <img
-                  src={image}
-                  alt="Ticket"
-                  className="w-full h-64 rounded-lg object-cover"
-                />
-                <div className="mt-4">
-                  <p className="text-sm">Ticket ID: #{latestTicket.id}</p>
-                  <p className="text-sm">Game: {title}</p>
-                  <p className="text-sm">Price: Rs {price}</p>
-                  <p className="text-sm">Venue: {venue}</p>
-                  <p className="text-sm">Date: {date}</p>
-                  <p className="text-sm">Time: {time}</p>
+          <div className="w-full lg:w-1/2 p-6 md:p-8 border-b lg:border-b-0 lg:border-r">
+            <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">Congratulations!</h1>
+            <p className="text-gray-600 mb-8">You've Successfully purchased the ticket for:</p>
+            <hr/>
+            {/* First Item Details */}
+            <div className="mb-8 mt-5">
+              <h2 className="text-xl font-semibold text-gray-900 mb-4">Item Details</h2>
+              <div className="space-y-3">
+                <div className="flex gap-5">
+                  <span className="text-gray-600 font-bold">Item:</span>
+                  <span className="text-gray-900">{ latestTicket.title}</span>
                 </div>
-                <div className="mt-4 flex space-x-4">
-                  <button className="w-[100px] text-sm px-4 py-2 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600">
-                    Download Ticket
-                  </button>
-                  <Link to='/userpanel/ticket'>
-                    <button className="w-[100px] text-sm px-4 py-2 bg-gray-500 text-white rounded-lg shadow hover:bg-gray-600">
-                      View Ticket
-                    </button>
-                  </Link>
+                <div className="flex gap-5">
+                  <span className="text-gray-600 font-bold">Quantity:</span>
+                  <span className="text-gray-900">1 Ticket</span>
+                </div>
+                <div className="flex gap-5">
+                  <span className="text-gray-600 font-bold">Amount:</span>
+                  <span className="text-gray-900">Rs { latestTicket.price }</span>
+                </div>
+              </div>
+            </div>
+
+            <hr/>
+
+            {/* Customer Details */}
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900 mb-4 mt-5 ">Customer details</h2>
+              <div className="space-y-3">
+                <div className="flex gap-5">
+                  <span className="text-gray-600 font-bold">Name:</span>
+                  <span className="text-gray-900">{ latestTicket.userName }</span>
+                </div>
+                <div className="flex gap-5">
+                  <span className="text-gray-600 font-bold">Contact Number:</span>
+                  <span className="text-gray-900">{ latestTicket.phoneNo }</span>
+                </div>
+                <div className="flex gap-5">
+                  <span className="text-gray-600 font-bold">Email Address:</span>
+                  <span className="text-gray-900">{ latestTicket.email }</span>
                 </div>
               </div>
             </div>
           </div>
+
+          {/* Right Section */}
+          <div className="w-full lg:w-1/2 p-6 md:p-8">
+            <div className="mb-6">
+              <h2 className="text-2xl font-bold text-gray-900 text-center">Download Your Tickets!</h2>
+            </div>
+
+            {/* Ticket Component */}
+            <div className="mb-6">
+              <ModrenTicket
+                gameCoverImage={latestTicket.coverImage}
+                gameTitle={latestTicket.title}
+                ticketNumber={latestTicket.ticketNumber}
+                name={latestTicket.userName}
+                phoneNumber={latestTicket.phoneNo}
+                location={latestTicket.venue}
+                qrCodeImage="/placeholder.svg?height=100&width=100"
+              />
+            </div>
+
+            {/* Action Buttons */}
+            <div className="flex gap-4">
+              <button className="flex-1 flex items-center justify-center gap-2 bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition-colors">
+                Download Ticket
+              </button>
+              <button className="flex-1 flex items-center justify-center gap-2 bg-gray-800 text-white py-3 rounded-lg hover:bg-gray-900 transition-colors">
+                Share Ticket
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
       </div>
       <Footer />
     </>

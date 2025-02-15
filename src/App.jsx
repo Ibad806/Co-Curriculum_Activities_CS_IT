@@ -27,6 +27,7 @@ import AdminLayout from "./dashboard/adminpanel/admincomponents/AdminLayout";
 import AdminHome from "./dashboard/adminpanel/adminpages/AdminHome";
 import LoginForm from "./pages/Auth/Login";
 import RegisterForm from "./pages/Auth/Register";
+import EventsDetails from "./pages/EventsDetails";
 import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddNewEvent";
 import ManageEvents from "./dashboard/adminpanel/admincomponents/ManageEvents";
 import CreateSmecGame from "./dashboard/adminpanel/admincomponents/CreateSmecGame";
@@ -43,6 +44,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/events/:title" element={<EventsDetails />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
