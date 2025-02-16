@@ -37,6 +37,9 @@ import JudgesManagement from "./dashboard/adminpanel/admincomponents/JudgesManag
 import PostApplications from "./dashboard/adminpanel/admincomponents/PostApplications";
 import TicketManagement from "./dashboard/adminpanel/admincomponents/TicketManagement";
 import Announcements from "./dashboard/adminpanel/admincomponents/Announcements";
+import GameTicket from "./components/GameTicket";
+import QawwaliDetails from "./pages/QawwaliDetails";
+import DinnerDetails from "./pages/DinnerDetails";
 import GalleryManagement from "./dashboard/adminpanel/admincomponents/GalleryManagement";
 import AdminNews from "./dashboard/adminpanel/admincomponents/AdminNews";
 
@@ -72,6 +75,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/events/qawwali" element={<QawwaliDetails />} />
+        <Route path="/events/dinner" element={<DinnerDetails />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
@@ -90,6 +95,7 @@ function App() {
           {/* Child Routes */}
           <Route path="home" element={<UserHome />} />
           <Route path="ticket" element={<Ticket />} />
+          <Route path="gameticket" element={<GameTicket />} />
           <Route path="winners" element={<UserWinners />} />
           <Route path="profile" element={<UserProfile />} />
           <Route path="applyforposts" element={<ApplyforPosts />} />

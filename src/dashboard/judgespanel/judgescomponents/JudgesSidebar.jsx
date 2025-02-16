@@ -31,10 +31,10 @@ const JudgesSidebar = () => {
             <FaTrophy className="mr-3 text-lg" />
             Tournaments
           </NavLink>
-          {/* <NavLink to="/judgespanel/matches" className="flex items-center p-4 text-base font-medium hover:bg-indigo-700">
-            <FaClipboard className="mr-3 text-lg" />
-            Matches
-          </NavLink> */}
+            <NavLink to="/judgespanel/matches" className="flex items-center p-4 text-base font-medium hover:bg-indigo-700">
+              <FaClipboard className="mr-3 text-lg" />
+              Matches
+            </NavLink>
           <NavLink to="/judgespanel/scoreboard" className="flex items-center p-4 text-base font-medium hover:bg-indigo-700">
             <FaTable className="mr-3 text-lg" />
             Scoreboard

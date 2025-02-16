@@ -4,43 +4,46 @@ import geekcard from "./assets/geekcard.png";
 import smecbanner from "./assets/smec_banner.png";
 import qawalibanner from "./assets/qawali_banner.png";
 import qawali from "./assets/qawali.png";
+import blood from "./assets/blood.png";
 
 const events = [
   {
     id: 1,
     title: "SMEC 1",
     image: smecbanner,
-    location: "London",
+    location: "CS & IT Department",
     dateRange: "November 13 2024 ",
-    price: "$499.99",
     timeToEnd: "12:00 pm - 1:00 pm",
     daysLeft: "10",
+    category: "smec",
   },
   {
     id: 2,
     title: "Qawali Night 1",
     image: qawalibanner,
-    location: "London",
+    location: "AIT Parking",
     dateRange: "November 14 2024",
     price: "$799.99",
     timeToEnd: "12:00 pm - 1:00 pm",
     daysLeft: "10",
+    category: "qawali",
   },
   {
     id: 3,
     title: "Annual Dinner 1",
     image: qawali,
-    location: "Bristol",
+    location: "AIT Parking",
     dateRange: "November 15 2024 ",
     price: "$199.99",
     timeToEnd: "12:00 pm - 1:00 pm",
     daysLeft: "3",
+    category: "dinner",
   },
   {
     id: 4,
-    title: "Qawali Night 2",
-    image: smecbanner,
-    location: "Birmingham",
+    title: "Blood Drive",
+    image: blood,
+    location: "HS-14",
     dateRange: "November 20 2024 ",
     price: "$299.99",
     timeToEnd: "12:00 pm - 1:00 pm",

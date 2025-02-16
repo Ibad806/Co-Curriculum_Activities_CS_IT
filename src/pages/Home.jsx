@@ -9,7 +9,6 @@ import Navbar from "../components/Navbar";
 import Availableevents from "../components/Availableevents";
 import Cacmain from "../components/Cacmain";
 import Gallery from "../components/Gallery";
-import Testinomal from "../components/Testimonials";
 
 const Home = () => {
   return (
@@ -26,7 +25,6 @@ const Home = () => {
       {/* <ImageSlider /> */}
 
       <NewsSection />
-      <Testinomal/>
       <Faq />
       <Footer footercolor="bg-white" footertext="text-blac" />
     </>
