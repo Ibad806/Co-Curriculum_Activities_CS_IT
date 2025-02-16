@@ -27,7 +27,6 @@ import AdminLayout from "./dashboard/adminpanel/admincomponents/AdminLayout";
 import AdminHome from "./dashboard/adminpanel/adminpages/AdminHome";
 import LoginForm from "./pages/Auth/Login";
 import RegisterForm from "./pages/Auth/Register";
-import EventsDetails from "./pages/EventsDetails";
 import AddNewEvent from "./dashboard/adminpanel/admincomponents/AddNewEvent";
 import ManageEvents from "./dashboard/adminpanel/admincomponents/ManageEvents";
 import CreateSmecGame from "./dashboard/adminpanel/admincomponents/CreateSmecGame";
@@ -36,6 +35,9 @@ import JudgesManagement from "./dashboard/adminpanel/admincomponents/JudgesManag
 import PostApplications from "./dashboard/adminpanel/admincomponents/PostApplications";
 import TicketManagement from "./dashboard/adminpanel/admincomponents/TicketManagement";
 import Announcements from "./dashboard/adminpanel/admincomponents/Announcements";
+import GameTicket from "./components/GameTicket";
+import QawwaliDetails from "./pages/QawwaliDetails";
+import DinnerDetails from "./pages/DinnerDetails";
 
 function App() {
   return (
@@ -44,7 +46,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
-        <Route path="/events/:title" element={<EventsDetails />} />
+        <Route path="/events/qawwali" element={<QawwaliDetails />} />
+        <Route path="/events/dinner" element={<DinnerDetails />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
@@ -63,6 +66,7 @@ function App() {
           {/* Child Routes */}
           <Route path="home" element={<UserHome />} />
           <Route path="ticket" element={<Ticket />} />
+          <Route path="gameticket" element={<GameTicket />} />
           <Route path="winners" element={<UserWinners />} />
           <Route path="profile" element={<UserProfile />} />
           <Route path="applyforposts" element={<ApplyforPosts />} />

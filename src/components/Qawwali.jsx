@@ -11,7 +11,7 @@ import image8 from "../assets/Rectangle 20.png"
 import { Link } from "react-router-dom"
 
 
-export default function DynamicPageDetail() {
+export default function Qawwali() {
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Hero Section */}

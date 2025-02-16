@@ -1,16 +1,16 @@
 import React from 'react'
 import BlackNavbar from '../components/BlackNavbar'
-import DynamicPageDetail from '../components/DynamicPageDetail'
 import Footer from '../components/Footer'
+import Dinner from '../components/Dinner'
 
-const EventsDetails = () => {
+const DinnerDetails = () => {
   return (
     <div>
       <BlackNavbar/>
-        <DynamicPageDetail/>
+      <Dinner />
       <Footer/>
     </div>
   )
 }
 
-export default EventsDetails
+export default DinnerDetails
