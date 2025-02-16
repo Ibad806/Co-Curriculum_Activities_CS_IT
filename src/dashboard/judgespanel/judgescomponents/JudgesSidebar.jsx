@@ -8,6 +8,7 @@ const JudgesSidebar = () => {
 
   const toggleSidebar = () => {
     setIsExpanded(!isExpanded);
+    
   };
 
   return (

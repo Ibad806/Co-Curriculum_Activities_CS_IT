@@ -1,177 +1,121 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { FaTrash, FaCheck, FaUndo } from 'react-icons/fa';
 
-const JudgesMatches = () => {
-  // Sample data for matches
-  const matches = [
-    {
-      id: 1,
-      teams: "Team A vs Team B",
-      date: "10-01-2025",
-      time: "3:00 PM",
-      status: "Pending",
-    },
-    {
-      id: 2,
-      teams: "Team C vs Team D",
-      date: "11-01-2025",
-      time: "5:00 PM",
-      status: "Completed",
-      winner: "Team D",
-    },
-    {
-      id: 3,
-      teams: "Team E vs Team F",
-      date: "12-01-2025",
-      time: "4:00 PM",
-      status: "Pending",
-    },
-  ];
+const RoundMatchPage = () => {
+  // List of players for the first round (30 players)
+  const [players, setPlayers] = useState([
+    { id: 1, name: 'Ahmed', status: 'Active', round: 1 },
+    { id: 2, name: 'Ibad', status: 'Active', round: 1 },
+    { id: 3, name: 'Sarah', status: 'Active', round: 1 },
+    { id: 4, name: 'Ali', status: 'Active', round: 1 },
+    // Add more dummy players here as needed
+    { id: 5, name: 'John', status: 'Active', round: 1 },
+    { id: 6, name: 'Zara', status: 'Active', round: 1 },
+    // Continue adding dummy players till you have 30
+  ]);
+  
+  const [losers, setLosers] = useState([]);  // Players eliminated from round 1 but still in competition for later rounds
+  const [round, setRound] = useState(1);
 
-  // State for handling the match details view
-  const [selectedMatch, setSelectedMatch] = useState(null);
-  const [selectedWinner, setSelectedWinner] = useState("");
-
-  // Handle viewing match details
-  const handleViewMatch = (match) => {
-    setSelectedMatch(match);
-    setSelectedWinner(""); // Reset winner selection
+  const eliminatePlayer = (id) => {
+    setPlayers(players.map(player => player.id === id ? { ...player, status: 'Eliminated' } : player));
+    setLosers([...losers, players.find(player => player.id === id)]);
   };
 
-  // Handle closing match details
-  const handleCloseMatchDetails = () => {
-    setSelectedMatch(null);
+  const recoverPlayer = (id) => {
+    setPlayers(players.map(player => player.id === id ? { ...player, status: 'Active' } : player));
+    setLosers(losers.filter(player => player.id !== id));
   };
 
-  // Handle submitting the winner
-  const handleSubmitWinner = () => {
-    if (selectedWinner) {
-      alert(`Winner submitted: ${selectedWinner}`);
-      // Add logic to update match result in the database
-      handleCloseMatchDetails();
-    } else {
-      alert("Please select a winner before submitting.");
-    }
+  const nextRound = () => {
+    setRound(round + 1);
+
+    // Logic to move players from 'Active' to the next round or move them back to the losers bracket
+    setPlayers(players.filter(player => player.status === 'Active').map(player => ({ ...player, round: round + 1 })));
+    
+    // Logic for Losers bracket, allowing recovery
+    setLosers(losers.filter(player => player.status === 'Eliminated').map(player => ({ ...player, round: round + 1 })));
+  };
+
+  const submitFinalResult = () => {
+    alert('Final result submitted.');
   };
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
-      {/* Page Header */}
-      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Matches</h1>
-        <p className="text-gray-500 mt-2">
-          Manage and oversee the matches assigned to you.
-        </p>
-      </div>
-
-      {/* Matches List */}
-      <div className="space-y-6">
-        {matches.map((match) => (
+    <div className="container mx-auto py-8">
+      <h1 className="text-3xl font-semibold mb-4">Round {round} - Match Results</h1>
+      <div className="grid grid-cols-4 gap-4 mb-8">
+        {players.map((player) => (
           <div
-            key={match.id}
-            className="bg-white shadow-lg rounded-lg p-6 flex justify-between items-center border-l-4"
+            key={player.id}
+            className={`p-4 border rounded-lg ${player.status === 'Eliminated' ? 'bg-gray-300' : 'bg-white'}`}
           >
-            <div>
-              <h2 className="text-xl font-bold text-gray-800">
-                {match.teams}
-              </h2>
-              <p className="text-gray-600">
-                <strong>Match ID:</strong> {match.id}
-              </p>
-              <p className="text-gray-600">
-                <strong>Date:</strong> {match.date}
-              </p>
-              <p className="text-gray-600">
-                <strong>Time:</strong> {match.time}
-              </p>
-              <p className={`text-gray-600 ${match.status === "Completed" ? "text-green-500" : "text-yellow-500"}`}>
-                <strong>Status:</strong> {match.status}
-              </p>
-              {match.status === "Completed" && (
-                <p className="text-gray-600">
-                  <strong>Winner:</strong> {match.winner}
-                </p>
-              )}
-            </div>
-            <button
-              onClick={() => handleViewMatch(match)}
-              className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition duration-200"
-            >
-              View Details
-            </button>
+            <h2 className="font-bold">{player.name}</h2>
+            <p>Status: {player.status}</p>
+            {player.status === 'Active' && (
+              <button
+                className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-700"
+                onClick={() => eliminatePlayer(player.id)}
+              >
+                Eliminate
+              </button>
+            )}
+            {player.status === 'Eliminated' && (
+              <button
+                className="mt-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700"
+                onClick={() => recoverPlayer(player.id)}
+              >
+                Recover
+              </button>
+            )}
           </div>
         ))}
       </div>
 
-      {/* Match Details Modal */}
-      {selectedMatch && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-6 z-50">
-          <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-lg relative">
-            {/* Close Button */}
-            <button
-              onClick={handleCloseMatchDetails}
-              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl"
-            >
-              &times;
-            </button>
-
-            {/* Match Details */}
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Match Details
-            </h3>
-            <p className="text-gray-600 mb-2">
-              <strong>Match ID:</strong> {selectedMatch.id}
-            </p>
-            <p className="text-gray-600 mb-2">
-              <strong>Teams:</strong> {selectedMatch.teams}
-            </p>
-            <p className="text-gray-600 mb-2">
-              <strong>Date:</strong> {selectedMatch.date}
-            </p>
-            <p className="text-gray-600 mb-2">
-              <strong>Time:</strong> {selectedMatch.time}
-            </p>
-            <p
-              className={`text-gray-600 ${
-                selectedMatch.status === "Completed"
-                  ? "text-green-500"
-                  : "text-yellow-500"
-              } mb-2`}
-            >
-              <strong>Status:</strong> {selectedMatch.status}
-            </p>
-
-            {selectedMatch.status === "Pending" && (
-              <>
-                <div className="mt-4">
-                  <label className="block text-gray-800 font-medium mb-2">
-                    Select Winner:
-                  </label>
-                  <select
-                    value={selectedWinner}
-                    onChange={(e) => setSelectedWinner(e.target.value)}
-                    className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-                  >
-                    <option value="">Select a team</option>
-                    {selectedMatch.teams.split(" vs ").map((team) => (
-                      <option key={team} value={team}>
-                        {team}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-                <button
-                  onClick={handleSubmitWinner}
-                  className="bg-green-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-600 transition duration-200 mt-4"
-                >
-                  Submit Winner
-                </button>
-              </>
+      <div className="grid grid-cols-4 gap-4 mb-8">
+        <h2 className="text-xl font-semibold">Losers Bracket</h2>
+        {losers.map((player) => (
+          <div
+            key={player.id}
+            className="p-4 border rounded-lg bg-gray-200"
+          >
+            <h2 className="font-bold">{player.name}</h2>
+            <p>Status: {player.status}</p>
+            {player.status === 'Eliminated' && (
+              <button
+                className="mt-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-700"
+                onClick={() => recoverPlayer(player.id)}
+              >
+                Recover
+              </button>
             )}
           </div>
+        ))}
+      </div>
+
+      {players.filter(player => player.status === 'Active').length === 1 && (
+        <div className="mt-8">
+          <button
+            onClick={submitFinalResult}
+            className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+          >
+            Submit Final Result
+          </button>
+        </div>
+      )}
+
+      {players.filter(player => player.status === 'Active').length === 0 && (
+        <div className="mt-8">
+          <button
+            onClick={nextRound}
+            className="px-6 py-3 bg-blue-500 text-white rounded-md hover:bg-blue-700"
+          >
+            Start Next Round
+          </button>
         </div>
       )}
     </div>
   );
 };
 
-export default JudgesMatches;
+export default RoundMatchPage;
