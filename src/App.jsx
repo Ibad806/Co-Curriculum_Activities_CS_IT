@@ -1,5 +1,7 @@
-import React from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
+import NProgress from 'nprogress';
+import './nprogress';
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
@@ -36,8 +38,34 @@ import PostApplications from "./dashboard/adminpanel/admincomponents/PostApplica
 import TicketManagement from "./dashboard/adminpanel/admincomponents/TicketManagement";
 import Announcements from "./dashboard/adminpanel/admincomponents/Announcements";
 import GalleryManagement from "./dashboard/adminpanel/admincomponents/GalleryManagement";
+import AdminNews from "./dashboard/adminpanel/admincomponents/AdminNews";
 
 function App() {
+  
+  const navigate = useNavigate(); // Replace useHistory with useNavigate
+  const location = useLocation(); // Using location to detect route changes
+
+  useEffect(() => {
+    // Show loading bar on route change
+    const handleStart = () => {
+      NProgress.start();
+    };
+
+    const handleStop = () => {
+      NProgress.done();
+    };
+
+    // Detect location changes and trigger loading bar
+    handleStart();
+    handleStop();
+
+    // Handle when the component is mounted or updated
+    window.addEventListener('load', handleStop);
+
+    return () => {
+      window.removeEventListener('load', handleStop);
+    };
+  }, [location]); // useEffect depends on location to track path changes
   return (
     <>
       <ScrollToTop />
@@ -90,6 +118,7 @@ function App() {
           <Route path="ticketmanagement" element={<TicketManagement/>}/>
           <Route path="announcements" element={<Announcements/>}/>
           <Route path="gallerymanagement" element={<GalleryManagement/>}/>
+          <Route path="news" element={<AdminNews/>}/>
         </Route>
       </Routes>
     </>
