@@ -12,20 +12,20 @@ import { newsData } from "../data";
 
 const NewsSlider = () => {
   return (
-    <div className="bg-gray-100 py-10 px-6 w-[100% ]">
+    <div className="bg-gradient-to-r from-blue-50 to-white py-10 px-6 w-full">
       {/* Newsletter Section */}
-      <div className="mb-10 mx-auto w-[100%]">
-        <h2 className="text-2xl font-bold text-gray-800">Subscribe to our Newsletter</h2>
-        <p className="text-gray-500 mt-2">
-          For weekly updates and offers about music events, join us here.
+      <div className="mb-12 mx-auto w-full">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">Stay Updated with Our News</h2>
+        <p className="text-gray-600 mb-6">
+          Sign up to receive the latest updates on music events, offers, and more.
         </p>
-        <div className="mt-4 flex items-center w-[100%] gap-1">
+        <div className="flex items-center space-x-4">
           <input
             type="email"
             placeholder="Enter your email"
-            className="h-[50px] p-2 border rounded-md focus:outline-none md:w-[50%] w-[100%]"
+            className="h-12 px-4 border rounded-lg focus:outline-none shadow-md w-72"
           />
-          <button className="bg-blue-600 md:text-[15px] text-[13px] h-[50px] p-2 text-white rounded-md hover:bg-blue-700">
+          <button className="bg-blue-600 text-white text-lg px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
             Subscribe
           </button>
         </div>
@@ -37,26 +37,27 @@ const NewsSlider = () => {
         spaceBetween={20}
         navigation
         pagination={{ clickable: true }}
+        loop
         breakpoints={{
-          1024: { slidesPerView: 3 }, // Large screens: 3 cards
-          768: { slidesPerView: 2 },  // Tablets: 2 cards
-          640: { slidesPerView: 1 },  // Mobile: 1 card
+          1024: { slidesPerView: 3 },
+          768: { slidesPerView: 2 },
+          640: { slidesPerView: 1 },
         }}
       >
         {newsData.map((news) => (
           <SwiperSlide key={news.id}>
-            <div className="bg-white rounded-lg shadow-md overflow-hidden w-[98%] mx-auto">
+            <div className="bg-white rounded-lg shadow-lg overflow-hidden transition-transform duration-500 ease-in-out transform hover:scale-105 hover:shadow-xl">
               <img
                 src={news.image}
                 alt={news.title}
-                className="w-full h-48 object-cover"
+                className="w-full h-56 object-cover transition-transform duration-500 ease-in-out hover:scale-110"
               />
-              <div className="md:p-8 p-4">
-                <h3 className="text-lg font-semibold text-gray-800">
+              <div className="p-6">
+                <h3 className="text-2xl font-semibold text-gray-800 mb-2 hover:text-blue-600">
                   {news.title}
                 </h3>
-                <p className="text-sm text-gray-500 mt-2">{news.description}</p>
-                <div className="mt-4 text-sm text-gray-400">
+                <p className="text-sm text-gray-500 mb-4">{news.description}</p>
+                <div className="text-sm text-gray-400">
                   <p>{news.author}</p>
                   <p>
                     {news.date} • {news.time}
