@@ -26,10 +26,10 @@ const EventCard = ({ image, title, location, price, dateRange, timeToEnd, daysLe
           <span className="text-sm font-semibold">{location}</span>
         </div>
 
-        <div className="flex items-center text-gray-700 space-x-2">
+        {/* <div className="flex items-center text-gray-700 space-x-2">
           <FaBuilding className="text-xl text-gray-500" />
           <span className="text-sm font-semibold">{price}</span>
-        </div>
+        </div> */}
 
         {/* Date and Time */}
         <div className="flex items-center text-gray-700 space-x-2">

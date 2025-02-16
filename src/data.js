@@ -10,9 +10,9 @@ const events = [
   {
     id: 1,
     title: "SMEC 1",
-    image: smecbanner,
+    image: smecbanner, // Replace with actual image path
     location: "CS & IT Department",
-    dateRange: "November 13 2024 ",
+    dateRange: "November 13, 2024",
     timeToEnd: "12:00 pm - 1:00 pm",
     daysLeft: "10",
     category: "smec",
@@ -20,20 +20,20 @@ const events = [
   {
     id: 2,
     title: "Qawali Night 1",
-    image: qawalibanner,
+    image: qawalibanner, // Replace with actual image path
     location: "AIT Parking",
-    dateRange: "November 14 2024",
+    dateRange: "November 14, 2024",
     price: "$799.99",
     timeToEnd: "12:00 pm - 1:00 pm",
     daysLeft: "10",
-    category: "qawali",
+    category: "qawwali",
   },
   {
     id: 3,
     title: "Annual Dinner 1",
-    image: qawali,
+    image: qawali, // Replace with actual image path
     location: "AIT Parking",
-    dateRange: "November 15 2024 ",
+    dateRange: "November 15, 2024",
     price: "$199.99",
     timeToEnd: "12:00 pm - 1:00 pm",
     daysLeft: "3",
@@ -41,44 +41,112 @@ const events = [
   },
   {
     id: 4,
-    title: "Blood Drive",
-    image: blood,
-    location: "HS-14",
-    dateRange: "November 20 2024 ",
-    price: "$299.99",
+    title: "Training session to implement OBE",
+    description: "A comprehensive session on implementing OBE principles, focusing on curriculum development and assessment strategies.",
+    dateRange: "12-Mar-2025",
+    daysLeft: 15,
+    location: "SSUET Auditorium",
     timeToEnd: "12:00 pm - 1:00 pm",
-    daysLeft: "6",
+    image: "https://via.placeholder.com/400x300", 
+    bannerImage: "https://via.placeholder.com/1200x600", 
+    galleryImages: [
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 }
+    ],
+    category: "other"
   },
   {
     id: 5,
-    title: "SMEC 2",
-    image: qawali,
-    location: "Bristol",
-    dateRange: "November 15 2024 ",
-    price: "$199.99",
+    title: "Intellectual Property Awareness Session - 1",
+    description: "An informative session about the importance of intellectual property in the field of technology and business.",
+    dateRange: "18-Mar-2025",
+    daysLeft: 22,
+    location: "SSUET Conference Room",
     timeToEnd: "12:00 pm - 1:00 pm",
-    daysLeft: "1",
+    image: "https://via.placeholder.com/400x300", // Replace with actual event image URL
+    bannerImage: "https://via.placeholder.com/1200x600", // Replace with actual banner image URL
+    galleryImages: [
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 }
+    ],
+    category: "other"
   },
   {
     id: 6,
-    title: "Annual Dinner 2",
-    image: qawalibanner,
-    location: "Birmingham",
-    dateRange: "November 20 2024 ",
-    price: "$299.99",
+    title: "Cyber Security & AI Club Award Ceremony",
+    description: "A prestigious award ceremony celebrating the achievements of students in the fields of Cyber Security and AI.",
+    dateRange: "25-Mar-2025",
+    daysLeft: 29,
+    location: "SSUET Auditorium",
     timeToEnd: "12:00 pm - 1:00 pm",
-    daysLeft: "11",
+    image: "https://via.placeholder.com/400x300", // Replace with actual event image URL
+    bannerImage: "https://via.placeholder.com/1200x600", // Replace with actual banner image URL
+    galleryImages: [
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 }
+    ],
+    category: "other"
   },
   {
     id: 7,
-    title: "Qawali Night 3",
-    image: smecbanner,
-    location: "Birmingham",
-    dateRange: "November 20 2024 ",
-    price: "$299.99",
+    title: "Intellectual Property Awareness Seminar - 2",
+    description: "A follow-up seminar discussing more advanced topics on intellectual property laws and their applications.",
+    dateRange: "30-Mar-2025",
+    daysLeft: 34,
+    location: "SSUET Conference Hall",
     timeToEnd: "12:00 pm - 1:00 pm",
-    daysLeft: "10",
+    image: "https://via.placeholder.com/400x300", // Replace with actual event image URL
+    bannerImage: "https://via.placeholder.com/1200x600", // Replace with actual banner image URL
+    galleryImages: [
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 }
+    ],
+    category: "other"
   },
+  {
+    id: 8,
+    title: "SSUET Sports Week Starts",
+    description: "Join us for a week of exciting sports events and competitions hosted by SSUET.",
+    dateRange: "05-Apr-2025",
+    daysLeft: 40,
+    location: "SSUET Sports Ground",
+    timeToEnd: "12:00 pm - 1:00 pm",
+    image: "https://via.placeholder.com/400x300", // Replace with actual event image URL
+    bannerImage: "https://via.placeholder.com/1200x600", // Replace with actual banner image URL
+    galleryImages: [
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 }
+    ],
+    category: "other"
+  },
+  {
+    id: 9,
+    title: "Blood Drive",
+    description: "A combined event of blood donation drive and seminar on intellectual property awareness.",
+    dateRange: "20-Apr-2025",
+    daysLeft: 55,
+    location: "SSUET Auditorium",
+    timeToEnd: "12:00 pm - 1:00 pm",
+    image: blood, 
+    bannerImage: "https://via.placeholder.com/1200x600", // Replace with actual banner image URL
+    galleryImages: [
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 6 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 },
+      { url: "https://via.placeholder.com/400x300", gridSize: 4 }
+    ],
+    category: "other",
+  }
 ];
 
 export default events;
@@ -707,3 +775,56 @@ export const sponsors = [
   { id: 7, name: "HBL" },
   { id: 8, name: "Bano Qabil" },
 ]
+
+export const newsData = [
+  {
+    id: 1,
+    title: "Taylor Swift in Biggest World",
+    description:
+      "Lorem ipsum dolor donec bibendum laishiaj oi asjfasj alskjfldsakf massa erat the ultrices nulla.",
+    author: "Jonathan Wills",
+    date: "July 17, 2024",
+    time: "5 min read",
+    image: smecbanner,
+  },
+  {
+    id: 2,
+    title: "Royal Albert Hall New Events",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
+    author: "Marian Ed",
+    date: "June 13, 2024",
+    time: "10 min read",
+    image: qawalibanner,
+  },
+  {
+    id: 3,
+    title: "Yanni Will Be in London",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
+    author: "Jack Nikelson",
+    date: "May 08, 2024",
+    time: "7 min read",
+    image: qawali,
+  },
+  {
+    id: 4,
+    title: "Jazz Night Special Concert",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
+    author: "Sara Bennett",
+    date: "April 22, 2024",
+    time: "8 min read",
+    image: qawalibanner,
+  },
+  {
+    id: 5,
+    title: "Classical Fusion Event",
+    description:
+      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
+    author: "David Turner",
+    date: "March 10, 2024",
+    time: "6 min read",
+    image: smecbanner,
+  },
+];

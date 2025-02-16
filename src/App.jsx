@@ -42,6 +42,8 @@ import QawwaliDetails from "./pages/QawwaliDetails";
 import DinnerDetails from "./pages/DinnerDetails";
 import GalleryManagement from "./dashboard/adminpanel/admincomponents/GalleryManagement";
 import AdminNews from "./dashboard/adminpanel/admincomponents/AdminNews";
+import EventPage from './pages/EventPage';
+import AllNews from './pages/AllNews';
 
 function App() {
   
@@ -77,6 +79,8 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/events/qawwali" element={<QawwaliDetails />} />
         <Route path="/events/dinner" element={<DinnerDetails />} />
+        <Route path="/events/:id" element={<EventPage />} />
+        <Route path="/all-news" element={<AllNews />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
