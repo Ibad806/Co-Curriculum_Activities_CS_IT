@@ -22,6 +22,30 @@ body {
   position: relative;
 }
 
+/* nprogress.css */
+#nprogress .bar {
+  background: rgb(46, 46, 209) !important;  /* Change the bar color to red */
+  height: 4px;                 /* Adjust the height of the bar */
+}
+
+#nprogress .spinner-icon {
+  border-top-color: blue;      /* Red spinner */
+  border-left-color: blue;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px blue, 0 0 5px blue;
+}
+
+#nprogress .spinner {
+  display: none; /* Optional: Hide the spinner if you don't want it */
+}
+
+#nprogress {
+  z-index: 9999 !important;  /* Ensure the progress bar is above all other elements */
+}
+
+
 .fade-enter {
   opacity: 0;
   transform: scale(0.9);

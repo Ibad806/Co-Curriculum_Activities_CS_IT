@@ -1,160 +1,139 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { FaTrash, FaCheck, FaUndo } from 'react-icons/fa';
 
-const JudgesTournament = () => {
-  // Sample data for tournaments
-  const tournaments = [
-    {
-      id: 1,
-      name: "PUBG Tournament",
-      startDate: "01-01-2025",
-      endDate: "15-01-2025",
-      status: "Ongoing",
-      teams: ["Team A", "Team B", "Team C", "Team D"],
-      matches: [
-        { matchId: 1, teams: "Team A vs Team B", status: "Completed", winner: "Team B" },
-        { matchId: 2, teams: "Team C vs Team D", status: "Pending" },
-      ],
-    },
-    {
-      id: 2,
-      name: "Valorant Championship",
-      startDate: "05-01-2025",
-      endDate: "20-01-2025",
-      status: "Completed",
-      teams: ["Team X", "Team Y", "Team Z", "Team W"],
-      matches: [
-        { matchId: 1, teams: "Team X vs Team Y", status: "Completed", winner: "Team Y" },
-        { matchId: 2, teams: "Team Z vs Team W", status: "Completed", winner: "Team W" },
-      ],
-    },
-  ];
+const KnockoutGamePage = () => {
+  const [players, setPlayers] = useState([
+    { id: 1, name: 'Ahmed', status: 'Active' },
+    { id: 2, name: 'Ibad', status: 'Active' },
+    { id: 3, name: 'Sara', status: 'Active' },
+    { id: 4, name: 'Ali', status: 'Active' },
+    { id: 5, name: 'Khan', status: 'Active' },
+    { id: 6, name: 'Zara', status: 'Active' },
+    { id: 7, name: 'Usman', status: 'Active' },
+    { id: 8, name: 'Faizan', status: 'Active' },
+    { id: 9, name: 'Tariq', status: 'Active' },
+    { id: 10, name: 'Ayesha', status: 'Active' },
+    { id: 11, name: 'Bilal', status: 'Active' },
+    { id: 12, name: 'Hassan', status: 'Active' },
+    { id: 13, name: 'Samreen', status: 'Active' },
+    { id: 14, name: 'Muneeb', status: 'Active' },
+    { id: 15, name: 'Asim', status: 'Active' },
+    { id: 16, name: 'Nashit', status: 'Active' },
+    { id: 17, name: 'Hamza', status: 'Active' },
+    { id: 18, name: 'Nazia', status: 'Active' },
+    { id: 19, name: 'Sana', status: 'Active' },
+    { id: 20, name: 'Shoaib', status: 'Active' },
+    { id: 21, name: 'Rida', status: 'Active' },
+    { id: 22, name: 'Ahmed', status: 'Active' },
+    { id: 23, name: 'Mariam', status: 'Active' },
+    { id: 24, name: 'Arslan', status: 'Active' },
+    { id: 25, name: 'Bilal', status: 'Active' },
+    { id: 26, name: 'Fahad', status: 'Active' },
+    { id: 27, name: 'Hassan', status: 'Active' },
+    { id: 28, name: 'Areeba', status: 'Active' },
+    { id: 29, name: 'Sahab', status: 'Active' },
+    { id: 30, name: 'Rashid', status: 'Active' },
+  ]);
 
-  // State for handling tournament details view
-  const [selectedTournament, setSelectedTournament] = useState(null);
+  const [eliminatedPlayers, setEliminatedPlayers] = useState([]);
+  const [finalResult, setFinalResult] = useState(null);
 
-  // Handle viewing tournament details
-  const handleViewTournament = (tournament) => {
-    setSelectedTournament(tournament);
+  const eliminatePlayer = (id) => {
+    const updatedPlayers = players.filter((player) => player.id !== id);
+    const eliminatedPlayer = players.find((player) => player.id === id);
+    setEliminatedPlayers((prev) => [...prev, eliminatedPlayer]);
+    setPlayers(updatedPlayers);
   };
 
-  // Handle closing tournament details
-  const handleCloseDetails = () => {
-    setSelectedTournament(null);
+  const recoverPlayer = (id) => {
+    const recoveredPlayer = eliminatedPlayers.find((player) => player.id === id);
+    const updatedEliminatedPlayers = eliminatedPlayers.filter((player) => player.id !== id);
+    setEliminatedPlayers(updatedEliminatedPlayers);
+    setPlayers((prev) => [...prev, recoveredPlayer]);
+  };
+
+  const submitFinalResult = () => {
+    const winner = players[0];
+    const runnerUp = eliminatedPlayers[eliminatedPlayers.length - 1];
+    setFinalResult({ winner, runnerUp });
   };
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
-      {/* Page Header */}
-      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Tournaments</h1>
-        <p className="text-gray-500 mt-2">
-          Manage and oversee the tournaments assigned to you.
-        </p>
-      </div>
-
-      {/* Tournament List */}
-      <div className="space-y-6">
-        {tournaments.map((tournament) => (
+    <div className="p-6">
+      <h1 className="text-xl font-bold mb-4">Knockout Game</h1>
+      
+      {/* Players */}
+      <div className="grid grid-cols-2 gap-4">
+        {players.map((player) => (
           <div
-            key={tournament.id}
-            className="bg-white shadow-lg rounded-lg p-6 border-l-4 border-blue-500"
+            key={player.id}
+            className={`p-4 border rounded-lg flex justify-between items-center ${player.status === 'Active' ? 'bg-green-100' : 'bg-gray-200'}`}
           >
-            <h2 className="text-2xl font-bold text-gray-800">{tournament.name}</h2>
-            <p className="text-gray-600 mt-2">
-              <strong>Start Date:</strong> {tournament.startDate}
-            </p>
-            <p className="text-gray-600">
-              <strong>End Date:</strong> {tournament.endDate}
-            </p>
-            <p className="text-gray-600">
-              <strong>Status:</strong>{" "}
-              <span
-                className={`${
-                  tournament.status === "Ongoing"
-                    ? "text-blue-500"
-                    : "text-green-500"
-                } font-medium`}
-              >
-                {tournament.status}
-              </span>
-            </p>
-            <div className="mt-4">
+            <span>{player.name}</span>
+            {players.length > 1 && player.status === 'Active' && (
               <button
-                onClick={() => handleViewTournament(tournament)}
-                className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition duration-200"
+                className="text-red-500"
+                onClick={() => eliminatePlayer(player.id)}
               >
-                View Details
+                Eliminate
               </button>
-            </div>
+            )}
+            {finalResult && player.id === players[0].id && (
+              <span className="ml-2 text-lg font-bold text-green-600">Winner</span>
+            )}
           </div>
         ))}
       </div>
 
-      {/* Tournament Details Modal */}
-      {selectedTournament && (
-        <div className="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center p-6 z-50">
-          <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-2xl relative">
-            {/* Close Button */}
+      {/* Eliminated Players */}
+      <h2 className="text-lg font-semibold mt-6">Eliminated Players</h2>
+      <div className="grid grid-cols-2 gap-4 mt-2">
+        {eliminatedPlayers.map((player) => (
+          <div
+            key={player.id}
+            className="p-4 border rounded-lg flex justify-between items-center bg-gray-200"
+          >
+            <span>{player.name}</span>
             <button
-              onClick={handleCloseDetails}
-              className="absolute top-3 right-3 text-gray-500 hover:text-gray-700 text-xl"
+              className="text-blue-500"
+              onClick={() => recoverPlayer(player.id)}
             >
-              &times;
+              Recover
             </button>
-
-            {/* Tournament Details */}
-            <h2 className="text-2xl font-bold text-gray-800 mb-4">
-              {selectedTournament.name}
-            </h2>
-            <p className="text-gray-600">
-              <strong>Start Date:</strong> {selectedTournament.startDate}
-            </p>
-            <p className="text-gray-600">
-              <strong>End Date:</strong> {selectedTournament.endDate}
-            </p>
-            <p className="text-gray-600">
-              <strong>Status:</strong>{" "}
-              <span
-                className={`${
-                  selectedTournament.status === "Ongoing"
-                    ? "text-blue-500"
-                    : "text-green-500"
-                } font-medium`}
-              >
-                {selectedTournament.status}
-              </span>
-            </p>
-            <h3 className="text-lg font-semibold text-gray-800 mt-6 mb-4">
-              Matches
-            </h3>
-            <ul className="space-y-3">
-              {selectedTournament.matches.map((match) => (
-                <li
-                  key={match.matchId}
-                  className="flex justify-between items-center bg-gray-100 p-3 rounded-lg"
-                >
-                  <span>{match.teams}</span>
-                  <span
-                    className={`${
-                      match.status === "Completed"
-                        ? "text-green-500"
-                        : "text-yellow-500"
-                    } font-medium`}
-                  >
-                    {match.status}
-                  </span>
-                </li>
-              ))}
-            </ul>
-
-            {/* Declare Winner (for final match) */}
-            {selectedTournament.status === "Ongoing" && (
-              <div className="mt-6">
-                <button className="bg-green-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-green-600 transition duration-200">
-                  Declare Final Winner
-                </button>
-              </div>
+            {eliminatedPlayers.length === players.length - 1 && player.status !== 'Active' && (
+              <span className="ml-2 text-lg font-bold text-yellow-600">Runner Up</span>
             )}
+          </div>
+        ))}
+      </div>
+
+      {/* Submit Final Result Button */}
+      {players.length === 1 && (
+        <button
+          className="mt-6 p-2 bg-blue-500 text-white rounded-lg"
+          onClick={submitFinalResult}
+        >
+          Submit Final Result
+        </button>
+      )}
+
+      {/* Final Result Modal */}
+      {finalResult && (
+        <div className="fixed inset-0 bg-gray-500 bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-8 rounded-lg shadow-lg w-1/3">
+            <h2 className="text-2xl font-bold mb-4">Final Result</h2>
+            <p className="text-lg">
+              <span className="font-semibold">Winner: </span>{finalResult.winner.name}
+            </p>
+            <p className="text-lg">
+              <span className="font-semibold">Runner-up: </span>{finalResult.runnerUp.name}
+            </p>
+            <button
+              className="mt-4 p-2 bg-green-500 text-white rounded-lg"
+              onClick={() => setFinalResult(null)} // Close the modal
+            >
+              Close
+            </button>
           </div>
         </div>
       )}
@@ -162,4 +141,4 @@ const JudgesTournament = () => {
   );
 };
 
-export default JudgesTournament;
+export default KnockoutGamePage;

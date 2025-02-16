@@ -35,9 +35,9 @@ const AdminSidebar = () => {
       submenu: [
         { title: "Add New Event", path: "/adminpanel/addnewevent" },
         { title: "Manage Events", path: "/adminpanel/manageevents" },
-        { title: "Calendar View", path: "/admin/calendar" },
-        { title: "Event Resources", path: "/admin/resources" },
-        { title: "Event Reports", path: "/admin/reports" }
+        // { title: "Calendar View", path: "/admin/calendar" },
+        // { title: "Event Resources", path: "/admin/resources" },
+        // { title: "Event Reports", path: "/admin/reports" }
       ]
     },
     {
@@ -52,44 +52,44 @@ const AdminSidebar = () => {
           { title: "Announcements", path: "/adminpanel/announcements" }
         ]
     },
+    // {
+    //   title: "Qawali Night",
+    //   icon: <FaTicketAlt className="md:mr-3 text-lg" />,
+    //   submenu: [
+    //     { title: "Ticketing", path: "/admin/qawali/tickets" },
+    //     { title: "Seating", path: "/admin/qawali/seating" },
+    //     { title: "Logistics", path: "/admin/qawali/logistics" },
+    //     { title: "Guest List", path: "/admin/qawali/guests" }
+    //   ]
+    // },
     {
-      title: "Qawali Night",
-      icon: <FaTicketAlt className="md:mr-3 text-lg" />,
-      submenu: [
-        { title: "Ticketing", path: "/admin/qawali/tickets" },
-        { title: "Seating", path: "/admin/qawali/seating" },
-        { title: "Logistics", path: "/admin/qawali/logistics" },
-        { title: "Guest List", path: "/admin/qawali/guests" }
-      ]
-    },
-    {
-      title: "Gallery",
+      title: "CAC",
       icon: <FaImage className="md:mr-3 text-lg" />,
       submenu: [
-        { title: "Upload Media", path: "/admin/gallery/upload" },
-        { title: "Organize", path: "/admin/gallery/organize" },
-        { title: "Moderate", path: "/admin/gallery/moderate" }
+        { title: "Gallery", path: "/adminpanel/gallerymanagement" },
+        { title: "News", path: "/adminpanel/news" },
+        // { title: "Moderate", path: "/admin/gallery/moderate" }
       ]
     },
-    {
-      title: "Dynamic Events",
-      icon: <FaCalendarCheck className="md:mr-3 text-lg" />,
-      submenu: [
-        { title: "Calendar", path: "/admin/events/calendar" },
-        { title: "Featured Events", path: "/admin/events/featured" },
-        { title: "Event Status", path: "/admin/events/status" }
-      ]
-    },
-    { 
-      title: "Website Content", 
-      icon: <FaCog className="md:mr-3 text-lg" />,
-      submenu: [
-        { title: "Homepage", path: "/admin/content/home" },
-        { title: "About Us", path: "/admin/content/about" },
-        { title: "Committees", path: "/admin/content/committees" },
-        { title: "Announcements", path: "/admin/content/announcements" }
-      ]
-    }
+    // {
+    //   title: "Dynamic Events",
+    //   icon: <FaCalendarCheck className="md:mr-3 text-lg" />,
+    //   submenu: [
+    //     { title: "Calendar", path: "/admin/events/calendar" },
+    //     { title: "Featured Events", path: "/admin/events/featured" },
+    //     { title: "Event Status", path: "/admin/events/status" }
+    //   ]
+    // },
+    // { 
+    //   title: "Website Content", 
+    //   icon: <FaCog className="md:mr-3 text-lg" />,
+    //   submenu: [
+    //     { title: "Homepage", path: "/admin/content/home" },
+    //     { title: "About Us", path: "/admin/content/about" },
+    //     { title: "Committees", path: "/admin/content/committees" },
+    //     { title: "Announcements", path: "/admin/content/announcements" }
+    //   ]
+    // }
   ];
 
   return (
