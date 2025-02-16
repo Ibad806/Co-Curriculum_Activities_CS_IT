@@ -66,7 +66,7 @@ const AdminSidebar = () => {
       title: "Gallery",
       icon: <FaImage className="md:mr-3 text-lg" />,
       submenu: [
-        { title: "Upload Media", path: "/admin/gallery/upload" },
+        { title: "Upload Media", path: "/adminpanel/gallerymanagement" },
         { title: "Organize", path: "/admin/gallery/organize" },
         { title: "Moderate", path: "/admin/gallery/moderate" }
       ]

@@ -35,6 +35,7 @@ import JudgesManagement from "./dashboard/adminpanel/admincomponents/JudgesManag
 import PostApplications from "./dashboard/adminpanel/admincomponents/PostApplications";
 import TicketManagement from "./dashboard/adminpanel/admincomponents/TicketManagement";
 import Announcements from "./dashboard/adminpanel/admincomponents/Announcements";
+import GalleryManagement from "./dashboard/adminpanel/admincomponents/GalleryManagement";
 
 function App() {
   return (
@@ -88,6 +89,7 @@ function App() {
           <Route path="postapplication" element={<PostApplications />}/>
           <Route path="ticketmanagement" element={<TicketManagement/>}/>
           <Route path="announcements" element={<Announcements/>}/>
+          <Route path="gallerymanagement" element={<GalleryManagement/>}/>
         </Route>
       </Routes>
     </>
