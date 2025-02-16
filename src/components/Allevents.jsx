@@ -69,7 +69,20 @@ const Allevents = ({ event, desc }) => {
   };
 
   console.log(filteredEvents);
-  
+
+  // Helper function to generate dynamic links based on event category
+  const generateEventLink = (category, title) => {
+    if (category === "smec") {
+      return "/smec";
+    } else if (category === "dinner") {
+      return "/events/dinner";
+    } else if (category === "qawwali") {
+      return "/events/qawwali";
+    } else {
+      // Default to dynamic link based on event title
+      return `/events/${title.replace(/\s+/g, "-").toLowerCase()}`;
+    }
+  };
 
   return (
     <div className="min-h-screen w-full mt-28">
@@ -92,21 +105,17 @@ const Allevents = ({ event, desc }) => {
         {/* Events Grid */}
         <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {filteredEvents.map((event) => (
-            <>
-            {console.log(event)}
-            <Link to={`/events/${filteredEvents[0].title}`}>
-            <EventCard
-              key={event.id}
-              image={event.image}
-              title={event.title}
-              location={event.location}
-              price={event.price}
-              dateRange={event.dateRange}
-              timeToEnd={event.timeToEnd}
-              daysLeft={event.daysLeft}
-            />
-          </Link>
-          </>
+            <Link to={generateEventLink(event.category, event.title)} key={event.id}>
+              <EventCard
+                image={event.image}
+                title={event.title}
+                location={event.location}
+                price={event.price}
+                dateRange={event.dateRange}
+                timeToEnd={event.timeToEnd}
+                daysLeft={event.daysLeft}
+              />
+            </Link>
           ))}
         </div>
       </div>

@@ -4,63 +4,11 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
-import smecbanner from "../assets/smec_banner.png";
-import qawalibanner from "../assets/qawali_banner.png";
-import qawali from "../assets/qawali.png";
+import { Link } from "react-router-dom";
+import { newsData } from "../data";
 
 // Sample data for the slider
-const newsData = [
-  {
-    id: 1,
-    title: "Taylor Swift in Biggest World",
-    description:
-      "Lorem ipsum dolor donec bibendum laishiaj oi asjfasj alskjfldsakf massa erat the ultrices nulla.",
-    author: "Jonathan Wills",
-    date: "July 17, 2024",
-    time: "5 min read",
-    image: smecbanner,
-  },
-  {
-    id: 2,
-    title: "Royal Albert Hall New Events",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
-    author: "Marian Ed",
-    date: "June 13, 2024",
-    time: "10 min read",
-    image: qawalibanner,
-  },
-  {
-    id: 3,
-    title: "Yanni Will Be in London",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
-    author: "Jack Nikelson",
-    date: "May 08, 2024",
-    time: "7 min read",
-    image: qawali,
-  },
-  {
-    id: 4,
-    title: "Jazz Night Special Concert",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
-    author: "Sara Bennett",
-    date: "April 22, 2024",
-    time: "8 min read",
-    image: qawalibanner,
-  },
-  {
-    id: 5,
-    title: "Classical Fusion Event",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
-    author: "David Turner",
-    date: "March 10, 2024",
-    time: "6 min read",
-    image: smecbanner,
-  },
-];
+
 
 const NewsSlider = () => {
   return (
@@ -122,10 +70,10 @@ const NewsSlider = () => {
       </Swiper>
 
       {/* View All News */}
-      <div className="mt-8 text-center">
-        <a href="#" className="text-blue-600 font-semibold text-lg hover:underline">
-          View All News →
-        </a>
+      <div className="mt-5 text-right">
+        <Link to="/all-news" className="text-blue-600 font-semibold">
+          All News →
+        </Link>
       </div>
     </div>
   );
