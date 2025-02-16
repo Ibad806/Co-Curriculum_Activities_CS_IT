@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import NProgress from 'nprogress';
 import './nprogress';
+import BackToCACButton from './components/BacktoCAC'
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
@@ -131,6 +132,7 @@ function App() {
           <Route path="news" element={<AdminNews/>}/>
         </Route>
       </Routes>
+      <BackToCACButton />
     </>
   );
 }

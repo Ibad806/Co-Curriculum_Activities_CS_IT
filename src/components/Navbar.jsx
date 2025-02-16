@@ -56,6 +56,7 @@ const Navbar = () => {
           <Link to="/" className="text-lg font-medium">Home</Link>
           <Link to="/events" className="text-lg font-medium">Events</Link>
           <Link to="/gallery" className="text-lg font-medium">Gallery</Link>
+          <Link to="/all-news" className="text-lg font-medium">News</Link>
         </div>
         <div className="flex items-center space-x-4 relative">
           <div className="relative" ref={notificationRef}>
