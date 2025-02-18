@@ -13,6 +13,15 @@ import nova from "./assets/nova.png";
 import banoQabil from "./assets/banoQabil.png";
 import marketing from "./assets/marketing.png";
 import asim from "./assets/asim.png";
+import FC from "./assets/FC25.jpg";
+import Tekken from "./assets/tekken.jpg";
+import NeedForSpeed from "./assets/need for speed.jpg";
+import WWE from "./assets/wwe 2K25.jpg";
+import cs1 from "./assets/cs 1.6.jpg";
+import cs2 from "./assets/cs 2.jpg";
+import pubg from "./assets/pubg.jpg";
+import valorant from "./assets/valorant.jpg";
+import freefire from "./assets/Free Fire.jpg";
 
 export const sponsors = [
   { id: 1, name:"Sponsor 1" ,image: trend },
@@ -195,7 +204,7 @@ export const smecgames = [
 export const egames = [
   {
     id: 1,
-    image: "https://via.placeholder.com/400",
+    image: FC,
     title: "FC24",
     date: "21-Feb-2025",
     time: "08:00 PM",
@@ -216,7 +225,7 @@ export const egames = [
   },
   {
     id: 2,
-    image: "https://via.placeholder.com/400",
+    image: Tekken,
     title: "Tekken 8",
     date: "21-Feb-2025",
     time: "08:00 PM",
@@ -237,7 +246,7 @@ export const egames = [
   },
   {
     id: 3,
-    image: "https://via.placeholder.com/400",
+    image: NeedForSpeed,
     title: "Need for Speed",
     date: "21-Feb-2025",
     time: "08:00 PM",
@@ -258,7 +267,7 @@ export const egames = [
   },
   {
     id: 4,
-    image: "https://via.placeholder.com/400",
+    image: WWE,
     title: "WWE 2K24",
     date: "21-Feb-2025",
     time: "08:00 PM",
@@ -279,7 +288,7 @@ export const egames = [
   },
   {
     id: 5,
-    image: "https://via.placeholder.com/400",
+    image: cs1,
     title: "Counter Strike 1.6",
     date: "21-Feb-2025",
     time: "08:00 PM",
@@ -300,7 +309,7 @@ export const egames = [
   },
   {
     id: 6,
-    image: "https://via.placeholder.com/400",
+    image: cs2,
     title: "Counter Strike 2",
     date: "21-Feb-2025",
     time: "08:00 PM",
@@ -321,7 +330,7 @@ export const egames = [
   },
   {
     id: 7,
-    image: "https://via.placeholder.com/400",
+    image: pubg,
     title: "PUBG",
     date: "21-Feb-2025",
     time: "08:00 PM",
@@ -342,7 +351,7 @@ export const egames = [
   },
   {
     id: 8,
-    image: "https://via.placeholder.com/400",
+    image: valorant,
     title: "Valorant",
     date: "21-Feb-2025",
     time: "08:00 PM",
@@ -363,7 +372,7 @@ export const egames = [
   },
   {
     id: 9,
-    image: "https://via.placeholder.com/400",
+    image: freefire,
     title: "Free Fire",
     date: "21-Feb-2025",
     time: "08:00 PM",
