@@ -45,6 +45,7 @@ import GalleryManagement from "./dashboard/adminpanel/admincomponents/GalleryMan
 import AdminNews from "./dashboard/adminpanel/admincomponents/AdminNews";
 import EventPage from './pages/EventPage';
 import AllNews from './pages/AllNews';
+import NewsDetail from './pages/NewDetails';
 
 function App() {
   
@@ -82,6 +83,7 @@ function App() {
         <Route path="/events/dinner" element={<DinnerDetails />} />
         <Route path="/events/:id" element={<EventPage />} />
         <Route path="/all-news" element={<AllNews />} />
+        <Route path="/all-news/:id" element={<NewsDetail />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
