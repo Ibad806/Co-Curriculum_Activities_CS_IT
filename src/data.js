@@ -5,6 +5,26 @@ import smecbanner from "./assets/smec_banner.png";
 import qawalibanner from "./assets/qawali_banner.png";
 import qawali from "./assets/qawali.png";
 import blood from "./assets/blood.png";
+import trend from "./assets/trend.png";
+import pasha from "./assets/pasha.png";
+import arcana from "./assets/arcana.png";
+import powerplay from "./assets/powerplay.png";
+import nova from "./assets/nova.png";
+import banoQabil from "./assets/banoQabil.png";
+import marketing from "./assets/marketing.png";
+import asim from "./assets/asim.png";
+
+export const sponsors = [
+  { id: 1, name:"Sponsor 1" ,image: trend },
+  { id: 2, name:"Sponsor 1" ,image: pasha },
+  { id: 3, name:"Sponsor 1" ,image: arcana },
+  { id: 4, name:"Sponsor 1" ,image: powerplay },
+  { id: 5, name:"Sponsor 1" ,image: nova },
+  { id: 6, name:"Sponsor 1" ,image: banoQabil },
+  { id: 7, name:"Sponsor 1" ,image: marketing },
+  { id: 8, name:"Sponsor 1" ,image: asim },
+]
+
 
 const events = [
   {
@@ -728,60 +748,51 @@ export const generalgames = [
 ];
 
 export const egameWinners = [
-  { id: 1, name: "Rameez Rafiq", game: "FIFA 25" },
-  { id: 2, name: "Ali Ahmed", game: "FIFA 25" },
-  { id: 3, name: "aa Khan", game: "FIFA 25" },
-  { id: 4, name: "John Doe", game: "FIFA 25" },
-  { id: 5, name: "Jane Smith", game: "FIFA 25" },
-  { id: 6, name: "Michael Brown", game: "FIFA 25" },
-  { id: 7, name: "Emily Davis", game: "FIFA 25" },
+  { id: 1, name: "Ahmed Nawaz Gondal", game: "FIFA 25" },
+  { id: 2, name: "Muhaamad Ibad", game: "Need For Speed" },
+  { id: 3, name: "Rameez Rafiq", game: "PUBG" },
+  { id: 4, name: "Shujaat Asghar", game: "FIFA 25" },
+  { id: 5, name: "Shujaat", game: "Counter Strike 1.6" },
+  { id: 6, name: "Umer", game: "FIFA 25" },
+  { id: 7, name: "Raza", game: "Free Fire" },
 ];
 
 export const geekWinners = [
   { id: 1, name: "Rameez Rafiq", game: "FIFA 25" },
   { id: 2, name: "Ali Ahmed", game: "FIFA 25" },
   { id: 3, name: "Sara Khan", game: "FIFA 25" },
-  { id: 4, name: "John hooo", game: "FIFA 25" },
+  { id: 4, name: "Fasih Adil", game: "FIFA 25" },
   { id: 5, name: "Jane Smith", game: "FIFA 25" },
-  { id: 6, name: "Michael Brown", game: "FIFA 25" },
-  { id: 7, name: "Emily Davis", game: "FIFA 25" },
-  { id: 8, name: "Alice Cooper", game: "FIFA 25" },
-  { id: 9, name: "Steve Rogers", game: "FIFA 25" },
+  { id: 6, name: "Younas", game: "FIFA 25" },
+  { id: 7, name: "Babar", game: "FIFA 25" },
+  { id: 8, name: "Rizwan", game: "FIFA 25" },
+  { id: 9, name: "Sajid", game: "FIFA 25" },
   { id: 10, name: "Tony Stark", game: "FIFA 25" },
   { id: 11, name: "Natasha Romanoff", game: "FIFA 25" },
-  { id: 12, name: "Bruce Wayne", game: "FIFA 25" },
+  { id: 12, name: "Ali Ahmed", game: "FIFA 25" },
 ];
 
 export const generalGameWinners = [
   { id: 1, name: "Rameez Rafiq", game: "FIFA 25" },
   { id: 2, name: "Ali Ahmed", game: "FIFA 25" },
-  { id: 3, name: "Sara Khan", game: "FIFA 25" },
-  { id: 4, name: "John Doe", game: "FIFA 25" },
-  { id: 5, name: "Jane Smbhhhith", game: "FIFA 25" },
-  { id: 6, name: "Michael Brown", game: "FIFA 25" },
-  { id: 7, name: "Emily Davis", game: "FIFA 25" },
+  { id: 3, name: "Salar Khan", game: "FIFA 25" },
+  { id: 4, name: "Abdul Moiz", game: "FIFA 25" },
+  { id: 5, name: "Abdul Whab", game: "FIFA 25" },
+  { id: 6, name: "Sharjeel", game: "FIFA 25" },
+  { id: 7, name: "Hashim", game: "FIFA 25" },
   { id: 8, name: "Alice Cooper", game: "FIFA 25" },
   { id: 9, name: "Steve Rogers", game: "FIFA 25" },
   { id: 10, name: "Tony Stark", game: "FIFA 25" },
 ];
 
-export const sponsors = [
-  { id: 1, name: "Asim Fragrance" },
-  { id: 2, name: "NBP" },
-  { id: 3, name: "PowerPlay" },
-  { id: 4, name: "Uzma Enterprises" },
-  { id: 5, name: "Tech 20Four" },
-  { id: 6, name: "P@SHA" },
-  { id: 7, name: "HBL" },
-  { id: 8, name: "Bano Qabil" },
-]
+
 
 export const newsData = [
   {
     id: 1,
     title: "Taylor Swift in Biggest World",
     description:
-      "Lorem ipsum dolor donec bibendum laishiaj oi asjfasj alskjfldsakf massa erat the ultrices nulla.",
+    "The EDM Festival 2024 is bringing in a fresh lineup of world-class DJs and producers to thrill music lovers. The festival is known for its electrifying atmosphere, with stages set against breathtaking backdrops and mind-blowing light shows. This year, the festival organizers have curated a mix of veteran and up-and-coming artists who will spin tracks that will keep the crowd energized all night long. Whether you're into house, techno, or dubstep, this year’s event promises to be an unforgettable celebration of electronic music. The festival will feature immersive sound experiences, with high-energy performances that seamlessly blend visual art with music. The festival's new location offers even more stunning views and spacious stages, ensuring attendees can enjoy the best of the EDM world while surrounded by breathtaking scenery. From outdoor beach parties to indoor raves, there’s something for everyone to experience and enjoy.",
     author: "Jonathan Wills",
     date: "July 17, 2024",
     time: "5 min read",
@@ -791,7 +802,7 @@ export const newsData = [
     id: 2,
     title: "Royal Albert Hall New Events",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
+      "Royal Albert Hall has unveiled an exciting line-up of events for the coming months. From classical music performances to groundbreaking contemporary art shows, this iconic venue promises something for everyone. The venue, renowned for its world-class acoustics and rich history, is hosting a series of prestigious events that aim to captivate diverse audiences. Performances from renowned orchestras, as well as experimental works from avant-garde artists, are on the horizon. The hall will also showcase new multimedia performances that blend visual art and live music, providing an immersive experience that has never been seen before in this legendary venue.",
     author: "Marian Ed",
     date: "June 13, 2024",
     time: "10 min read",
@@ -801,7 +812,7 @@ export const newsData = [
     id: 3,
     title: "Yanni Will Be in London",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
+      "Music fans are in for a treat as world-renowned composer and pianist Yanni will be performing live in London this year. Known for his breathtaking compositions that blend classical, jazz, and rock influences, Yanni’s performances are a mesmerizing fusion of sound and emotion. His London concert will showcase an array of his best-loved pieces, as well as some exciting new material. This will be a night not to miss for music lovers seeking an unforgettable experience. With a career spanning over four decades, Yanni has become a household name known for his passion and innovative approach to music. The concert will be a celebration of his career, featuring his iconic hits and mesmerizing compositions that have touched hearts around the world.",
     author: "Jack Nikelson",
     date: "May 08, 2024",
     time: "7 min read",
@@ -811,7 +822,7 @@ export const newsData = [
     id: 4,
     title: "Jazz Night Special Concert",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
+      "Get ready for an extraordinary evening of jazz with some of the best musicians in the industry! The Jazz Night Special Concert will feature a lineup of celebrated artists playing a mix of classic and contemporary jazz. Attendees can expect soulful solos, intricate harmonies, and an overall unforgettable performance. Whether you're a lifelong jazz fan or new to the genre, this concert promises to showcase the beauty and artistry of live jazz music. Join us for a night of smooth tunes and remarkable performances that will leave you wanting more. With performances from award-winning jazz legends, the concert will be a true exploration of the genre’s versatility, from its smoothest ballads to its most exhilarating up-tempo numbers. The lineup will feature a combination of international artists and local talent, each bringing their own unique style to the stage.",
     author: "Sara Bennett",
     date: "April 22, 2024",
     time: "8 min read",
@@ -821,10 +832,60 @@ export const newsData = [
     id: 5,
     title: "Classical Fusion Event",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Vivamus donec bibendum massa erat the ultrices nulla.",
+      "The Classical Fusion Event is set to push the boundaries of traditional classical music. Blending elements from various musical genres, the event features an ensemble of talented musicians who will deliver innovative compositions that defy expectations. With influences ranging from rock to electronic, the fusion of styles creates a unique listening experience that is both contemporary and timeless. Fans of classical music will find themselves immersed in a new world of sound, as this event challenges the norms and brings something fresh to the stage. The fusion of orchestral arrangements with electric instruments and synthesizers adds a modern touch, bringing together fans of both classical and contemporary music. From symphonic rock to electronic-based soundscapes, this event will take the audience on a musical journey they’ve never experienced before.",
     author: "David Turner",
     date: "March 10, 2024",
     time: "6 min read",
     image: smecbanner,
+  },
+  {
+    id: 6,
+    title: "The Return of the Beatles ",
+    description:
+      "After years of speculation, the Beatles' music is making a huge comeback. Fans all over the world are rejoicing at the announcement of a revival tour that will bring the band's timeless hits to life in a new way. The music will be reinterpreted by a group of talented musicians, bringing a contemporary twist to the iconic songs. From 'Hey Jude' to 'Let It Be,' the concert will take audiences on a musical journey that honors the Beatles' legacy while introducing a fresh sound. This revival promises to be a once-in-a-lifetime experience for Beatles enthusiasts and new fans alike. The tour will feature remastered versions of the original songs alongside collaborations with modern-day artists, providing a unique blend of nostalgia and innovation. Fans can expect an incredible visual spectacle, complete with stunning projections, immersive light shows, and live performances that reimagine the Beatles' music in a new and exciting way.",
+    author: "Emma Clarkson",
+    date: "February 24, 2024",
+    time: "9 min read",
+    image: smecbanner,
+  },
+  {
+    id: 7,
+    title: "Electronic Dance Music Festival Announces New Artists",
+    description:
+      "The EDM Festival 2024 is bringing in a fresh lineup of world-class DJs and producers to thrill music lovers. The festival is known for its electrifying atmosphere, with stages set against breathtaking backdrops and mind-blowing light shows. This year, the festival organizers have curated a mix of veteran and up-and-coming artists who will spin tracks that will keep the crowd energized all night long. Whether you're into house, techno, or dubstep, this year’s event promises to be an unforgettable celebration of electronic music. The festival will feature immersive sound experiences, with high-energy performances that seamlessly blend visual art with music. The festival's new location offers even more stunning views and spacious stages, ensuring attendees can enjoy the best of the EDM world while surrounded by breathtaking scenery. From outdoor beach parties to indoor raves, there’s something for everyone to experience and enjoy.",
+    author: "Olivia Williams",
+    date: "February 10, 2024",
+    time: "7 min read",
+    image: smecbanner,
+  },
+  {
+    id: 8,
+    title: "Jazz Night Special Concert",
+    description:
+      "Get ready for an extraordinary evening of jazz with some of the best musicians in the industry! The Jazz Night Special Concert will feature a lineup of celebrated artists playing a mix of classic and contemporary jazz. Attendees can expect soulful solos, intricate harmonies, and an overall unforgettable performance. Whether you're a lifelong jazz fan or new to the genre, this concert promises to showcase the beauty and artistry of live jazz music. Join us for a night of smooth tunes and remarkable performances that will leave you wanting more. With performances from award-winning jazz legends, the concert will be a true exploration of the genre’s versatility, from its smoothest ballads to its most exhilarating up-tempo numbers. The lineup will feature a combination of international artists and local talent, each bringing their own unique style to the stage.",
+    author: "Sara Bennett",
+    date: "April 22, 2024",
+    time: "8 min read",
+    image: qawalibanner,
+  },
+  {
+    id: 9,
+    title: "Jazz Night Special Concert",
+    description:
+      "Get ready for an extraordinary evening of jazz with some of the best musicians in the industry! The Jazz Night Special Concert will feature a lineup of celebrated artists playing a mix of classic and contemporary jazz. Attendees can expect soulful solos, intricate harmonies, and an overall unforgettable performance. Whether you're a lifelong jazz fan or new to the genre, this concert promises to showcase the beauty and artistry of live jazz music. Join us for a night of smooth tunes and remarkable performances that will leave you wanting more. With performances from award-winning jazz legends, the concert will be a true exploration of the genre’s versatility, from its smoothest ballads to its most exhilarating up-tempo numbers. The lineup will feature a combination of international artists and local talent, each bringing their own unique style to the stage.",
+    author: "Sara Bennett",
+    date: "April 22, 2024",
+    time: "8 min read",
+    image: qawalibanner,
+  },
+  {
+    id: 10,
+    title: "Jazz Night Special Concert",
+    description:
+      "Get ready for an extraordinary evening of jazz with some of the best musicians in the industry! The Jazz Night Special Concert will feature a lineup of celebrated artists playing a mix of classic and contemporary jazz. Attendees can expect soulful solos, intricate harmonies, and an overall unforgettable performance. Whether you're a lifelong jazz fan or new to the genre, this concert promises to showcase the beauty and artistry of live jazz music. Join us for a night of smooth tunes and remarkable performances that will leave you wanting more. With performances from award-winning jazz legends, the concert will be a true exploration of the genre’s versatility, from its smoothest ballads to its most exhilarating up-tempo numbers. The lineup will feature a combination of international artists and local talent, each bringing their own unique style to the stage.",
+    author: "Sara Bennett",
+    date: "April 22, 2024",
+    time: "8 min read",
+    image: qawalibanner,
   },
 ];
