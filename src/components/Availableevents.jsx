@@ -1,5 +1,5 @@
 import React from "react";
-import smec_banner from "../assets/smec_banner.png";
+import smec_banner from "../assets/smecbanner.png";
 import watch from "../assets/stopwatch-start.png";
 import view from "../assets/arrowcircle.png";
 import rightarrow from "../assets/rightarrow.png";
@@ -8,12 +8,12 @@ import { Link } from "react-router-dom";
 const Availableevents = () => {
   return (
     <>
-      <div className="w-full flex items-center justify-center flex-col relative py-[50px] border-blue rounded-[10px]">
+      <div className="w-full flex items-center justify-center flex-col relative py-[50px] rounded-[10px]">
         <h1 className="md:text-[40px] text-[20px]">Time is Running Out!</h1>
         <h2 className="md:text-[25px] text-[15px] py-[10px]">
           Explore event here.
         </h2>
-        <div className="md:w-[75%] w-[90%] h-[400px] rounded-[25px] relative">
+        <div className="md:w-[75%] w-[90%] h-[400px] rounded-[25px] relative border">
           <img
             className="w-[100%] h-[100%] object-cover rounded-[10px]"
             src={smec_banner}
