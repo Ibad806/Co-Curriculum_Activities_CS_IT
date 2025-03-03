@@ -1,6 +1,6 @@
 import React from "react";
 import ssuetlogo from '../assets/ssuetlogo.png'
-import cacbanner from '../assets/CACBANNER.PNG'
+import cacbanner from '../assets/cacbanner.png'
 
 const Cacmain = () => {
   return (
