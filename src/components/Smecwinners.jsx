@@ -26,7 +26,7 @@ const SmecWinners = () => {
         {Object.keys(categories).map((category) => (
           <button
             key={category}
-            className={`py-2 px-4 text-lg sm:text-xl font-semibold rounded-lg ${activeCategory === category ? 'bg-yellow-500 text-black' : 'bg-gray-800 text-yellow-400'}`}
+            className={`py-2 px-4 text-lg sm:text-xl font-semibold rounded-lg ${activeCategory === category ? 'bg-[#211D70] text-black' : 'bg-gray-800 text-white'}`}
             onClick={() => setActiveCategory(category)}
           >
             {category}

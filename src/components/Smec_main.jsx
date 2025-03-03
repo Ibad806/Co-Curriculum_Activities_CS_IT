@@ -9,10 +9,10 @@ const Smec_main = () => {
       <img className="w-[100%] h-[100vh] object-cover" src={smecban} alt="" />
       <div className="bg-yellow text-black flex items-center justify-center flex-col relative w-[100%] overflow-hidden">
       <video autoPlay muted loop src={smecvideo} className="w-[80%] mt-9 rounded-3xl"></video>
-        <h1 className="md:text-[110px] text-[70px] md:py-[10px] py-[10px] font-bold text-transparent bg-clip-text bg-gradient-to-t from-black/50 via-[#FECC5A] to-[#FECC5A]">
+        <h1 className="md:text-[110px] text-[70px] md:py-[10px] py-[10px] font-bold text-transparent bg-clip-text bg-gradient-to-t from-black/50 via-[#211D70] to-[#FECC5A]">
           SMEC
         </h1>
-        <h3 className="text-[#FECC5A] md:text-[34px] text-[3.8vw] md:pb-[45px] pb-[20px]">
+        <h3 className="text-[#000] md:text-[34px] text-[3.8vw] md:pb-[45px] pb-[20px]">
           SPEED | MIND | EXECUTION | COMPETITION
         </h3>
         <p className="md:text-[20px] text-[4vw] text-center px-11 md:leading-[40px] leading-[25px] pb-[40px]">

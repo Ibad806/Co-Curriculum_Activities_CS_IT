@@ -16,7 +16,7 @@ export default function SmecSponsors() {
 
   return (
     <div className="bg-black text-white py-20">
-      <h2 className="text-center text-4xl font-semibold mb-12 text-[#ddff1b]">Our Partners</h2>
+      <h2 className="text-center text-4xl font-semibold mb-12 text-[#FFF]">Our Partners</h2>
       <div className="max-w-5xl mx-auto flex items-center justify-center">
         {/* Previous Sponsor Image */}
         <div className="w-1/3 flex justify-center">
@@ -28,7 +28,7 @@ export default function SmecSponsors() {
         </div>
 
         {/* Current Sponsor Image */}
-        <div className="h-[200px] w-[400px] flex items-center justify-center overflow-hidden relative border-2 border-[#ddff1b] rounded-lg shadow-[0_0_10px_#ddff1b,0_0_10px_#ddff1b,0_0_30px_#ddff1b] animate-glow">
+        <div className="h-[200px] w-[400px] flex items-center justify-center overflow-hidden relative border-2 border-[#211D70] rounded-lg shadow-[0_0_10px_#211D70,0_0_10px_#211D70,0_0_30px_#211D70] animate-glow">
           <div className="h-[120px] w-[240px] flex items-center justify-center relative">
             <img
               src={sponsors[currentIndex].image}
