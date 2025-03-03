@@ -1,13 +1,63 @@
 import { useState } from "react";
 import { FiUser, FiMail, FiEye, FiEyeOff, FiLock } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Cacmain from "../../components/Cacmain";
 import Navbar from "../../components/Navbar";
+import axios from "axios"; // Import Axios
+import { AppRoutes } from "../../constant/constant";
 
 export default function RegisterForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    role: "user",
+    isParticpant: false,
+    CNIC: "",
+  });
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState(null);
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+  const navigate = useNavigate(); // Used for redirecting after successful login
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    try {
+      // Make the API call to register the user
+      const response = await axios.post(AppRoutes.register, formData);
+      setSuccessMessage(response.data.message); // Show success message
+      setFormData({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        role: "user",
+        isParticpant: false,
+        CNIC: "",
+      });
+      setError(null);
+      navigate("/login"); // Redirect to login page
+    } catch (err) {
+      setError(err.response ? err.response.data.message : "An error occurred");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -37,7 +87,8 @@ export default function RegisterForm() {
               </div>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Name Input */}
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700">
                   Name
@@ -50,6 +101,8 @@ export default function RegisterForm() {
                     id="name"
                     name="name"
                     type="text"
+                    value={formData.name}
+                    onChange={handleChange}
                     required
                     className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 bg-white"
                     placeholder="Enter your first name"
@@ -57,6 +110,7 @@ export default function RegisterForm() {
                 </div>
               </div>
 
+              {/* Email Input */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email
@@ -69,6 +123,8 @@ export default function RegisterForm() {
                     id="email"
                     name="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 bg-white"
                     placeholder="Enter your email"
@@ -76,6 +132,29 @@ export default function RegisterForm() {
                 </div>
               </div>
 
+              {/* CNIC Input */}
+              <div>
+                <label htmlFor="CNIC" className="block text-sm font-medium text-gray-700">
+                CNIC
+                </label>
+                <div className="mt-1 relative">
+                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <FiMail className="h-5 w-5 text-gray-400" />
+                  </div>
+                  <input
+                    id="CNIC"
+                    name="CNIC"
+                    type="CNIC"
+                    value={formData.CNIC}
+                    onChange={handleChange}
+                    required
+                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 bg-white"
+                    placeholder="Enter your CNIC"
+                  />
+                </div>
+              </div>
+
+              {/* Password Input */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
@@ -88,6 +167,8 @@ export default function RegisterForm() {
                     id="password"
                     name="password"
                     type={showPassword ? "text" : "password"}
+                    value={formData.password}
+                    onChange={handleChange}
                     required
                     className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 bg-white"
                     placeholder="Create a password"
@@ -102,6 +183,7 @@ export default function RegisterForm() {
                 </div>
               </div>
 
+              {/* Confirm Password Input */}
               <div>
                 <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
                   Confirm Password
@@ -114,6 +196,8 @@ export default function RegisterForm() {
                     id="confirmPassword"
                     name="confirmPassword"
                     type={showConfirmPassword ? "text" : "password"}
+                    value={formData.confirmPassword}
+                    onChange={handleChange}
                     required
                     className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 bg-white"
                     placeholder="Confirm your password"
@@ -128,6 +212,11 @@ export default function RegisterForm() {
                 </div>
               </div>
 
+              {/* Display Errors or Success Messages */}
+              {error && <div className="text-red-500 text-center">{error}</div>}
+              {successMessage && <div className="text-green-500 text-center">{successMessage}</div>}
+
+              {/* Submit Button */}
               <button
                 type="submit"
                 className="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -137,7 +226,7 @@ export default function RegisterForm() {
             </form>
 
             <p className="text-center text-sm text-gray-600">
-              Already have an account? {" "}
+              Already have an account?{" "}
               <Link to="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Log In
               </Link>
