@@ -2,8 +2,8 @@ import { useState } from "react";
 import { FiMail, FiEye, FiEyeOff, FiLock } from "react-icons/fi";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import Cacmain from "../../components/Cacmain";
-import Navbar from "../../components/Navbar";
+import Cacmain from "../../components/Cacmain.jsx";
+import Navbar from "../../components/Navbar.jsx";
 import axios from "axios";
 import { AppRoutes } from "../../constant/constant";
 
