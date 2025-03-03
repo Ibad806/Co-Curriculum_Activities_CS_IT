@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
-import NProgress from 'nprogress';
-import './nprogress';
-import BackToCACButton from './components/BacktoCAC'
+import NProgress from "nprogress";
+import "./nprogress";
+import BackToCACButton from "./components/BacktoCAC";
 import Home from "./pages/Home";
 import Events from "./pages/Events";
 import Gallery from "./pages/Gallery";
@@ -43,12 +43,12 @@ import QawwaliDetails from "./pages/QawwaliDetails";
 import DinnerDetails from "./pages/DinnerDetails";
 import GalleryManagement from "./dashboard/adminpanel/admincomponents/GalleryManagement";
 import AdminNews from "./dashboard/adminpanel/admincomponents/AdminNews";
-import EventPage from './pages/EventPage';
-import AllNews from './pages/AllNews';
-import NewsDetail from './pages/NewDetails';
+import EventPage from "./pages/EventPage";
+import AllNews from "./pages/AllNews";
+import NewsDetail from "./pages/NewDetails";
+import Cookies from "js-cookie";
 
 function App() {
-  
   const navigate = useNavigate(); // Replace useHistory with useNavigate
   const location = useLocation(); // Using location to detect route changes
 
@@ -67,12 +67,19 @@ function App() {
     handleStop();
 
     // Handle when the component is mounted or updated
-    window.addEventListener('load', handleStop);
+    window.addEventListener("load", handleStop);
 
     return () => {
-      window.removeEventListener('load', handleStop);
+      window.removeEventListener("load", handleStop);
     };
   }, [location]); // useEffect depends on location to track path changes
+
+  const [role, setRole] = useState(
+    Cookies.get("user") ? JSON.parse(Cookies.get("user")).role : null
+  ); // Get role from cookies
+
+  console.log(role);
+
   return (
     <>
       <ScrollToTop />
@@ -96,43 +103,49 @@ function App() {
         </Route>
         <Route path="/payment" element={<Payment />} />
         <Route path="/paymentsuccess" element={<PaymentSuccessful />} />
-
         {/* User Panel Layout */}
-        <Route path="/userpanel" element={<UserPanel />}>
-          {/* Child Routes */}
-          <Route path="home" element={<UserHome />} />
-          <Route path="ticket" element={<Ticket />} />
-          <Route path="gameticket" element={<GameTicket />} />
-          <Route path="winners" element={<UserWinners />} />
-          <Route path="profile" element={<UserProfile />} />
-          <Route path="applyforposts" element={<ApplyforPosts />} />
-        </Route>
-
+        {role === "isParticpant" && (
+          <Route path="/userpanel" element={<UserPanel />}>
+            {/* Child Routes */}
+            <Route path="home" element={<UserHome />} />
+            <Route path="ticket" element={<Ticket />} />
+            <Route path="gameticket" element={<GameTicket />} />
+            <Route path="winners" element={<UserWinners />} />
+            <Route path="profile" element={<UserProfile />} />
+            <Route path="applyforposts" element={<ApplyforPosts />} />
+          </Route>
+        )}
         {/* Judges Panel Layout */}
-        <Route path="/judgespanel" element={<JudgesLayout />}>
-          {/* Child Routes */}
-          <Route path="home" element={<JudgesHome />} />
-          <Route path="tournaments" element={<JudgesTournament />} />
-          <Route path="matches" element={<JudgesMatches />} />
-          <Route path="scoreboard" element={<JudgesScoreboard />} />
-          <Route path="profile" element={<JudgesProfile />} />
-        </Route>
-
-        {/* Judges Panel Layout */}
-        <Route path="/adminpanel" element={<AdminLayout />}>
-          {/* Child Routes */}
-          <Route path="home" element={<AdminHome />} />
-          <Route path="addnewevent" element={<AddNewEvent/>}/>
-          <Route path="manageevents" element={<ManageEvents/>}/>
-          <Route path="creategame" element={<CreateSmecGame/>}/>
-          <Route path="managegame" element={<ManageSmecGame/>}/>
-          <Route path="judgesmanagement" element={<JudgesManagement/>}/>
-          <Route path="postapplication" element={<PostApplications />}/>
-          <Route path="ticketmanagement" element={<TicketManagement/>}/>
-          <Route path="announcements" element={<Announcements/>}/>
-          <Route path="gallerymanagement" element={<GalleryManagement/>}/>
-          <Route path="news" element={<AdminNews/>}/>
-        </Route>
+        {role === "judge" && (
+          <Route path="/judgespanel" element={<JudgesLayout />}>
+            {/* Child Routes */}
+            <Route path="home" element={<JudgesHome />} />
+            <Route path="tournaments" element={<JudgesTournament />} />
+            <Route path="matches" element={<JudgesMatches />} />
+            <Route path="scoreboard" element={<JudgesScoreboard />} />
+            <Route path="profile" element={<JudgesProfile />} />
+          </Route>
+        )}
+        {/* Admin Panel Layout */}
+       {
+        role === "admin" && (
+          <Route path="/adminpanel" element={<AdminLayout />}>
+            {/* Child Routes */}
+            <Route path="home" element={<AdminHome />} />
+            <Route path="addnewevent" element={<AddNewEvent />} />
+            <Route path="manageevents" element={<ManageEvents />} />
+            <Route path="creategame" element={<CreateSmecGame />} />
+            <Route path="managegame" element={<ManageSmecGame />} />
+            <Route path="judgesmanagement" element={<JudgesManagement />} />
+            <Route path="postapplication" element={<PostApplications />} />
+            <Route path="ticketmanagement" element={<TicketManagement />} />
+            <Route path="announcements" element={<Announcements />} />
+            <Route path="gallerymanagement" element={<GalleryManagement />} />
+            <Route path="news" element={<AdminNews />} />
+          </Route>
+        )
+       }
+        
       </Routes>
       <BackToCACButton />
     </>

@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { FaBell, FaUser, FaBars } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
+import axios from "axios";
+import { AppRoutes } from "../constant/constant";
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -10,12 +13,15 @@ const Navbar = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const userDropdownRef = useRef(null);
   const notificationRef = useRef(null);
+  const navigate = useNavigate();
 
   const notifications = [
     { id: 1, content: "New event added!", time: "2 hours ago" },
     { id: 2, content: "Your ticket has been confirmed.", time: "1 day ago" },
     { id: 3, content: "Reminder: Event starts tomorrow!", time: "3 days ago" },
   ];
+
+  const token = Cookies.get("authToken");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -43,6 +49,19 @@ const Navbar = () => {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await axios.post(AppRoutes.logout, {}, { 
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      Cookies.remove("authToken");
+      Cookies.remove("user");
+      navigate("/login");
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+  };
 
   return (
     <div className="w-full px-6 flex items-center justify-center flex-col relative">
@@ -97,8 +116,19 @@ const Navbar = () => {
             </button>
             {isUserDropdownOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white text-black shadow-lg rounded-lg py-2">
-                <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">Login</Link>
-                <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">Register</Link>
+                {token ? (
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                ) : (
+                  <>
+                    <Link to="/login" className="block px-4 py-2 hover:bg-gray-100">Login</Link>
+                    <Link to="/register" className="block px-4 py-2 hover:bg-gray-100">Register</Link>
+                  </>
+                )}
               </div>
             )}
           </div>
