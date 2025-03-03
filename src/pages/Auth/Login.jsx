@@ -1,19 +1,50 @@
-import { useState } from "react"
-import { FiMail, FiEye, FiEyeOff, FiLock } from "react-icons/fi"
-import { FcGoogle } from "react-icons/fc"
-import { Link } from "react-router-dom"
-import Cacmain from "../../components/Cacmain"
-import Navbar from "../../components/Navbar"
+import { useState } from "react";
+import { FiMail, FiEye, FiEyeOff, FiLock } from "react-icons/fi";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
+import Cacmain from "../../components/Cacmain";
+import Navbar from "../../components/Navbar";
+import axios from "axios";
+import { AppRoutes } from "../../constant/constant";
 
 export default function LoginForm() {
-  const [showPassword, setShowPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+  const [error, setError] = useState(null);
+  const navigate = useNavigate(); // Used for redirecting after successful login
+
+  // Handle input change
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(AppRoutes.login, formData);
+      // On successful login, store the token (can be stored in localStorage or state)
+      localStorage.setItem("token", response.data.data.token);
+      setError(null);
+      navigate("/"); // Redirect to dashboard or the page you want
+    } catch (err) {
+      setError(err.response ? err.response.data.message : "An error occurred");
+    }
+  };
 
   return (
     <div className="min-h-screen bg-white ">
-      <Navbar/>
+      <Navbar />
 
       <div className="text-center mt-28 mb-6">
-        <h1 className="text-2xl font-semibold mb-1">Welcome Back a</h1>
+        <h1 className="text-2xl font-semibold mb-1">Welcome Back</h1>
         <p className="text-gray-600">Access your personal account by logging in</p>
       </div>
 
@@ -22,7 +53,8 @@ export default function LoginForm() {
           <div className="w-full max-w-md space-y-8">
             <h1 className="text-2xl font-semibold text-center">Login</h1>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              {/* Email Input */}
               <div>
                 <label htmlFor="email" className="block text-sm font-medium text-gray-700">
                   Email
@@ -35,6 +67,8 @@ export default function LoginForm() {
                     id="email"
                     name="email"
                     type="email"
+                    value={formData.email}
+                    onChange={handleChange}
                     required
                     className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 bg-white"
                     placeholder="Enter your email"
@@ -42,6 +76,7 @@ export default function LoginForm() {
                 </div>
               </div>
 
+              {/* Password Input */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700">
                   Password
@@ -54,9 +89,11 @@ export default function LoginForm() {
                     id="password"
                     name="password"
                     type={showPassword ? "text" : "password"}
+                    value={formData.password}
+                    onChange={handleChange}
                     required
                     className="block w-full pl-10 pr-10 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600 bg-white"
-                    placeholder="Create a password"
+                    placeholder="Enter your password"
                   />
                   <button
                     type="button"
@@ -70,14 +107,10 @@ export default function LoginForm() {
                     )}
                   </button>
                 </div>
-                <div>
-                  <p className="text-sm text-gray-500 mt-2 text-right">
-                    <Link to="/forgot" className="font-medium text-indigo-600 hover:text-indigo-500">
-                      Forgot Password
-                    </Link>
-                  </p>
-                </div>
               </div>
+
+              {/* Display Errors */}
+              {error && <div className="text-red-500 text-center">{error}</div>}
 
               <button
                 type="submit"
@@ -86,6 +119,7 @@ export default function LoginForm() {
                 Login
               </button>
 
+              {/* Google Sign-In */}
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-300" />
@@ -102,7 +136,7 @@ export default function LoginForm() {
             </form>
 
             <p className="text-center text-sm text-gray-600">
-              Don’t have an account? {" "}
+              Don’t have an account?{" "}
               <Link to="/register" className="font-medium text-indigo-600 hover:text-indigo-500">
                 Register
               </Link>
@@ -111,9 +145,9 @@ export default function LoginForm() {
         </div>
 
         <div className="hidden lg:block w-1/2 rounded-r-xl overflow-hidden">
-          <Cacmain/>
+          <Cacmain />
         </div>
       </div>
     </div>
-  )
+  );
 }
