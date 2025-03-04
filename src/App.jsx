@@ -74,11 +74,9 @@ function App() {
     };
   }, [location]); // useEffect depends on location to track path changes
 
-  const [role, setRole] = useState(
-    Cookies.get("user") ? JSON.parse(Cookies.get("user")).role : null
-  ); // Get role from cookies
-
+  const [role, setRole] = useState(Cookies.get("user") ? JSON.parse(Cookies.get("user")).role : null); // Get role from cookies
   console.log(role);
+
 
   return (
     <>

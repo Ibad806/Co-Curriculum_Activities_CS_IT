@@ -14,6 +14,8 @@ const Navbar = () => {
   const userDropdownRef = useRef(null);
   const notificationRef = useRef(null);
   const navigate = useNavigate();
+  const [role, setRole] = useState(Cookies.get("user") ? JSON.parse(Cookies.get("user")).role : null);
+  console.log(role);
 
   const notifications = [
     { id: 1, content: "New event added!", time: "2 hours ago" },
@@ -22,6 +24,7 @@ const Navbar = () => {
   ];
 
   const token = Cookies.get("authToken");
+  
 
   useEffect(() => {
     const handleScroll = () => {
@@ -116,7 +119,55 @@ const Navbar = () => {
             </button>
             {isUserDropdownOpen && (
               <div className="absolute right-0 mt-2 w-40 bg-white text-black shadow-lg rounded-lg py-2">
-                {token ? (
+               { role == "admin" ? (
+                  <>
+                  <Link to="/adminpanel/home" className="block py-2 hover:bg-gray-100 transition">
+                   <button
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    Admin Panel
+                  </button>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                  </>
+                ): role == "isParticpant" ? (
+                  <>
+                  <Link to="/userpanel/home" className="block py-2 hover:bg-gray-100 transition">
+                   <button
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    User Panel
+                  </button>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                  </>
+                ) : role == "judge" ?(
+                  <>
+                  <Link to="/judgepanel/home" className="block py-2 hover:bg-gray-100 transition">
+                   <button
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    Judge Panel
+                  </button>
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-100"
+                  >
+                    Logout
+                  </button>
+                  </>
+                ): role == "user" ? (
                   <button
                     onClick={handleLogout}
                     className="block w-full text-left px-4 py-2 hover:bg-gray-100"
