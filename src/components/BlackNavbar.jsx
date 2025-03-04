@@ -11,7 +11,7 @@ const BlackNavbar = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isMobileCategoryOpen, setIsMobileCategoryOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const role = "judge";
+  const role = "user";
 
   const dropdownRef = useRef(null);
 
@@ -112,19 +112,19 @@ const BlackNavbar = () => {
               <div className="absolute mt-2 bg-black text-white shadow-lg rounded-lg p-3 w-40">
                 <Link
                   to="/smec/egames"
-                  className="block p-2 hover:bg-[#211D70] hover:text-black transition duration-300"
+                  className="block p-2 hover:bg-[#211D70] hover:text-white transition duration-300"
                 >
                   E-Gaming
                 </Link>
                 <Link
                   to="/smec/geekgames"
-                  className="block p-2 hover:bg-[#211D70] hover:text-black transition duration-300"
+                  className="block p-2 hover:bg-[#211D70] hover:text-white transition duration-300"
                 >
                   Geeks Gaming
                 </Link>
                 <Link
                   to="/smec/generalgames"
-                  className="block p-2 hover:bg-[#211D70] hover:text-black transition duration-300"
+                  className="block p-2 hover:bg-[#211D70] hover:text-white transition duration-300"
                 >
                   General Gaming
                 </Link>
@@ -190,7 +190,7 @@ const BlackNavbar = () => {
                 {role === "user" && (
                   <Link
                     to="/userpanel/home"
-                    className="block p-2 hover:bg-[#211D70] hover:text-black transition duration-300"
+                    className="block p-2 hover:bg-[#211D70] hover:text-white transition duration-300"
                   >
                     User Dashboard
                   </Link>
@@ -198,12 +198,12 @@ const BlackNavbar = () => {
                 {role === "judge" && (
                   <Link
                     to="/judgespanel/home"
-                    className="block p-2 hover:bg-[#211D70] hover:text-black transition duration-300"
+                    className="block p-2 hover:bg-[#211D70] hover:text-white transition duration-300"
                   >
                     Judges Dashboard
                   </Link>
                 )}
-                <button className="block p-2 w-full text-left hover:bg-[#211D70] hover:text-black transition duration-300">
+                <button className="block p-2 w-full text-left hover:bg-[#211D70] hover:text-white transition duration-300">
                   Logout
                 </button>
               </div>

@@ -80,7 +80,7 @@ const Gamecard = ({
           </div>
 
           {/* Action Button */}
-          <div className="p-2 rounded-full bg-[#FACB67] hover:bg-[#E0AE59] transition-colors duration-300">
+          <div className="p-2 rounded-full bg-[#211D70] hover:bg-[#E0AE59] transition-colors duration-300">
             <img src={arrow} alt="Navigate" className="w-6" />
           </div>
         </div>
