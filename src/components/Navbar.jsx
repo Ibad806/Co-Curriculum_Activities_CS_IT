@@ -59,6 +59,7 @@ const Navbar = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       Cookies.remove("authToken");
+      console.log("User logged out");
       Cookies.remove("user");
       navigate("/login");
     } catch (error) {
