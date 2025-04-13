@@ -55,9 +55,11 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post(AppRoutes.logout, {}, { 
+      console.log("Logging out...");
+      const result = await axios.post(AppRoutes.logout, {}, { 
         headers: { Authorization: `Bearer ${token}` }
       });
+      console.log("Logout response:", result.data);     
       Cookies.remove("authToken");
       console.log("User logged out");
       Cookies.remove("user");
