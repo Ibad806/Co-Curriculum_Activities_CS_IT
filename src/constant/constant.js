@@ -11,4 +11,5 @@ export const AppRoutes = {
     googleLogin: devUrl + "auth/google",
     contact: BASE_URL + "contact/contact",
     event: BASE_URL + "event/events",
+    smecpost: BASE_URL + "smecpost/smecpost",
 }
