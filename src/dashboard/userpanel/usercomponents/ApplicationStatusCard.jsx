@@ -80,7 +80,7 @@ const ApplicationStatusCard = ({ application }) => {
           }}
         >
           <div className="flex justify-between items-center">
-            <h2 className="text-xl font-bold text-gray-800 m-0">
+            <h2 className="text-xl font-bold text-black m-0">
               Application Status
             </h2>
             <CustomBadge
