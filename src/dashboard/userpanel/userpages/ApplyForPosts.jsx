@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Cookies from "js-cookie";
-import { AppRoutes } from "../../../constant/constant";
+"use client"
+
+import { useEffect, useState } from "react"
+import axios from "axios"
+import Cookies from "js-cookie"
+import { AppRoutes } from "../../../constant/constant"
+import ApplicationStatusCard from "../usercomponents/ApplicationStatusCard"
 
 const ApplyforPosts = () => {
   const [formData, setFormData] = useState({
@@ -12,74 +15,118 @@ const ApplyforPosts = () => {
     position: "",
     subpost: "",
     additionalDetails: "",
-  });
+  })
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [error, setError] = useState("");
-  const [application, setApplication] = useState(null);
-  const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [activeTab, setActiveTab] = useState("apply")
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [error, setError] = useState("")
+  const [applications, setapplications] = useState([])
+  const [showSuccessModal, setShowSuccessModal] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
   const positions = [
-    "General Manager", "Executive Manager", "Sales Manager", "Event Coordinator",
-    "Technical Head", "Marketing Manager", "Logistics Manager", "Security Head",
-    "Finance Manager", "Media Manager", "Volunteer Coordinator",
-    "E-Games", "Geek Gemes", "General Games",
-  ];
+    "General Manager",
+    "Executive Manager",
+    "Sales Manager",
+    "Event Coordinator",
+    "Technical Head",
+    "Marketing Manager",
+    "Logistics Manager",
+    "Security Head",
+    "Finance Manager",
+    "Media Manager",
+    "Volunteer Coordinator",
+    "E-Games",
+    "Geek Gemes",
+    "General Games",
+  ]
 
-  const subPostPositions = ["E-Games", "Geek Gemes", "General Games"];
-  const subPostOptions = ["Lead", "Co-Lead"];
-  const showSubpostField = subPostPositions.includes(formData.position);
+  const subPostPositions = ["E-Games", "Geek Gemes", "General Games"]
+  const subPostOptions = ["Lead", "Co-Lead"]
+  const showSubpostField = subPostPositions.includes(formData.position)
 
   useEffect(() => {
-    // Fetch values from cookies
-    const savedName = Cookies.get("name");
-    const savedEmail = Cookies.get("email");
-
+    const user = JSON.parse(Cookies.get("user"))
     setFormData((prev) => ({
       ...prev,
-      name: savedName || "",
-      email: savedEmail || "",
-    }));
-  }, []);
+      name: user.name || "",
+      email: user.email || "",
+    }))
+  }, [])
+
+  useEffect(() => {
+    checkStatus()
+  }, [])
 
   const checkStatus = async () => {
     try {
-      const response = await axios.get(`${AppRoutes.smecpost}/application`, {
-        params: { email: formData.email },
-      });
-      setApplication(response.data);
-      setError("");
+      setIsLoading(true)
+      const user = JSON.parse(Cookies.get("user"))
+      const userEmail = user.email
+
+      const response = await axios.get(AppRoutes.getapplication, {
+        params: { email: userEmail }, // Send email as query parameter
+      })
+      console.log("response", response.data.data)
+
+      if (response.data.success) {
+        const appsArray = Array.isArray(response.data.data) ? response.data.data : [response.data.data]
+        setapplications(appsArray)
+        setError("")
+      } else {
+        setapplications(null)
+        setError(response.data.message || "No applications found")
+      }
     } catch (err) {
-      setApplication(null);
-      setError("No application found with this email.");
+      setapplications(null)
+      if (err.response?.status === 404) {
+        setError("You haven't submitted any applications yet")
+      } else {
+        setError(err.response?.data?.message || "Error fetching your applications")
+        console.error("API Error:", err)
+      }
+    } finally {
+      setIsLoading(false)
     }
-  };
+  }
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
-  };
+    const { name, value } = e.target
+    setFormData((prev) => ({ ...prev, [name]: value }))
+  }
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
+    e.preventDefault()
+    setError("")
 
     try {
-      const response = await axios.post(AppRoutes.smecpost, formData);
-      console.log("Submitted:", response.data);
+      setIsLoading(true)
+      const response = await axios.post(AppRoutes.smecpost, formData)
 
-      setIsSubmitted(true);
-      setShowSuccessModal(true);
+      setIsSubmitted(true)
+      setShowSuccessModal(true)
+      setapplications(response.data)
+      setFormData({
+        name: "",
+        rollNumber: "",
+        phone: "",
+        email: "",
+        position: "",
+        subpost: "",
+        additionalDetails: "",
+      })
 
       setTimeout(() => {
-        setShowSuccessModal(false);
-        checkStatus();
-      }, 3000);
+        setShowSuccessModal(false)
+        setActiveTab("view")
+      }, 2000)
     } catch (err) {
-      console.error("Submission error:", err);
-      setError("Something went wrong. Please try again later.");
+      console.error("Submission error:", err)
+      setError(err.response?.data?.message || "Something went wrong. Please try again later.")
+    } finally {
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 p-4">
@@ -93,28 +140,65 @@ const ApplyforPosts = () => {
       )}
 
       <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h1 className="text-3xl font-bold text-gray-800">Apply for SMEC Posts</h1>
+        <h1 className="text-3xl font-bold text-gray-800">SMEC Posts</h1>
         <p className="text-gray-500 mt-2">
-          Submit your application for the available positions in SMEC.
+          {activeTab === "apply" ? "Apply for available positions" : "View your applications status"}
         </p>
+
+        <div className="flex border-b mt-4">
+          <button
+            className={`py-2 px-4 font-medium ${
+              activeTab === "apply" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"
+            }`}
+            onClick={() => setActiveTab("apply")}
+          >
+            Apply for Post
+          </button>
+          {!applications ? (
+            <button
+              className={`py-2 px-4 font-medium ${
+                activeTab === "view" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("view")}
+              disabled
+            >
+              View Applications
+            </button>
+          ) : (
+            <button
+              className={`py-2 px-4 font-medium ${
+                activeTab === "view" ? "text-blue-600 border-b-2 border-blue-600" : "text-gray-500"
+              }`}
+              onClick={() => setActiveTab("view")}
+            >
+              View Applications
+            </button>
+          )}
+        </div>
       </div>
 
-      {application && !showSuccessModal ? (
+      {isLoading ? (
+        <div className="flex justify-center items-center h-64">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        </div>
+      ) : activeTab === "view" ? (
         <div className="bg-white shadow-md rounded-lg p-6 text-gray-800">
-          <h2 className="text-2xl font-bold mb-4">Your Application Status</h2>
-          <p><strong>Name:</strong> {application.name}</p>
-          <p><strong>Email:</strong> {application.email}</p>
-          <p><strong>Phone:</strong> {application.phone}</p>
-          <p><strong>Position:</strong> {application.position}</p>
-          {application.subpost && <p><strong>Subpost:</strong> {application.subpost}</p>}
-          <p><strong>Status:</strong> <span className="font-semibold text-indigo-600">{application.status}</span></p>
+          <h2 className="text-2xl font-bold mb-4">Your Applications</h2>
+
+          {applications && applications.length > 0 ? (
+            applications.map((app, index) => <ApplicationStatusCard key={index} application={app} />)
+          ) : (
+            <p>No applications found</p>
+          )}
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="bg-white shadow-md rounded-lg p-6 w-full mx-auto">
           {error && <div className="bg-red-100 text-red-700 p-3 rounded mb-4">{error}</div>}
 
           <div className="mb-4">
-            <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Full Name</label>
+            <label htmlFor="name" className="block text-gray-700 font-medium mb-2">
+              Full Name
+            </label>
             <input
               type="text"
               id="name"
@@ -126,7 +210,9 @@ const ApplyforPosts = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
+            <label htmlFor="email" className="block text-gray-700 font-medium mb-2">
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -138,7 +224,9 @@ const ApplyforPosts = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="rollNumber" className="block text-gray-700 font-medium mb-2">Roll Number</label>
+            <label htmlFor="rollNumber" className="block text-gray-700 font-medium mb-2">
+              Roll Number
+            </label>
             <input
               type="text"
               id="rollNumber"
@@ -152,7 +240,9 @@ const ApplyforPosts = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">Phone Number</label>
+            <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">
+              Phone Number
+            </label>
             <input
               type="text"
               id="phone"
@@ -166,7 +256,9 @@ const ApplyforPosts = () => {
           </div>
 
           <div className="mb-4">
-            <label htmlFor="position" className="block text-gray-700 font-medium mb-2">Position</label>
+            <label htmlFor="position" className="block text-gray-700 font-medium mb-2">
+              Position
+            </label>
             <select
               id="position"
               name="position"
@@ -175,16 +267,22 @@ const ApplyforPosts = () => {
               className="w-full px-4 py-2 border rounded-lg"
               required
             >
-              <option value="" disabled>Select a position</option>
+              <option value="" disabled>
+                Select a position
+              </option>
               {positions.map((position) => (
-                <option key={position} value={position}>{position}</option>
+                <option key={position} value={position}>
+                  {position}
+                </option>
               ))}
             </select>
           </div>
 
           {showSubpostField && (
             <div className="mb-4">
-              <label htmlFor="subpost" className="block text-gray-700 font-medium mb-2">Subpost</label>
+              <label htmlFor="subpost" className="block text-gray-700 font-medium mb-2">
+                Subpost
+              </label>
               <select
                 id="subpost"
                 name="subpost"
@@ -193,9 +291,13 @@ const ApplyforPosts = () => {
                 className="w-full px-4 py-2 border rounded-lg"
                 required
               >
-                <option value="" disabled>Select a subpost</option>
+                <option value="" disabled>
+                  Select a subpost
+                </option>
                 {subPostOptions.map((option) => (
-                  <option key={option} value={option}>{option}</option>
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
                 ))}
               </select>
             </div>
@@ -219,13 +321,14 @@ const ApplyforPosts = () => {
           <button
             type="submit"
             className="bg-blue-500 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-600 transition duration-200"
+            disabled={isLoading}
           >
-            Submit Application
+            {isLoading ? "Submitting..." : "Submit Application"}
           </button>
         </form>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default ApplyforPosts;
+export default ApplyforPosts

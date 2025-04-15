@@ -12,4 +12,5 @@ export const AppRoutes = {
     contact: BASE_URL + "contact/contact",
     event: BASE_URL + "event/events",
     smecpost: BASE_URL + "smecpost/smecpost",
+    getapplication: BASE_URL + "smecpost/application",
 }
