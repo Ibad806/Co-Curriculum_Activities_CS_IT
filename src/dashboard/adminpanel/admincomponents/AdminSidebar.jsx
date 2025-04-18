@@ -46,6 +46,7 @@ const AdminSidebar = () => {
         submenu: [
           { title: "Create Game", path: "/adminpanel/creategame" },
           { title: "Manage Game", path: "/adminpanel/managegame" },
+          { title: "Manage Category", path: "/adminpanel/managecategory" },
           { title: "Judges Panel", path: "/adminpanel/judgesmanagement" },
           { title: "Post Applications", path: "/adminpanel/postapplication" },
           { title: "Ticketing", path: "/adminpanel/ticketmanagement" },

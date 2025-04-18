@@ -113,6 +113,7 @@ const PostApplications = () => {
                 </span>
               </th>
               <th className="px-6 py-3 text-left text-sm font-medium">Position</th>
+              <th className="px-6 py-3 text-left text-sm font-medium">Post</th>
               <th className="px-6 py-3 text-left text-sm font-medium">Status</th>
               <th className="px-6 py-3 text-left text-sm font-medium">Actions</th>
             </tr>
@@ -122,6 +123,7 @@ const PostApplications = () => {
               <tr key={app._id}>
                 <td className="px-6 py-4 font-medium">{app.Name}</td>
                 <td className="px-6 py-4">{app.Post}</td>
+                <td className="px-6 py-4">{app.subpost}</td>
                 <td className="px-6 py-4">
                   <span className={`px-3 py-1 rounded-full text-sm ${app.Status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
                       app.Status === 'Accepted' ? 'bg-green-100 text-green-800' :
@@ -165,6 +167,7 @@ const PostApplications = () => {
             <div className="mt-4 space-y-2">
               <p><strong>Name:</strong> {selectedApp.Name}</p>
               <p><strong>Email:</strong> {selectedApp.Email}</p>
+              <p><strong>Roll Number:</strong> {selectedApp.RollNumber}</p>
               <p><strong>Position:</strong> {selectedApp.Post}</p>
               <p><strong>Post:</strong> {selectedApp.subpost || "Lead"}</p>
               <p><strong>Contact:</strong> {selectedApp.ContactNumber}</p>

@@ -47,6 +47,7 @@ import EventPage from "./pages/EventPage";
 import AllNews from "./pages/AllNews";
 import NewsDetail from "./pages/NewDetails";
 import Cookies from "js-cookie";
+import ManageCategory from "./dashboard/adminpanel/admincomponents/ManageCategory";
 
 function App() {
   const navigate = useNavigate(); // Replace useHistory with useNavigate
@@ -102,7 +103,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/paymentsuccess" element={<PaymentSuccessful />} />
         {/* User Panel Layout */}
-        {role === "isParticpant" && (
+        { role == "user"  && (
           <Route path="/userpanel" element={<UserPanel />}>
             {/* Child Routes */}
             <Route path="home" element={<UserHome />} />
@@ -134,6 +135,7 @@ function App() {
             <Route path="manageevents" element={<ManageEvents />} />
             <Route path="creategame" element={<CreateSmecGame />} />
             <Route path="managegame" element={<ManageSmecGame />} />
+            <Route path="managecategory" element={<ManageCategory />} />
             <Route path="judgesmanagement" element={<JudgesManagement />} />
             <Route path="postapplication" element={<PostApplications />} />
             <Route path="ticketmanagement" element={<TicketManagement />} />
