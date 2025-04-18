@@ -1,10 +1,7 @@
-"use client"
-
-// Imports
-import axios from "axios"
-import { useEffect, useState } from "react"
-import { FaSearch, FaPlus, FaTimes, FaEdit, FaTrash, FaImage, FaUpload } from "react-icons/fa"
-import { AppRoutes } from "../../../constant/constant"
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { FaSearch, FaPlus, FaTimes, FaEdit, FaTrash, FaImage, FaUpload } from "react-icons/fa";
+import { AppRoutes } from "../../../constant/constant";
 
 // CategoryModal Component
 const CategoryModal = ({
@@ -23,67 +20,82 @@ const CategoryModal = ({
       description: "",
       lead: "",
       coLead: "",
-    },
-  )
-  const [cardImagePreview, setCardImagePreview] = useState(null)
-  const [bannerImagePreview, setBannerImagePreview] = useState(null)
+    }
+  );
+  const [cardImagePreview, setCardImagePreview] = useState(null);
+  const [bannerImagePreview, setBannerImagePreview] = useState(null);
 
   useEffect(() => {
     if (showModal && initialCategory) {
-      setNewCategory(initialCategory)
+      setNewCategory(initialCategory);
 
       // Set image previews if available in edit mode
       if (isEditMode && initialCategory.cardImageUrl) {
-        setCardImagePreview(initialCategory.cardImageUrl)
+        setCardImagePreview(initialCategory.cardImageUrl);
       }
 
       if (isEditMode && initialCategory.bannerImageUrl) {
-        setBannerImagePreview(initialCategory.bannerImageUrl)
+        setBannerImagePreview(initialCategory.bannerImageUrl);
       }
     }
-  }, [showModal, initialCategory, isEditMode])
+  }, [showModal, initialCategory, isEditMode]);
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (isEditMode) {
-      handleUpdateCategory(newCategory)
+      handleUpdateCategory(newCategory);
+      setNewCategory({
+        title: "",
+        description: "",
+        lead: "",
+        coLead: "",
+        cardImage: null,
+        bannerImage: null,
+      })
     } else {
-      handleAddCategory(newCategory)
+      handleAddCategory(newCategory);
+      setNewCategory({
+        title: "",
+        description: "",
+        lead: "",
+        coLead: "",
+        cardImage: null,
+        bannerImage: null,
+        });
     }
-    setShowModal(false)
-  }
+  };
 
   const handleInputChange = (field, value) => {
-    setNewCategory({ ...newCategory, [field]: value })
-  }
+    setNewCategory({ ...newCategory, [field]: value });
+  };
 
   const handleCardImageChange = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
     if (file) {
-      setNewCategory({ ...newCategory, cardImage: file })
-      setCardImagePreview(URL.createObjectURL(file))
+      setNewCategory({ ...newCategory, cardImage: file });
+      setCardImagePreview(URL.createObjectURL(file));
     }
-  }
+  };
 
   const handleBannerImageChange = (e) => {
-    const file = e.target.files[0]
+    const file = e.target.files[0];
     if (file) {
-      setNewCategory({ ...newCategory, bannerImage: file })
-      setBannerImagePreview(URL.createObjectURL(file))
+      setNewCategory({ ...newCategory, bannerImage: file });
+      setBannerImagePreview(URL.createObjectURL(file));
     }
-  }
+  };
 
   const removeCardImage = () => {
-    setCardImagePreview(null)
-    setNewCategory({ ...newCategory, cardImage: null })
-  }
+    setCardImagePreview(null);
+    setNewCategory({ ...newCategory, cardImage: null });
+  };
 
   const removeBannerImage = () => {
-    setBannerImagePreview(null)
-    setNewCategory({ ...newCategory, bannerImage: null })
-  }
+    setBannerImagePreview(null);
+    setNewCategory({ ...newCategory, bannerImage: null });
+  };
 
-  if (!showModal) return null
+  if (!showModal) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center p-4 z-50 animate-fadeIn">
@@ -279,157 +291,157 @@ const CategoryModal = ({
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
 // Main ManageCategory Component
 const ManageCategory = () => {
-  const [categories, setCategories] = useState([])
-  const [searchQuery, setSearchQuery] = useState("")
-  const [acceptedUsers, setAcceptedUsers] = useState([])
-  const [leadOptions, setLeadOptions] = useState([])
-  const [coLeadOptions, setCoLeadOptions] = useState([])
-  const [showAddModal, setShowAddModal] = useState(false)
-  const [showEditModal, setShowEditModal] = useState(false)
-  const [showDeleteModal, setShowDeleteModal] = useState(false)
-  const [cardImagePreview, setCardImagePreview] = useState(null)
-  const [bannerImagePreview, setBannerImagePreview] = useState(null)
-  const [newCategory, setNewCategory] = useState({
+  const [categories, setCategories] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [acceptedUsers, setAcceptedUsers] = useState([]);
+  const [leadOptions, setLeadOptions] = useState([]);
+  const [coLeadOptions, setCoLeadOptions] = useState([]);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedCategoryToDelete, setSelectedCategoryToDelete] = useState(null);
+  const [currentCategory, setCurrentCategory] = useState({
     title: "",
-    cardImage: "",
-    bannerImage: "",
     description: "",
     lead: "",
     coLead: "",
-  })
-  const [selectedCategoryToDelete, setSelectedCategoryToDelete] = useState(null)
+  });
 
   const fetchCategories = async () => {
     try {
-      const res = await axios.get(AppRoutes.category)
-      setCategories(res.data)
+      const res = await axios.get(AppRoutes.category);
+      setCategories(res.data);
     } catch (err) {
-      console.error("Error fetching categories", err)
+      console.error("Error fetching categories", err);
     }
-  }
+  };
 
   const fetchAcceptedUsers = async () => {
     try {
-      const res = await axios.get(AppRoutes.usersaccepted)
+      const res = await axios.get(AppRoutes.usersaccepted);
       if (res.data.success) {
-        const users = [...res.data.data.lead, ...res.data.data.coLead]
-        setAcceptedUsers(users)
-        setLeadOptions(res.data.data.lead)
-        setCoLeadOptions(res.data.data.coLead)
+        const users = [...res.data.data.lead, ...res.data.data.coLead];
+        setAcceptedUsers(users);
+        setLeadOptions(res.data.data.lead);
+        setCoLeadOptions(res.data.data.coLead);
       }
     } catch (err) {
-      console.error("Error fetching users", err)
+      console.error("Error fetching users", err);
     }
-  }
+  };
 
   useEffect(() => {
-    fetchAcceptedUsers()
-    fetchCategories()
-  }, [])
+    fetchAcceptedUsers();
+    fetchCategories();
+  }, []);
 
   const handleAddCategory = async (categoryData) => {
     try {
-      const formData = new FormData()
-      formData.append("title", categoryData.title)
-      formData.append("description", categoryData.description)
-      formData.append("lead", categoryData.lead)
-      formData.append("coLead", categoryData.coLead)
+      const formData = new FormData();
+      formData.append("title", categoryData.title);
+      formData.append("description", categoryData.description || "");
+      formData.append("lead", categoryData.lead || "");
+      formData.append("coLead", categoryData.coLead || "");
+
       if (categoryData.cardImage) {
-        formData.append("cardImage", categoryData.cardImage)
+        formData.append("cardImage", categoryData.cardImage);
       }
       if (categoryData.bannerImage) {
-        formData.append("bannerImage", categoryData.bannerImage)
+        formData.append("bannerImage", categoryData.bannerImage);
       }
 
-      await axios.post(AppRoutes.category, formData, {
+      // Debugging: Log FormData entries
+      for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+      
+      const response = await axios.post(AppRoutes.category, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      })
+      });
 
-      fetchCategories()
-      resetForm()
+      if (response.data.success) {
+        fetchCategories();
+        setShowAddModal(false);
+      }
     } catch (err) {
-      console.error("Error adding category", err)
+      console.error("Error adding category", err);
     }
-  }
+  };
 
   const handleEditCategory = (category) => {
-    setNewCategory({
+    setCurrentCategory({
       ...category,
-      cardImage: "", // Clear file inputs; cannot pre-populate file fields
-      bannerImage: "",
-      cardImageUrl: category.cardImage, // Store the URL for preview
-      bannerImageUrl: category.bannerImage, // Store the URL for preview
-    })
-    setShowEditModal(true)
-  }
+      cardImage: null,
+      bannerImage: null,
+      cardImageUrl: category.cardImage,
+      bannerImageUrl: category.bannerImage,
+    });
+    setShowEditModal(true);
+  };
 
   const handleUpdateCategory = async (categoryData) => {
     try {
-      console.log(categoryData);
-      
-      const formData = new FormData()
-      formData.append("title", categoryData.title)
-      formData.append("description", categoryData.description)
-      formData.append("lead", categoryData.lead)
-      formData.append("coLead", categoryData.coLead)
+      const formData = new FormData();
+      formData.append("title", categoryData.title);
+      formData.append("description", categoryData.description || "");
+      formData.append("lead", categoryData.lead || "");
+      formData.append("coLead", categoryData.coLead || "");
 
       if (categoryData.cardImage instanceof File) {
-        formData.append("cardImage", categoryData.cardImage)
+        formData.append("cardImage", categoryData.cardImage);
+      } else if (categoryData.cardImageUrl && !categoryData.cardImage) {
+        // If we have an existing image URL and no new file
+        formData.append("cardImageUrl", categoryData.cardImageUrl);
       }
 
-      
       if (categoryData.bannerImage instanceof File) {
-        formData.append("bannerImage", categoryData.bannerImage)
+        formData.append("bannerImage", categoryData.bannerImage);
+      } else if (categoryData.bannerImageUrl && !categoryData.bannerImage) {
+        formData.append("bannerImageUrl", categoryData.bannerImageUrl);
       }
 
-      await axios.put(`${AppRoutes.category}/${categoryData._id}`, formData, {
+      // Debugging: Log FormData entries
+      for (let [key, value] of formData.entries()) {
+        console.log(key, value);
+      }
+
+      const response = await axios.put(`${AppRoutes.category}/${categoryData._id}`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
-      })
+      });
 
-      fetchCategories()
-      resetForm()
+      if (response.data.success) {
+        fetchCategories();
+        setShowEditModal(false);
+      }
     } catch (err) {
-      console.error("Error updating category", err)
+      console.error("Error updating category", err);
     }
-  }
+  };
 
   const handleDelete = (category) => {
-    setSelectedCategoryToDelete(category)
-    setShowDeleteModal(true)
-  }
+    setSelectedCategoryToDelete(category);
+    setShowDeleteModal(true);
+  };
 
   const confirmDelete = async () => {
     try {
-      await axios.delete(`${AppRoutes.category}/${selectedCategoryToDelete._id}`)
-      fetchCategories()
-      setShowDeleteModal(false)
-      setSelectedCategoryToDelete(null)
+      await axios.delete(`${AppRoutes.category}/${selectedCategoryToDelete._id}`);
+      fetchCategories();
+      setShowDeleteModal(false);
+      setSelectedCategoryToDelete(null);
     } catch (err) {
-      console.error("Error deleting category", err)
+      console.error("Error deleting category", err);
     }
-  }
-
-  const resetForm = () => {
-    setNewCategory({
-      title: "",
-      cardImage: "",
-      bannerImage: "",
-      description: "",
-      lead: "",
-      coLead: "",
-    })
-    setCardImagePreview(null)
-    setBannerImagePreview(null)
-  }
+  };
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
@@ -511,7 +523,12 @@ const ManageCategory = () => {
         showModal={showAddModal}
         setShowModal={setShowAddModal}
         isEditMode={false}
-        initialCategory={newCategory}
+        initialCategory={{
+          title: "",
+          description: "",
+          lead: "",
+          coLead: "",
+        }}
         leadOptions={leadOptions}
         coLeadOptions={coLeadOptions}
         handleAddCategory={handleAddCategory}
@@ -523,7 +540,7 @@ const ManageCategory = () => {
         showModal={showEditModal}
         setShowModal={setShowEditModal}
         isEditMode={true}
-        initialCategory={newCategory}
+        initialCategory={currentCategory}
         leadOptions={leadOptions}
         coLeadOptions={coLeadOptions}
         handleAddCategory={handleAddCategory}
@@ -566,38 +583,8 @@ const ManageCategory = () => {
           </div>
         </div>
       )}
-
-      <style jsx>{`
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        }
-
-        .transform {
-          animation: slideIn 0.3s ease-out;
-        }
-
-        @keyframes slideIn {
-          from {
-            transform: translateY(-20px);
-            opacity: 0;
-          }
-          to {
-            transform: translateY(0);
-            opacity: 1;
-          }
-        }
-      `}</style>
     </div>
-  )
-}
+  );
+};
 
-export default ManageCategory
+export default ManageCategory;
