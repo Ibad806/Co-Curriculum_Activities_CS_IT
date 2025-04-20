@@ -126,8 +126,8 @@ function App() {
           </Route>
         )}
         {/* Admin Panel Layout */}
-       {/* { */}
-        {/* role === "admin" && ( */}
+       {
+       role === "admin" && (
           <Route path="/adminpanel" element={<AdminLayout />}>
             {/* Child Routes */}
             <Route path="home" element={<AdminHome />} />
@@ -143,8 +143,7 @@ function App() {
             <Route path="gallerymanagement" element={<GalleryManagement />} />
             <Route path="news" element={<AdminNews />} />
           </Route>
-        {/* ) */}
-       {/* } */}
+         ) }
         
       </Routes>
       <BackToCACButton />

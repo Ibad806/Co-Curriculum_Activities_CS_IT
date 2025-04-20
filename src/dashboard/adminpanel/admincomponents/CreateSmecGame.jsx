@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { FaGamepad, FaUpload, FaUsers, FaCalendarAlt, FaUserTie, FaMoneyBill, FaMapMarkerAlt } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { FaGamepad, FaUpload, FaTimes, FaImage } from 'react-icons/fa';
 import axios from 'axios';
 import { AppRoutes } from '../../../constant/constant';
 
@@ -7,7 +7,6 @@ const CreateSmecGame = () => {
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
-  const [gameImageUrl, setGameImageUrl] = useState('');
   const [date, setDate] = useState('');
   const [time, setTime] = useState('');
   const [lead, setLead] = useState('');
@@ -15,42 +14,90 @@ const CreateSmecGame = () => {
   const [price, setPrice] = useState('');
   const [player, setPlayer] = useState('');
   const [venue, setVenue] = useState('');
+  const [bannerImage, setBannerImage] = useState(null);
+  const [bannerImagePreview, setBannerImagePreview] = useState('');
 
-  const gameCategories = [
-    "E-Games",
-    "Strategy Games",
-    "Sports Simulation",
-    "Battle Royale",
-    "MOBA",
-    "Card Games"
-  ];
+  const [categories, setCategories] = useState([]);
+  const [leadOptions, setLeadOptions] = useState([]);
+  const [coLeadOptions, setCoLeadOptions] = useState([]);
+
+  useEffect(() => {
+    fetchAcceptedUsers();
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(AppRoutes.category);
+      setCategories(res.data);
+    } catch (err) {
+      console.error('Error fetching categories', err);
+    }
+  };
+
+  const fetchAcceptedUsers = async () => {
+    try {
+      const res = await axios.get(AppRoutes.usersaccepted);
+      if (res.data.success) {
+        setLeadOptions(res.data.data.lead);
+        setCoLeadOptions(res.data.data.coLead);
+      }
+    } catch (err) {
+      console.error('Error fetching users', err);
+    }
+  };
+
+  const handleBannerImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setBannerImage(file);
+      setBannerImagePreview(URL.createObjectURL(file));
+    }
+  };
+
+  const removeBannerImage = () => {
+    setBannerImage(null);
+    setBannerImagePreview('');
+  };
 
   const handleCreateGame = async (e) => {
     e.preventDefault();
 
-    const gameData = {
-      title,
-      category,
-      description,
-      gameImageUrl,
-      date,
-      time,
-      lead,
-      coLead,
-      price,
-      player,
-      venue
-    };
+    // Ensure you're passing the correct ObjectId for category, lead, and coLead
+    const formData = new FormData();
+    formData.append('title', title);
+    formData.append('category', category);  // Assuming category is selected as an object
+    formData.append('description', description);
+    formData.append('date', date);
+    formData.append('time', time);
+    formData.append('lead', leadOptions );  // Ensure valid ObjectId or empty string
+    formData.append('coLead', coLeadOptions);  // Ensure valid ObjectId or empty string
+    formData.append('price', price);
+    formData.append('player', player);
+    formData.append('venue', venue);
+    if (bannerImage) {
+      formData.append('bannerImage', bannerImage);  // Include banner image in the form data
+    }
+
+    console.log("Form Data:", formData); // Debugging line to check form data
+    console.log("Form Data Entries:", [...formData]); // Debugging line to check form data entries
+
+    
 
     try {
-      const response = await axios.post(AppRoutes.creategame, gameData);
+      const response = await axios.post(AppRoutes.creategame, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+
       console.log('Game created:', response.data);
       alert('Game created successfully!');
+
       // Reset form
       setTitle('');
       setCategory('');
       setDescription('');
-      setGameImageUrl('');
       setDate('');
       setTime('');
       setLead('');
@@ -58,11 +105,14 @@ const CreateSmecGame = () => {
       setPrice('');
       setPlayer('');
       setVenue('');
+      setBannerImage(null);
+      setBannerImagePreview(null);
     } catch (error) {
       console.error('Error creating game:', error.response?.data || error.message);
       alert('Failed to create game. Please try again.');
     }
   };
+
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -101,10 +151,14 @@ const CreateSmecGame = () => {
                 required
               >
                 <option value="">Select Category</option>
-                {gameCategories.map((cat, idx) => (
-                  <option key={idx} value={cat}>{cat}</option>
+                {categories.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.title}
+                  </option>
                 ))}
               </select>
+
+
             </div>
 
             <div>
@@ -130,37 +184,36 @@ const CreateSmecGame = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Lead</label>
-              <input
-                type="text"
+              <label className="block text-sm font-medium mb-2">Description</label>
+              <textarea
                 className="w-full p-3 border rounded-lg"
-                value={lead}
-                onChange={(e) => setLead(e.target.value)}
-                placeholder="Enter lead ID or name"
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                placeholder="Write a brief description about the game"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Co-Lead</label>
+              <label className="block text-sm font-medium mb-2">Venue</label>
               <input
                 type="text"
                 className="w-full p-3 border rounded-lg"
-                value={coLead}
-                onChange={(e) => setCoLead(e.target.value)}
-                placeholder="Enter co-lead ID or name"
+                value={venue}
+                onChange={(e) => setVenue(e.target.value)}
+                placeholder="Enter venue address"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Price ($)</label>
+              <label className="block text-sm font-medium mb-2">Price</label>
               <input
-                type="number"
+                type="text"
                 className="w-full p-3 border rounded-lg"
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
-                placeholder="E.g., 50"
+                placeholder="Enter price for participation"
                 required
               />
             </div>
@@ -172,56 +225,55 @@ const CreateSmecGame = () => {
                 className="w-full p-3 border rounded-lg"
                 value={player}
                 onChange={(e) => setPlayer(e.target.value)}
-                placeholder="E.g., 100"
-                required
-              />
-            </div>
-
-            <div className="md:col-span-2">
-              <label className="block text-sm font-medium mb-2">Venue</label>
-              <input
-                type="text"
-                className="w-full p-3 border rounded-lg"
-                value={venue}
-                onChange={(e) => setVenue(e.target.value)}
-                placeholder="E.g., Main Auditorium"
+                placeholder="Enter max number of players"
                 required
               />
             </div>
           </div>
-
-          <div className="mt-6">
-            <label className="block text-sm font-medium mb-2">Game Description</label>
-            <textarea
-              className="w-full p-3 border rounded-lg h-32"
-              value={description}
-              onChange={(e) => setDescription(e.target.value)}
-              placeholder="Describe the game rules, format, and special requirements..."
-              required
-            />
-          </div>
         </div>
 
-        {/* Game Media */}
-        <div className="bg-white p-6 rounded-xl shadow-sm">
-          <h2 className="text-xl font-bold mb-6 flex items-center">
-            <FaUpload className="mr-2 text-gray-500" />
-            Game Media
-          </h2>
-          <div>
-            <label className="block text-sm font-medium mb-2">Image URL</label>
-            <input
-              type="text"
-              className="w-full p-3 border rounded-lg"
-              value={gameImageUrl}
-              onChange={(e) => setGameImageUrl(e.target.value)}
-              placeholder="Paste image URL here"
-              required
-            />
+        {/* Banner Image */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">Banner Image</label>
+          <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:bg-gray-50 transition-colors">
+            {bannerImagePreview ? (
+              <div className="relative">
+                <img
+                  src={bannerImagePreview}
+                  alt="Banner Preview"
+                  className="w-full h-40 object-cover rounded-md"
+                />
+                <button
+                  type="button"
+                  onClick={removeBannerImage}
+                  className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
+                >
+                  <FaTimes size={14} />
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-4">
+                <FaImage className="text-gray-400 text-4xl mb-2" />
+                <p className="text-sm text-gray-500 mb-2">Click to upload banner image</p>
+                <div className="relative">
+                  <input
+                    type="file"
+                    onChange={handleBannerImageChange}
+                    className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    accept="image/*"
+                  />
+                  <button
+                    type="button"
+                    className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors flex items-center"
+                  >
+                    <FaUpload className="mr-2" /> Browse
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
-        </div>
-
-        <div className="flex justify-end">
+          </div>
+          <div className="flex justify-end">
           <button
             type="submit"
             className="px-8 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600"
@@ -235,4 +287,3 @@ const CreateSmecGame = () => {
 };
 
 export default CreateSmecGame;
-``
