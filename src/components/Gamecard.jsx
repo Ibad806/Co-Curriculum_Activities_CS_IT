@@ -19,6 +19,14 @@ const Gamecard = ({
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const categoryTitle = typeof category === 'object' 
+  ? category?.title || '' 
+  : category || '';
+
+// Generate clean URL
+const cleanTitle = categoryTitle.toLowerCase().replace(/[\s-]/g, '');
+const titlelower = title.toLowerCase().replace(/[\s-]/g, '');
+
   const handleClick = () => {
     dispatch(
       selectGame({
@@ -31,7 +39,7 @@ const Gamecard = ({
         playerslot,
       })
     );
-    navigate(`/smec/${category}/${title}`);
+    navigate(`/smec/${cleanTitle}/${titlelower}`);
   };
 
   return (

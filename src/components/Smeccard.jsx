@@ -2,13 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Smeccard = ({ title, image, category, id }) => {
-
   
-  // Convert title to lowercase and remove spaces/dashes
   const cleanTitle = title.toLowerCase().replace(/[\s-]/g, '');
-  
-  // Create URL in format: /smec/[cleaned-title]
-  const categoryUrl = `/smec/${cleanTitle}`;
+  const categoryUrl = `/smec/${cleanTitle}?id=${id}`;
+
 
   return (
       <div className="relative w-[300px] h-[400px] text-white border border-white rounded-[10px] group hover:scale-105 transition-transform duration-300 cursor-pointer">

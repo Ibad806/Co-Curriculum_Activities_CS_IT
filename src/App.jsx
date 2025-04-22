@@ -48,6 +48,7 @@ import AllNews from "./pages/AllNews";
 import NewsDetail from "./pages/NewDetails";
 import Cookies from "js-cookie";
 import ManageCategory from "./dashboard/adminpanel/admincomponents/ManageCategory";
+import CategoryDetailsPage from "./components/CategoryDetailsPage";
 
 function App() {
   const navigate = useNavigate(); // Replace useHistory with useNavigate
@@ -93,11 +94,12 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
+                  {/* <Route path="generalgame" element={<Generalgames />} />
+          <Route path="egame" element={<Egames />} />
+          <Route path="geekgame" element={<Geekgames />} /> */}
         <Route path="/smec">
           <Route index element={<Smec />} />
-          <Route path="generalgame" element={<Generalgames />} />
-          <Route path="egame" element={<Egames />} />
-          <Route path="geekgame" element={<Geekgames />} />
+          <Route path=":category" element={<CategoryDetailsPage />} />
           <Route path=":category/:title" element={<Gamepage />} />
         </Route>
         <Route path="/payment" element={<Payment />} />

@@ -35,7 +35,7 @@ const Gamedetails = () => {
     contactInfo,
   } = selectedGame;
 
-  const ticketPrice = parseInt(price.replace(",", ""), 10) || 0;
+  const ticketPrice = 100;
 
   const incrementQuantity = () => {
     setQuantity((prevQuantity) => prevQuantity + 1);
@@ -81,6 +81,14 @@ const Gamedetails = () => {
             <p className="text-sm md:text-lg">{gamedesc}</p>
           </section>
 
+          <div className="border-4 p-2 border-[#393939] rounded-[55px] mt-8">
+            <div className="w-full bg-[#393939] rounded-[50px] p-4 ">
+              <h2 className="text-[25px] font-medium text-center">
+                Ticket Information
+              </h2>
+            </div>
+          </div>
+
           {/* Game Details Section */}
           <section className="mt-8 flex flex-col md:flex-row gap-4">
             <div className="p-4 rounded-lg shadow-md flex-1 border border-gray-600">
@@ -90,11 +98,8 @@ const Gamedetails = () => {
                 </h3>
               </div>
               <ul className="space-y-2">
-                {rules?.map((rule, index) => (
-                  <li className="text-sm" key={index}>
-                    {rule}
-                  </li>
-                ))}
+                <li className="text-sm">Ticket: {price}</li>
+                <li className="text-sm">Player: {playerslot}</li>
               </ul>
             </div>
             <div className="p-4 rounded-lg shadow-md flex-1 border border-gray-600">
@@ -104,7 +109,6 @@ const Gamedetails = () => {
               <ul className="space-y-2">
                 <li className="text-sm">Date: {date}</li>
                 <li className="text-sm">Time: {time}</li>
-                <li className="text-sm">Duration: 8 Minutes</li>
               </ul>
             </div>
             <div className="p-4 rounded-lg shadow-md flex-1 border border-gray-600">
@@ -113,56 +117,11 @@ const Gamedetails = () => {
               </div>
               <ul className="space-y-2">
                 <li className="text-sm">Venue: {venue}</li>
-                <li className="text-sm">Organizer: {organizer}</li>
                 <li className="text-sm">Contact: {contactInfo}</li>
               </ul>
             </div>
           </section>
-          <div className="border-4 p-2 border-[#393939] rounded-[55px] mt-8">
-            <div className="w-full bg-[#393939] rounded-[50px] p-4 ">
-              <h2 className="text-[25px] font-medium text-center">
-                Ticket Information
-              </h2>
-            </div>
-          </div>
-          {/* Ticket Information */}
-          <section className="mt-8 p-6 rounded-[30px] shadow-md border-[#393939] border-4">
-            <div className="pt-6">
-              <div className="flex items-center justify-between">
-                <h3 className="md:text-lg sm:text-sm font-medium pb-9">
-                  Ticket Price:
-                </h3>
-                <p className="text-gray-300 md:text-lg text-sm pb-9">
-                  Rs {price}
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <div className="flex items-center gap-4">
-                  <button
-                    onClick={decrementQuantity}
-                    className="text-lg bg-[#211D70] text-black w-[40px] h-[40px] rounded-[50%]"
-                  >
-                    -
-                  </button>
-                  <span className="text-lg">{quantity}</span>
-                  <button
-                    onClick={incrementQuantity}
-                    className="text-lg bg-[#211D70] text-black w-[40px] h-[40px] rounded-[50%]"
-                  >
-                    +
-                  </button>
-                </div>
-                <p className="md:text-lg text-sm font-semibold">
-                  Total Price: Rs {totalPrice}
-                </p>
-              </div>
-              <div className="flex items-center justify-between mt-16">
-                <h3 className="text-lg font-medium py-[20px]">
-                  Registration Deadline:
-                </h3>
-                <p className="text-gray-300 text-sm">{registrationDeadline}</p>
-              </div>
-            </div>
+
             <div className="text-center mt-6">
               <button
                 onClick={handleCheckout}
@@ -171,26 +130,6 @@ const Gamedetails = () => {
                 Checkout
               </button>
             </div>
-          </section>
-          {/* Additional Information */}
-          <section className="mt-8 p-6 rounded-[30px] shadow-md border-[#393939] border-4">
-            <div className="pt-6">
-              <div className="flex items-center justify-between">
-                <h3 className="md:text-lg sm:text-sm font-medium pb-9">
-                  Genre:
-                </h3>
-                <p className="text-gray-300 md:text-lg text-sm pb-9">{genre}</p>
-              </div>
-              <div className="flex items-center justify-between mt-4">
-                <h3 className="md:text-lg sm:text-sm font-medium pb-9">
-                  Age Rating:
-                </h3>
-                <p className="text-gray-300 md:text-lg text-sm pb-9">
-                  {ageRating}
-                </p>
-              </div>
-            </div>
-          </section>
         </main>
       </div>
     </>
