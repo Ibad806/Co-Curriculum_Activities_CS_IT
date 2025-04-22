@@ -245,7 +245,7 @@ const CategoryModal = ({
                   <option value="">Select Lead</option>
                   {leadOptions.map((user) => (
                     <option key={user._id} value={user._id}>
-                      {user.Name}
+                      {user.Name}  {user.Post}
                     </option>
                   ))}
                 </select>
@@ -264,7 +264,7 @@ const CategoryModal = ({
                   <option value="">Select Co-Lead</option>
                   {coLeadOptions.map((user) => (
                     <option key={user._id} value={user._id}>
-                      {user.Name}
+                      {user.Name} {user.Post}
                     </option>
                   ))}
                 </select>

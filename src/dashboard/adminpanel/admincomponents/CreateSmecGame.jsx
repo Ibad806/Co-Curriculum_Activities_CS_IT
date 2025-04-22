@@ -1,28 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import { FaGamepad, FaUpload, FaTimes, FaImage } from 'react-icons/fa';
-import axios from 'axios';
-import { AppRoutes } from '../../../constant/constant';
+import React, { useEffect, useState } from "react";
+import { FaGamepad, FaUpload, FaTimes, FaImage } from "react-icons/fa";
+import axios from "axios";
+import { AppRoutes } from "../../../constant/constant";
 
 const CreateSmecGame = () => {
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('');
-  const [description, setDescription] = useState('');
-  const [date, setDate] = useState('');
-  const [time, setTime] = useState('');
-  const [lead, setLead] = useState('');
-  const [coLead, setCoLead] = useState('');
-  const [price, setPrice] = useState('');
-  const [player, setPlayer] = useState('');
-  const [venue, setVenue] = useState('');
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [date, setDate] = useState("");
+  const [time, setTime] = useState("");
+  const [price, setPrice] = useState("");
+  const [player, setPlayer] = useState("");
+  const [venue, setVenue] = useState("");
   const [bannerImage, setBannerImage] = useState(null);
-  const [bannerImagePreview, setBannerImagePreview] = useState('');
+  const [bannerImagePreview, setBannerImagePreview] = useState("");
 
   const [categories, setCategories] = useState([]);
-  const [leadOptions, setLeadOptions] = useState([]);
-  const [coLeadOptions, setCoLeadOptions] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
-    fetchAcceptedUsers();
     fetchCategories();
   }, []);
 
@@ -31,20 +27,15 @@ const CreateSmecGame = () => {
       const res = await axios.get(AppRoutes.category);
       setCategories(res.data);
     } catch (err) {
-      console.error('Error fetching categories', err);
+      console.error("Error fetching categories", err);
     }
   };
 
-  const fetchAcceptedUsers = async () => {
-    try {
-      const res = await axios.get(AppRoutes.usersaccepted);
-      if (res.data.success) {
-        setLeadOptions(res.data.data.lead);
-        setCoLeadOptions(res.data.data.coLead);
-      }
-    } catch (err) {
-      console.error('Error fetching users', err);
-    }
+  const handleCategoryChange = (e) => {
+    const selectedCategoryId = e.target.value;
+    const category = categories.find(cat => cat._id === selectedCategoryId);
+    setCategory(selectedCategoryId);
+    setSelectedCategory(category);
   };
 
   const handleBannerImageChange = (e) => {
@@ -57,62 +48,58 @@ const CreateSmecGame = () => {
 
   const removeBannerImage = () => {
     setBannerImage(null);
-    setBannerImagePreview('');
+    setBannerImagePreview("");
   };
 
   const handleCreateGame = async (e) => {
     e.preventDefault();
 
-    // Ensure you're passing the correct ObjectId for category, lead, and coLead
-    const formData = new FormData();
-    formData.append('title', title);
-    formData.append('category', category);  // Assuming category is selected as an object
-    formData.append('description', description);
-    formData.append('date', date);
-    formData.append('time', time);
-    formData.append('lead', leadOptions );  // Ensure valid ObjectId or empty string
-    formData.append('coLead', coLeadOptions);  // Ensure valid ObjectId or empty string
-    formData.append('price', price);
-    formData.append('player', player);
-    formData.append('venue', venue);
-    if (bannerImage) {
-      formData.append('bannerImage', bannerImage);  // Include banner image in the form data
+    if (!selectedCategory) {
+      alert("Please select a category first");
+      return;
     }
 
-    console.log("Form Data:", formData); // Debugging line to check form data
-    console.log("Form Data Entries:", [...formData]); // Debugging line to check form data entries
-
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("category", category);
+    formData.append("description", description);
+    formData.append("date", date);
+    formData.append("time", time);
     
+    // Use the lead and co-lead from the selected category
+    if (selectedCategory.lead) {
+      formData.append("lead", selectedCategory.lead._id);
+    }
+    if (selectedCategory.coLead) {
+      formData.append("coLead", selectedCategory.coLead._id);
+    }
+    
+    formData.append("price", price);
+    formData.append("player", player);
+    formData.append("venue", venue);
+
+    if (bannerImage) {
+      formData.append("bannerImage", bannerImage);
+    }
 
     try {
       const response = await axios.post(AppRoutes.creategame, formData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
         },
       });
 
-      console.log('Game created:', response.data);
-      alert('Game created successfully!');
-
-      // Reset form
-      setTitle('');
-      setCategory('');
-      setDescription('');
-      setDate('');
-      setTime('');
-      setLead('');
-      setCoLead('');
-      setPrice('');
-      setPlayer('');
-      setVenue('');
-      setBannerImage(null);
-      setBannerImagePreview(null);
+      console.log("Game created:", response.data);
+      alert("Game created successfully!");
+      // Reset form...
     } catch (error) {
-      console.error('Error creating game:', error.response?.data || error.message);
-      alert('Failed to create game. Please try again.');
+      console.error(
+        "Error creating game:",
+        error.response?.data || error.message
+      );
+      alert("Failed to create game. Please try again.");
     }
   };
-
 
   return (
     <div className="p-6 max-w-4xl mx-auto">
@@ -131,7 +118,9 @@ const CreateSmecGame = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
-              <label className="block text-sm font-medium mb-2">Game Title</label>
+              <label className="block text-sm font-medium mb-2">
+                Game Title
+              </label>
               <input
                 type="text"
                 className="w-full p-3 border rounded-lg"
@@ -143,11 +132,13 @@ const CreateSmecGame = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Game Category</label>
+              <label className="block text-sm font-medium mb-2">
+                Game Category
+              </label>
               <select
                 className="w-full p-3 border rounded-lg"
                 value={category}
-                onChange={(e) => setCategory(e.target.value)}
+                onChange={handleCategoryChange}
                 required
               >
                 <option value="">Select Category</option>
@@ -157,8 +148,6 @@ const CreateSmecGame = () => {
                   </option>
                 ))}
               </select>
-
-
             </div>
 
             <div>
@@ -184,7 +173,9 @@ const CreateSmecGame = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2">Description</label>
+              <label className="block text-sm font-medium mb-2">
+                Description
+              </label>
               <textarea
                 className="w-full p-3 border rounded-lg"
                 value={description}
@@ -232,9 +223,55 @@ const CreateSmecGame = () => {
           </div>
         </div>
 
+        {/* Display selected category's lead and co-lead */}
+        {selectedCategory && (
+          <div className="bg-white p-6 rounded-xl shadow-sm">
+            <h2 className="text-xl font-bold mb-6 flex items-center">
+              <FaGamepad className="mr-2 text-gray-500" />
+              Category Leaders
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label className="block text-sm font-medium mb-2">Lead</label>
+                <div className="p-3 border rounded-lg bg-gray-50">
+                  {selectedCategory.lead ? (
+                    <>
+                      <p className="font-medium">{selectedCategory.lead.Name}</p>
+                      <p className="text-sm text-gray-600">
+                        {selectedCategory.lead.ContactNumber || "No contact number"}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-gray-500">No lead assigned</p>
+                  )}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-2">Co-Lead</label>
+                <div className="p-3 border rounded-lg bg-gray-50">
+                  {selectedCategory.coLead ? (
+                    <>
+                      <p className="font-medium">{selectedCategory.coLead.Name}</p>
+                      <p className="text-sm text-gray-600">
+                        {selectedCategory.coLead.ContactNumber || "No contact number"}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-gray-500">No co-lead assigned</p>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Banner Image */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Banner Image</label>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Banner Image
+          </label>
           <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:bg-gray-50 transition-colors">
             {bannerImagePreview ? (
               <div className="relative">
@@ -254,7 +291,9 @@ const CreateSmecGame = () => {
             ) : (
               <div className="flex flex-col items-center justify-center py-4">
                 <FaImage className="text-gray-400 text-4xl mb-2" />
-                <p className="text-sm text-gray-500 mb-2">Click to upload banner image</p>
+                <p className="text-sm text-gray-500 mb-2">
+                  Click to upload banner image
+                </p>
                 <div className="relative">
                   <input
                     type="file"
@@ -272,8 +311,8 @@ const CreateSmecGame = () => {
               </div>
             )}
           </div>
-          </div>
-          <div className="flex justify-end">
+        </div>
+        <div className="flex justify-end">
           <button
             type="submit"
             className="px-8 py-3 bg-purple-500 text-white rounded-lg hover:bg-purple-600"
