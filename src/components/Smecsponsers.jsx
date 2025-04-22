@@ -4,7 +4,6 @@ import { sponsors } from "../data";
 export default function SmecSponsors() {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  console.log(sponsors);
 
   useEffect(() => {
     const timer = setInterval(() => {

@@ -1,26 +1,31 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import egamecard from "../assets/egamecard.png";
 
-const Smeccard = (props) => {
+const Smeccard = ({ title, image, category, id }) => {
+
+  
+  // Convert title to lowercase and remove spaces/dashes
+  const cleanTitle = title.toLowerCase().replace(/[\s-]/g, '');
+  
+  // Create URL in format: /smec/[cleaned-title]
+  const categoryUrl = `/smec/${cleanTitle}`;
+
   return (
-    <>
-      <div className="relative w-[300px] h-[400px] text-white border border-solid border-[#FFF] rounded-[10px]">
+      <div className="relative w-[300px] h-[400px] text-white border border-white rounded-[10px] group hover:scale-105 transition-transform duration-300 cursor-pointer">
         <img
-          className="w-[100%] h-[100%] object-cover rounded-[10px]"
-          src={props.image}
-          alt=""
+          className="w-full h-full object-cover rounded-[10px]"
+          src={image}
+          alt={title}
         />
         <div className="absolute bottom-[8%] left-[25px]">
-          <h2 className="font-bold text-[30px] pb-4">{props.title}</h2>
-          <Link to={props.url}>
-            <button className=" w-[90px] h-[37px] bg-[#211D70] rounded-[80px]">
-              Explore
-            </button>
-          </Link>
+          <h2 className="font-bold text-[30px] pb-4">{title}</h2>
+    <Link to={categoryUrl} className="block">
+          <div className="w-[90px] h-[37px] bg-[#211D70] rounded-[80px] group-hover:bg-[#3a34a8] transition-colors duration-300 flex items-center justify-center">
+            Explore
+          </div>
+    </Link>
         </div>
       </div>
-    </>
   );
 };
 

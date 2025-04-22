@@ -95,9 +95,9 @@ function App() {
         <Route path="/login" element={<LoginForm />} />
         <Route path="/smec">
           <Route index element={<Smec />} />
-          <Route path="generalgames" element={<Generalgames />} />
-          <Route path="egames" element={<Egames />} />
-          <Route path="geekgames" element={<Geekgames />} />
+          <Route path="generalgame" element={<Generalgames />} />
+          <Route path="egame" element={<Egames />} />
+          <Route path="geekgame" element={<Geekgames />} />
           <Route path=":category/:title" element={<Gamepage />} />
         </Route>
         <Route path="/payment" element={<Payment />} />
@@ -133,7 +133,7 @@ function App() {
             <Route path="home" element={<AdminHome />} />
             <Route path="addnewevent" element={<AddNewEvent />} />
             <Route path="manageevents" element={<ManageEvents />} />
-            <Route path="creategame" element={<CreateSmecGame />} />
+            {/* <Route path="creategame" element={<CreateSmecGame />} /> */}
             <Route path="managegame" element={<ManageSmecGame />} />
             <Route path="managecategory" element={<ManageCategory />} />
             <Route path="judgesmanagement" element={<JudgesManagement />} />
