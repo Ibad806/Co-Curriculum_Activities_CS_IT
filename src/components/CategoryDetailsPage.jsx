@@ -144,6 +144,7 @@ const CategoryDetailsPage = () => {
                   time={game.time}
                   winprice={game.prize}
                   playerslot={game.player}
+                  ContactNumber={game.contactNumber}
                   onClick={() => handleGameClick(game)}
                 />
               ))}

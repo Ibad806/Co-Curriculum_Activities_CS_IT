@@ -32,7 +32,7 @@ const Gamedetails = () => {
     rules,
     genre,
     ageRating,
-    contactInfo,
+    ContactNumber,
   } = selectedGame;
 
   const ticketPrice = 100;
@@ -117,7 +117,7 @@ const Gamedetails = () => {
               </div>
               <ul className="space-y-2">
                 <li className="text-sm">Venue: {venue}</li>
-                <li className="text-sm">Contact: {contactInfo}</li>
+                <li className="text-sm">Contact: {ContactNumber}</li>
               </ul>
             </div>
           </section>
