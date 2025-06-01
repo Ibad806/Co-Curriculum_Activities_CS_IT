@@ -26,18 +26,7 @@ const ManageSmecGame = () => {
   // Fetch all games
   const fetchGames = async () => {
     try {
-      setLoading(true);
-      const res = await axios.get(AppRoutes.creategame);
-      setGames(res.data);
-      setError(null);
-    } catch (err) {
-      console.error("Error fetching games:", err);
-      setError("Failed to load games. Please try again.");
-      notification.error({
-        message: "Error",
-        description: "Failed to load games",
-        placement: "topRight"
-      });
+      s
     } finally {
       setLoading(false);
     }

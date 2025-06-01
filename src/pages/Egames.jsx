@@ -5,7 +5,7 @@ import Gamecard from "../components/Gamecard";
 import Footer from "../components/Footer";
 import BlackNavbar from "../components/BlackNavbar";
 
-const Geekgames = () => {
+const Egames = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const filteredGames = egames.filter((egame) =>
     egame.title.toLowerCase().includes(searchQuery.toLowerCase())
@@ -67,4 +67,4 @@ const Geekgames = () => {
   );
 };
 
-export default Geekgames;
+export default Egames;

@@ -1,9 +1,32 @@
-import React from "react";
-import { smecgames } from "../data";
+import React, { useEffect } from "react";
 import Smeccard from "./Smeccard";
-import borright from '../assets/smec_border_right.png';
+import axios from "axios";
+import { AppRoutes } from "../constant/constant";
 
 const Smeccategory = () => {
+  const [categories, setCategories] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
+
+  const fetchCategories = async () => {
+    try {
+      const res = await axios.get(AppRoutes.category);
+      console.log("Categories", res.data);
+      setCategories(res.data);
+      setLoading(false);
+    } catch (err) {
+      console.error("Error fetching categories", err);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  if (loading) {
+    return <div className="text-white text-center py-10">Loading categories...</div>;
+  }
+
   return (
     <section className="bg-gradient-to-b from-black via-gray-900 to-black text-white py-10">
       <div className="text-center px-4">
@@ -16,15 +39,15 @@ const Smeccategory = () => {
       </div>
 
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 px-6 lg:px-16 mt-10 relative justify-items-center">
-        {smecgames.map((smecgame) => (
+        {categories.map((smecgame) => (
           <Smeccard
-            key={smecgame.id}
+            key={smecgame._id}
+            id={smecgame._id}
             title={smecgame.title}
-            image={smecgame.image}
-            url={smecgame.url}
+            image={smecgame.cardImage}
+            category={smecgame.title} // This should match your route paths (egames, generalgames, geekgames)
           />
         ))}
-        {/* <img className="absolute bottom-0 right-0 object-cover z-10" src={borright} alt="" /> */}
       </div>
     </section>
   );
