@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { FaSearch, FaFilePdf, FaTrash, FaEye, FaSort } from 'react-icons/fa';
-import axios from 'axios';
-import { AppRoutes } from '../../../constant/constant';
+import React, { useEffect, useState } from "react";
+import { FaSearch, FaFilePdf, FaTrash, FaEye, FaSort } from "react-icons/fa";
+import axios from "axios";
+import { AppRoutes } from "../../../constant/constant";
 
 const PostApplications = () => {
   const [applications, setApplications] = useState([]);
   const [selectedApp, setSelectedApp] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [filters, setFilters] = useState({
-    status: 'All',
-    sortBy: 'date'
+    status: "All",
+    sortBy: "date",
   });
   const [showDeleteConfirmation, setShowDeleteConfirmation] = useState(false);
   const [appToDelete, setAppToDelete] = useState(null);
@@ -30,7 +30,7 @@ const PostApplications = () => {
   const deleteApplication = async () => {
     try {
       await axios.delete(`${AppRoutes.smecpost}/${appToDelete}`);
-      setApplications(applications.filter(app => app._id !== appToDelete));
+      setApplications(applications.filter((app) => app._id !== appToDelete));
       setShowDeleteConfirmation(false);
     } catch (error) {
       console.error("Failed to delete application:", error);
@@ -42,15 +42,15 @@ const PostApplications = () => {
       console.log(`Updating application ${id} to status ${status}`);
 
       await axios.put(`${AppRoutes.smecpost}/${id}`, { status });
-      const updatedApps = applications.map(app =>
+      const updatedApps = applications.map((app) =>
         app._id === id ? { ...app, status } : app
       );
-  
+
       setApplications(updatedApps);
-  
+
       // Also update the selected application in the modal if it's the same
       if (selectedApp?._id === id) {
-        setSelectedApp(prev => ({ ...prev, status }));
+        setSelectedApp((prev) => ({ ...prev, status }));
       }
       setSelectedApp(false); // Close the modal after updating
     } catch (error) {
@@ -58,9 +58,10 @@ const PostApplications = () => {
     }
   };
 
-  const filteredApps = applications.filter(app =>
-    (app.position || '').toLowerCase().includes(searchQuery.toLowerCase()) &&
-    (filters.status === 'All' || app.status === filters.status)
+  const filteredApps = applications.filter(
+    (app) =>
+      (app.position || "").toLowerCase().includes(searchQuery.toLowerCase()) &&
+      (filters.status === "All" || app.status === filters.status)
   );
 
   const closeModal = () => {
@@ -112,23 +113,34 @@ const PostApplications = () => {
                   Name <FaSort className="ml-2 cursor-pointer" />
                 </span>
               </th>
-              <th className="px-6 py-3 text-left text-sm font-medium">Position</th>
+              <th className="px-6 py-3 text-left text-sm font-medium">
+                Position
+              </th>
               <th className="px-6 py-3 text-left text-sm font-medium">Post</th>
-              <th className="px-6 py-3 text-left text-sm font-medium">Status</th>
-              <th className="px-6 py-3 text-left text-sm font-medium">Actions</th>
+              <th className="px-6 py-3 text-left text-sm font-medium">
+                Status
+              </th>
+              <th className="px-6 py-3 text-left text-sm font-medium">
+                Actions
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {filteredApps.map(app => (
+            {filteredApps.map((app) => (
               <tr key={app._id}>
                 <td className="px-6 py-4 font-medium">{app.Name}</td>
                 <td className="px-6 py-4">{app.Post}</td>
                 <td className="px-6 py-4">{app.subpost}</td>
                 <td className="px-6 py-4">
-                  <span className={`px-3 py-1 rounded-full text-sm ${app.Status === 'Pending' ? 'bg-yellow-100 text-yellow-800' :
-                      app.Status === 'Accepted' ? 'bg-green-100 text-green-800' :
-                        'bg-red-100 text-red-800'
-                    }`}>
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm ${
+                      app.Status === "Pending"
+                        ? "bg-yellow-100 text-yellow-800"
+                        : app.Status === "Accepted"
+                        ? "bg-green-100 text-green-800"
+                        : "bg-red-100 text-red-800"
+                    }`}
+                  >
                     {app.Status}
                   </span>
                 </td>
@@ -141,7 +153,10 @@ const PostApplications = () => {
                       <FaEye className="w-5 h-5" />
                     </button>
                     <button
-                      onClick={() => { setAppToDelete(app._id); setShowDeleteConfirmation(true); }}
+                      onClick={() => {
+                        setAppToDelete(app._id);
+                        setShowDeleteConfirmation(true);
+                      }}
                       className="text-red-500 hover:text-red-700"
                     >
                       <FaTrash className="w-5 h-5" />
@@ -159,35 +174,58 @@ const PostApplications = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-lg">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold">{selectedApp.Name} - {selectedApp.Post}</h2>
-              <button onClick={closeModal} className="text-gray-500 hover:text-gray-700">
+              <h2 className="text-2xl font-bold">
+                {selectedApp.Name} - {selectedApp.Post}
+              </h2>
+              <button
+                onClick={closeModal}
+                className="text-gray-500 hover:text-gray-700"
+              >
                 X
               </button>
             </div>
             <div className="mt-4 space-y-2">
-              <p><strong>Name:</strong> {selectedApp.Name}</p>
-              <p><strong>Email:</strong> {selectedApp.Email}</p>
-              <p><strong>Roll Number:</strong> {selectedApp.RollNumber}</p>
-              <p><strong>Position:</strong> {selectedApp.Post}</p>
-              <p><strong>Post:</strong> {selectedApp.subpost || "Lead"}</p>
-              <p><strong>Contact:</strong> {selectedApp.ContactNumber}</p>
-              <p><strong>Additional Details:</strong> {selectedApp.AdditionalDetails}</p>
+              <p>
+                <strong>Name:</strong> {selectedApp.Name}
+              </p>
+              <p>
+                <strong>Email:</strong> {selectedApp.Email}
+              </p>
+              <p>
+                <strong>Roll Number:</strong> {selectedApp.RollNumber}
+              </p>
+              <p>
+                <strong>Position:</strong> {selectedApp.Post}
+              </p>
+              <p>
+                <strong>Post:</strong> {selectedApp.subpost || "Lead"}
+              </p>
+              <p>
+                <strong>Contact:</strong> {selectedApp.ContactNumber}
+              </p>
+              <p>
+                <strong>Additional Details:</strong>{" "}
+                {selectedApp.AdditionalDetails}
+              </p>
             </div>
             <div className="mt-6 flex justify-between">
               <button
-                onClick={() => updateApplicationStatus(selectedApp._id, "Accepted")}
+                onClick={() =>
+                  updateApplicationStatus(selectedApp._id, "Accepted")
+                }
                 className="px-4 py-2 bg-green-500 text-white rounded-lg"
               >
                 Approve
               </button>
               <button
-                onClick={() => updateApplicationStatus(selectedApp._id, "Rejected")}
+                onClick={() =>
+                  updateApplicationStatus(selectedApp._id, "Rejected")
+                }
                 className="px-4 py-2 bg-red-500 text-white rounded-lg"
               >
                 Reject
               </button>
             </div>
-
           </div>
         </div>
       )}
@@ -196,7 +234,9 @@ const PostApplications = () => {
       {showDeleteConfirmation && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-lg p-6 w-full max-w-sm">
-            <h3 className="text-xl font-semibold mb-4">Are you sure you want to delete this application?</h3>
+            <h3 className="text-xl font-semibold mb-4">
+              Are you sure you want to delete this application?
+            </h3>
             <div className="flex justify-between">
               <button
                 onClick={deleteApplication}

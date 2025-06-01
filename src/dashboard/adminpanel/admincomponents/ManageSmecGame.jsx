@@ -1,86 +1,69 @@
 import React, { useState, useEffect } from "react";
-import {
-  FaSearch,
-  FaFilter,
-  FaEdit,
-  FaTrash,
-  FaEye,
-  FaTimes,
-  FaCalendarAlt,
-  FaMoneyBillWave,
-  FaUsers,
-  FaUser,
-  FaUserFriends,
-  FaMapMarkerAlt,
-  FaPhone,
-  FaPlus,
-  FaGamepad,
-  FaUpload,
-  FaImage
-} from "react-icons/fa";
+import { FaSearch, FaFilter, FaEdit, FaTrash, FaUsers, FaEye, FaTimes } from "react-icons/fa";
 import axios from "axios";
 import { AppRoutes } from "../../../constant/constant";
+import { notification } from "antd";
 
 const ManageSmecGame = () => {
+  // State management
   const [games, setGames] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedGame, setSelectedGame] = useState(null);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showViewModal, setShowViewModal] = useState(false);
-  const [showAddModal, setShowAddModal] = useState(false);
   const [categories, setCategories] = useState([]);
-  const [users, setUsers] = useState([]);
-
-  // Form state for add game
-  const [formData, setFormData] = useState({
-    title: "",
-    category: "",
-    description: "",
-    date: "",
-    time: "",
-    price: "",
-    player: "",
-    venue: "",
-    bannerImage: null,
-    bannerImagePreview: ""
+  const [leads, setLeads] = useState([]);
+  const [coLeads, setCoLeads] = useState([]);
+  
+  // Filters
+  const [filters, setFilters] = useState({
+    sortBy: "date",
   });
-  const [selectedCategory, setSelectedCategory] = useState(null);
 
   // Fetch all games
   const fetchGames = async () => {
     try {
+      setLoading(true);
       const res = await axios.get(AppRoutes.creategame);
       setGames(res.data);
-      setLoading(false);
+      setError(null);
     } catch (err) {
       console.error("Error fetching games:", err);
+      setError("Failed to load games. Please try again.");
+      notification.error({
+        message: "Error",
+        description: "Failed to load games",
+        placement: "topRight"
+      });
+    } finally {
       setLoading(false);
     }
   };
 
-  // Fetch dropdown data
+  // Fetch categories and users for dropdowns
   const fetchDropdownData = async () => {
     try {
-      const [categoriesRes, usersRes] = await Promise.all([
-        axios.get(AppRoutes.category),
-        axios.get(AppRoutes.usersaccepted)
-      ]);
-      
+      // Fetch categories
+      const categoriesRes = await axios.get(AppRoutes.category);
       setCategories(categoriesRes.data);
-      setUsers(usersRes.data.data.lead.concat(usersRes.data.data.coLead));
+      
+      // Fetch users (leads and co-leads)
+      const usersRes = await axios.get(AppRoutes.usersaccepted);
+      if (usersRes.data.success) {
+        setLeads(usersRes.data.data.lead);
+        setCoLeads(usersRes.data.data.coLead);
+      }
     } catch (err) {
       console.error("Error fetching dropdown data:", err);
+      notification.error({
+        message: "Error",
+        description: "Failed to load dropdown options",
+        placement: "topRight"
+      });
     }
-  };
-
-  // Get category leader info
-  const getCategoryLeaderInfo = (game, type) => {
-    if (!game?.category?._id) return null;
-    const category = categories.find(cat => cat._id === game.category._id);
-    if (!category) return null;
-    return type === 'lead' ? category.lead : category.coLead;
   };
 
   useEffect(() => {
@@ -88,164 +71,115 @@ const ManageSmecGame = () => {
     fetchDropdownData();
   }, []);
 
-  // Filter games
-  const filteredGames = games.filter((game) =>
-    game.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  // Filter and sort games
+  const filteredGames = games
+    .filter((game) =>
+      game.title.toLowerCase().includes(searchQuery.toLowerCase())
+    )
+    .sort((a, b) => {
+      if (filters.sortBy === "date") {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      }
+      if (filters.sortBy === "players") {
+        return b.player - a.player;
+      }
+      return 0;
+    });
 
-  // Handle edit
+  // Action handlers
   const handleEdit = (game) => {
-    setSelectedGame(game);
+    setSelectedGame({
+      ...game,
+      category: game.category?._id || game.category,
+      lead: game.lead?._id || game.lead,
+      coLead: game.coLead?._id || game.coLead
+    });
     setShowEditModal(true);
   };
 
-  // Handle delete
   const handleDelete = (game) => {
     setSelectedGame(game);
     setShowDeleteModal(true);
   };
 
-  // Handle view
   const handleView = (game) => {
     setSelectedGame(game);
     setShowViewModal(true);
   };
 
-  // Confirm delete
+  // Delete a game
   const confirmDelete = async () => {
     try {
       await axios.delete(`${AppRoutes.creategame}/${selectedGame._id}`);
-      setGames(games.filter((g) => g._id !== selectedGame._id));
-      setShowDeleteModal(false);
+      notification.success({
+        message: "Success",
+        description: "Game deleted successfully",
+        placement: "topRight"
+      });
+      fetchGames(); // Refresh the list
     } catch (err) {
       console.error("Error deleting game:", err);
+      notification.error({
+        message: "Error",
+        description: "Failed to delete game",
+        placement: "topRight"
+      });
+    } finally {
+      setShowDeleteModal(false);
     }
   };
 
-  // Save changes
-  const saveChanges = async (e) => {
-    e.preventDefault();
+  // Update a game
+  const saveChanges = async () => {
     try {
-      const res = await axios.put(
-        `${AppRoutes.creategame}/${selectedGame._id}`,
-        selectedGame
-      );
-      setGames(games.map((g) => (g._id === selectedGame._id ? res.data : g)));
+      const { _id, ...updateData } = selectedGame;
+      await axios.put(`${AppRoutes.creategame}/${_id}`, updateData);
+      notification.success({
+        message: "Success",
+        description: "Game updated successfully",
+        placement: "topRight"
+      });
+      fetchGames(); // Refresh the list
       setShowEditModal(false);
     } catch (err) {
       console.error("Error updating game:", err);
-    }
-  };
-
-  // Handle category change for add form
-  const handleCategoryChange = (e) => {
-    const selectedCategoryId = e.target.value;
-    const category = categories.find(cat => cat._id === selectedCategoryId);
-    setFormData({...formData, category: selectedCategoryId});
-    setSelectedCategory(category);
-  };
-
-  // Handle banner image change for add form
-  const handleBannerImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setFormData({
-        ...formData,
-        bannerImage: file,
-        bannerImagePreview: URL.createObjectURL(file)
+      notification.error({
+        message: "Error",
+        description: "Failed to update game",
+        placement: "topRight"
       });
-    }
-  };
-
-  // Remove banner image for add form
-  const removeBannerImage = () => {
-    setFormData({
-      ...formData,
-      bannerImage: null,
-      bannerImagePreview: ""
-    });
-  };
-
-  // Handle form input changes for add form
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
-
-  // Handle create game submission
-  const handleCreateGame = async (e) => {
-    e.preventDefault();
-
-    if (!selectedCategory) {
-      alert("Please select a category first");
-      return;
-    }
-
-    const formDataToSend = new FormData();
-    formDataToSend.append("title", formData.title);
-    formDataToSend.append("category", formData.category);
-    formDataToSend.append("description", formData.description);
-    formDataToSend.append("date", formData.date);
-    formDataToSend.append("time", formData.time);
-    
-    if (selectedCategory.lead) {
-      formDataToSend.append("lead", selectedCategory.lead._id);
-    }
-    if (selectedCategory.coLead) {
-      formDataToSend.append("coLead", selectedCategory.coLead._id);
-    }
-    
-    formDataToSend.append("price", formData.price);
-    formDataToSend.append("player", formData.player);
-    formDataToSend.append("venue", formData.venue);
-
-    if (formData.bannerImage) {
-      formDataToSend.append("bannerImage", formData.bannerImage);
-    }
-
-    try {
-      const response = await axios.post(AppRoutes.creategame, formDataToSend, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      console.log("Game created:", response.data);
-      alert("Game created successfully!");
-      setShowAddModal(false);
-      setFormData({
-        title: "",
-        category: "",
-        description: "",
-        date: "",
-        time: "",
-        price: "",
-        player: "",
-        venue: "",
-        bannerImage: null,
-        bannerImagePreview: ""
-      });
-      setSelectedCategory(null);
-      fetchGames(); // Refresh the games list
-    } catch (error) {
-      console.error(
-        "Error creating game:",
-        error.response?.data || error.message
-      );
-      alert("Failed to create game. Please try again.");
     }
   };
 
   // Format date for display
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
+    const options = { year: 'numeric', month: 'short', day: 'numeric' };
     return new Date(dateString).toLocaleDateString(undefined, options);
   };
 
-  if (loading) return <div className="p-6 text-center">Loading...</div>;
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex justify-center items-center h-64">
+        <div className="text-center">
+          <p className="text-red-500 text-lg">{error}</p>
+          <button 
+            onClick={fetchGames}
+            className="mt-4 px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="p-6 max-w-7xl mx-auto">
@@ -264,362 +198,90 @@ const ManageSmecGame = () => {
               onChange={(e) => setSearchQuery(e.target.value)}
             />
           </div>
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition-colors flex items-center gap-2"
+        </div>
+      </div>
+
+      {/* Filters and Sorting */}
+      <div className="flex flex-wrap gap-4 mb-6">
+        <div className="flex items-center gap-2 bg-gray-100 p-2 rounded-lg">
+          <span className="text-gray-500">Sort by:</span>
+          <select
+            className="bg-transparent p-1"
+            value={filters.sortBy}
+            onChange={(e) => setFilters({ ...filters, sortBy: e.target.value })}
           >
-            <FaPlus /> Add Game
-          </button>
+            <option value="date">Newest First</option>
+            <option value="players">Most Players</option>
+          </select>
         </div>
       </div>
 
       {/* Games Table */}
       <div className="bg-white rounded-lg shadow overflow-x-auto">
-        <table className="w-full">
+        <table className="w-full min-w-max">
           <thead className="bg-gray-50">
             <tr>
-              <th className="px-6 py-3 text-left text-sm font-medium">
-                Game Title
-              </th>
-              <th className="px-6 py-3 text-left text-sm font-medium">
-                Category
-              </th>
+              <th className="px-6 py-3 text-left text-sm font-medium">Game Title</th>
+              <th className="px-6 py-3 text-left text-sm font-medium">Category</th>
+              <th className="px-6 py-3 text-left text-sm font-medium">Max Players</th>
               <th className="px-6 py-3 text-left text-sm font-medium">Date</th>
-              <th className="px-6 py-3 text-left text-sm font-medium">Price</th>
-              <th className="px-6 py-3 text-left text-sm font-medium">
-                Actions
-              </th>
+              <th className="px-6 py-3 text-left text-sm font-medium">Actions</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {filteredGames.map((game) => (
-              <tr key={game._id}>
-                <td className="px-6 py-4 font-medium">{game.title}</td>
-                <td className="px-6 py-4">
-                  {game.category?.title || "No Category"}
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center">
-                    <FaCalendarAlt className="mr-2 text-gray-400" />
-                    {formatDate(game.date)}
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center">
-                    <FaMoneyBillWave className="mr-2 text-gray-400" />
-                    {game.price}
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={() => handleEdit(game)}
-                      className="text-blue-500 hover:text-blue-700"
-                      title="Edit"
-                    >
-                      <FaEdit className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => handleDelete(game)}
-                      className="text-red-500 hover:text-red-700"
-                      title="Delete"
-                    >
-                      <FaTrash className="w-5 h-5" />
-                    </button>
-                    <button
-                      onClick={() => handleView(game)}
-                      className="text-purple-500 hover:text-purple-700"
-                      title="View"
-                    >
-                      <FaEye className="w-5 h-5" />
-                    </button>
-                  </div>
+            {filteredGames.length === 0 ? (
+              <tr>
+                <td colSpan="5" className="px-6 py-8 text-center text-gray-500">
+                  No games found
                 </td>
               </tr>
-            ))}
+            ) : (
+              filteredGames.map((game) => (
+                <tr key={game._id} className="hover:bg-gray-50">
+                  <td className="px-6 py-4 font-medium">{game.title}</td>
+                  <td className="px-6 py-4">
+                    {game.category?.title || "No category"}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center">
+                      <FaUsers className="mr-2 text-gray-400" />
+                      {game.player}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    {formatDate(game.date)}
+                  </td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center gap-4">
+                      <button
+                        onClick={() => handleEdit(game)}
+                        className="text-blue-500 hover:text-blue-700"
+                        title="Edit"
+                      >
+                        <FaEdit className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handleDelete(game)}
+                        className="text-red-500 hover:text-red-700"
+                        title="Delete"
+                      >
+                        <FaTrash className="w-5 h-5" />
+                      </button>
+                      <button
+                        onClick={() => handleView(game)}
+                        className="text-purple-500 hover:text-purple-700"
+                        title="View Details"
+                      >
+                        <FaEye className="w-5 h-5" />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
-
-      {/* Add Game Modal */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-          <div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-2xl font-bold flex items-center">
-                <FaGamepad className="mr-2 text-purple-500" />
-                Create New Game Event
-              </h2>
-              <button
-                onClick={() => {
-                  setShowAddModal(false);
-                  setFormData({
-                    title: "",
-                    category: "",
-                    description: "",
-                    date: "",
-                    time: "",
-                    price: "",
-                    player: "",
-                    venue: "",
-                    bannerImage: null,
-                    bannerImagePreview: ""
-                  });
-                  setSelectedCategory(null);
-                }}
-                className="text-gray-500 hover:text-gray-700"
-              >
-                <FaTimes className="w-6 h-6" />
-              </button>
-            </div>
-
-            <form onSubmit={handleCreateGame} className="space-y-6">
-              {/* Game Details */}
-              <div className="bg-white p-6 rounded-xl shadow-sm">
-                <h2 className="text-xl font-bold mb-6 flex items-center">
-                  <FaGamepad className="mr-2 text-gray-500" />
-                  Game Details
-                </h2>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Game Title
-                    </label>
-                    <input
-                      type="text"
-                      name="title"
-                      className="w-full p-3 border rounded-lg"
-                      value={formData.title}
-                      onChange={handleInputChange}
-                      placeholder="E.g., PUBG Tournament"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Game Category
-                    </label>
-                    <select
-                      className="w-full p-3 border rounded-lg"
-                      name="category"
-                      value={formData.category}
-                      onChange={handleCategoryChange}
-                      required
-                    >
-                      <option value="">Select Category</option>
-                      {categories.map((cat) => (
-                        <option key={cat._id} value={cat._id}>
-                          {cat.title}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Date</label>
-                    <input
-                      type="date"
-                      name="date"
-                      className="w-full p-3 border rounded-lg"
-                      value={formData.date}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Time</label>
-                    <input
-                      type="time"
-                      name="time"
-                      className="w-full p-3 border rounded-lg"
-                      value={formData.time}
-                      onChange={handleInputChange}
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">
-                      Description
-                    </label>
-                    <textarea
-                      className="w-full p-3 border rounded-lg"
-                      name="description"
-                      value={formData.description}
-                      onChange={handleInputChange}
-                      placeholder="Write a brief description about the game"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Venue</label>
-                    <input
-                      type="text"
-                      name="venue"
-                      className="w-full p-3 border rounded-lg"
-                      value={formData.venue}
-                      onChange={handleInputChange}
-                      placeholder="Enter venue address"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Price</label>
-                    <input
-                      type="text"
-                      name="price"
-                      className="w-full p-3 border rounded-lg"
-                      value={formData.price}
-                      onChange={handleInputChange}
-                      placeholder="Enter price for participation"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium mb-2">Players</label>
-                    <input
-                      type="number"
-                      name="player"
-                      className="w-full p-3 border rounded-lg"
-                      value={formData.player}
-                      onChange={handleInputChange}
-                      placeholder="Enter max number of players"
-                      required
-                    />
-                  </div>
-                </div>
-              </div>
-
-              {/* Display selected category's lead and co-lead */}
-              {selectedCategory && (
-                <div className="bg-white p-6 rounded-xl shadow-sm">
-                  <h2 className="text-xl font-bold mb-6 flex items-center">
-                    <FaGamepad className="mr-2 text-gray-500" />
-                    Category Leaders
-                  </h2>
-                  
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Lead</label>
-                      <div className="p-3 border rounded-lg bg-gray-50">
-                        {selectedCategory.lead ? (
-                          <>
-                            <p className="font-medium">{selectedCategory.lead.Name}</p>
-                            <p className="text-sm text-gray-600">
-                              {selectedCategory.lead.ContactNumber || "No contact number"}
-                            </p>
-                          </>
-                        ) : (
-                          <p className="text-gray-500">No lead assigned</p>
-                        )}
-                      </div>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium mb-2">Co-Lead</label>
-                      <div className="p-3 border rounded-lg bg-gray-50">
-                        {selectedCategory.coLead ? (
-                          <>
-                            <p className="font-medium">{selectedCategory.coLead.Name}</p>
-                            <p className="text-sm text-gray-600">
-                              {selectedCategory.coLead.ContactNumber || "No contact number"}
-                            </p>
-                          </>
-                        ) : (
-                          <p className="text-gray-500">No co-lead assigned</p>
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Banner Image */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Banner Image
-                </label>
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-4 hover:bg-gray-50 transition-colors">
-                  {formData.bannerImagePreview ? (
-                    <div className="relative">
-                      <img
-                        src={formData.bannerImagePreview}
-                        alt="Banner Preview"
-                        className="w-full h-40 object-cover rounded-md"
-                      />
-                      <button
-                        type="button"
-                        onClick={removeBannerImage}
-                        className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 hover:bg-red-600 transition-colors"
-                      >
-                        <FaTimes size={14} />
-                      </button>
-                    </div>
-                  ) : (
-                    <div className="flex flex-col items-center justify-center py-4">
-                      <FaImage className="text-gray-400 text-4xl mb-2" />
-                      <p className="text-sm text-gray-500 mb-2">
-                        Click to upload banner image
-                      </p>
-                      <div className="relative">
-                        <input
-                          type="file"
-                          onChange={handleBannerImageChange}
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-                          accept="image/*"
-                        />
-                        <button
-                          type="button"
-                          className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors flex items-center"
-                        >
-                          <FaUpload className="mr-2" /> Browse
-                        </button>
-                      </div>
-                    </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="flex justify-end gap-4">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setShowAddModal(false);
-                    setFormData({
-                      title: "",
-                      category: "",
-                      description: "",
-                      date: "",
-                      time: "",
-                      price: "",
-                      player: "",
-                      venue: "",
-                      bannerImage: null,
-                      bannerImagePreview: ""
-                    });
-                    setSelectedCategory(null);
-                  }}
-                  className="px-4 py-2 border rounded hover:bg-gray-100"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  className="px-6 py-2 bg-purple-500 text-white rounded-lg hover:bg-purple-600"
-                >
-                  Create Game Event
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* Edit Game Modal */}
       {showEditModal && selectedGame && (
@@ -635,37 +297,30 @@ const ManageSmecGame = () => {
               </button>
             </div>
 
-            <form onSubmit={saveChanges} className="space-y-4">
+            <form className="space-y-4" onSubmit={(e) => {
+              e.preventDefault();
+              saveChanges();
+            }}>
+              <div>
+                <label className="block text-sm font-medium mb-1">Game Title</label>
+                <input
+                  type="text"
+                  value={selectedGame.title || ""}
+                  onChange={(e) =>
+                    setSelectedGame({ ...selectedGame, title: e.target.value })
+                  }
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium mb-1">
-                    Game Title
-                  </label>
-                  <input
-                    type="text"
-                    value={selectedGame.title || ""}
-                    onChange={(e) =>
-                      setSelectedGame({
-                        ...selectedGame,
-                        title: e.target.value,
-                      })
-                    }
-                    className="w-full p-2 border rounded"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1">
-                    Category
-                  </label>
+                  <label className="block text-sm font-medium mb-1">Category</label>
                   <select
-                    value={selectedGame.category?._id || ""}
+                    value={selectedGame.category || ""}
                     onChange={(e) =>
-                      setSelectedGame({
-                        ...selectedGame,
-                        category: e.target.value,
-                      })
+                      setSelectedGame({ ...selectedGame, category: e.target.value })
                     }
                     className="w-full p-2 border rounded"
                     required
@@ -683,9 +338,7 @@ const ManageSmecGame = () => {
                   <label className="block text-sm font-medium mb-1">Date</label>
                   <input
                     type="date"
-                    value={
-                      selectedGame.date ? selectedGame.date.split("T")[0] : ""
-                    }
+                    value={selectedGame.date || ""}
                     onChange={(e) =>
                       setSelectedGame({ ...selectedGame, date: e.target.value })
                     }
@@ -693,7 +346,9 @@ const ManageSmecGame = () => {
                     required
                   />
                 </div>
+              </div>
 
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium mb-1">Time</label>
                   <input
@@ -708,77 +363,56 @@ const ManageSmecGame = () => {
                 </div>
 
                 <div>
+                  <label className="block text-sm font-medium mb-1">Price ($)</label>
+                  <input
+                    type="number"
+                    step="0.01"
+                    min="0"
+                    value={selectedGame.price || ""}
+                    onChange={(e) =>
+                      setSelectedGame({ ...selectedGame, price: e.target.value })
+                    }
+                    className="w-full p-2 border rounded"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
                   <label className="block text-sm font-medium mb-1">Lead</label>
-                  <div className="p-2 border rounded bg-gray-50">
-                    {getCategoryLeaderInfo(selectedGame, "lead") ? (
-                      <>
-                        <p className="font-medium">
-                          {getCategoryLeaderInfo(selectedGame, "lead").Name}
-                        </p>
-                        <p className="text-sm text-gray-500 flex items-center">
-                          <FaPhone className="mr-1" />
-                          {getCategoryLeaderInfo(selectedGame, "lead").ContactNumber || "No contact"}
-                        </p>
-                      </>
-                    ) : (
-                      <p className="text-gray-500">No lead assigned</p>
-                    )}
-                  </div>
+                  <select
+                    value={selectedGame.lead || ""}
+                    onChange={(e) =>
+                      setSelectedGame({ ...selectedGame, lead: e.target.value })
+                    }
+                    className="w-full p-2 border rounded"
+                  >
+                    <option value="">Select Lead</option>
+                    {leads.map((lead) => (
+                      <option key={lead._id} value={lead._id}>
+                        {lead.Name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium mb-1">Co-Lead</label>
-                  <div className="p-2 border rounded bg-gray-50">
-                    {getCategoryLeaderInfo(selectedGame, "coLead") ? (
-                      <>
-                        <p className="font-medium">
-                          {getCategoryLeaderInfo(selectedGame, "coLead").Name}
-                        </p>
-                        <p className="text-sm text-gray-500 flex items-center">
-                          <FaPhone className="mr-1" />
-                          {getCategoryLeaderInfo(selectedGame, "coLead").ContactNumber || "No contact"}
-                        </p>
-                      </>
-                    ) : (
-                      <p className="text-gray-500">No co-lead assigned</p>
-                    )}
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1">
-                    Price
-                  </label>
-                  <input
-                    type="text"
-                    value={selectedGame.price || ""}
+                  <select
+                    value={selectedGame.coLead || ""}
                     onChange={(e) =>
-                      setSelectedGame({
-                        ...selectedGame,
-                        price: e.target.value,
-                      })
+                      setSelectedGame({ ...selectedGame, coLead: e.target.value })
                     }
                     className="w-full p-2 border rounded"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium mb-1">
-                    Max Players
-                  </label>
-                  <input
-                    type="number"
-                    value={selectedGame.player || ""}
-                    onChange={(e) =>
-                      setSelectedGame({
-                        ...selectedGame,
-                        player: e.target.value,
-                      })
-                    }
-                    className="w-full p-2 border rounded"
-                    required
-                  />
+                  >
+                    <option value="">Select Co-Lead</option>
+                    {coLeads.map((coLead) => (
+                      <option key={coLead._id} value={coLead._id}>
+                        {coLead.Name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
@@ -796,23 +430,32 @@ const ManageSmecGame = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">
-                  Description
-                </label>
+                <label className="block text-sm font-medium mb-1">Max Players</label>
+                <input
+                  type="number"
+                  min="1"
+                  value={selectedGame.player || ""}
+                  onChange={(e) =>
+                    setSelectedGame({ ...selectedGame, player: e.target.value })
+                  }
+                  className="w-full p-2 border rounded"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">Description</label>
                 <textarea
                   value={selectedGame.description || ""}
                   onChange={(e) =>
-                    setSelectedGame({
-                      ...selectedGame,
-                      description: e.target.value,
-                    })
+                    setSelectedGame({ ...selectedGame, description: e.target.value })
                   }
                   className="w-full p-2 border rounded h-32"
                   required
                 />
               </div>
 
-              <div className="flex justify-end space-x-4">
+              <div className="flex justify-end space-x-4 pt-4">
                 <button
                   type="button"
                   onClick={() => setShowEditModal(false)}
@@ -850,6 +493,8 @@ const ManageSmecGame = () => {
               Are you sure you want to delete:
               <br />
               <strong>{selectedGame.title}</strong>?
+              <br />
+              <span className="text-red-500">This action cannot be undone.</span>
             </p>
 
             <div className="flex justify-end gap-4">
@@ -885,89 +530,83 @@ const ManageSmecGame = () => {
             </div>
 
             <div className="space-y-4">
-              <div className="mb-6">
-                {selectedGame.gameImageUrl && (
-                  <img
-                    src={selectedGame.gameImageUrl}
-                    alt="Game Banner"
-                    className="w-full h-48 object-cover rounded-lg"
-                  />
-                )}
+              <div>
+                <label className="block text-sm font-medium mb-1">Game Title</label>
+                <p className="p-3 bg-gray-50 rounded font-medium">{selectedGame.title}</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {/* Lead Information */}
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-bold mb-2 flex items-center">
-                    <FaUser className="mr-2" /> Lead
-                  </h3>
-                  {getCategoryLeaderInfo(selectedGame, "lead") ? (
-                    <>
-                      <p>{getCategoryLeaderInfo(selectedGame, "lead").Name}</p>
-                      <p className="text-sm text-gray-500">
-                        {getCategoryLeaderInfo(selectedGame, "lead")
-                          .ContactNumber || "No contact"}
-                      </p>
-                    </>
-                  ) : (
-                    <p className="text-gray-500">No lead assigned</p>
-                  )}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Category</label>
+                  <p className="p-3 bg-gray-50 rounded">
+                    {selectedGame.category?.title || "No category"}
+                  </p>
                 </div>
 
-                {/* Co-Lead Information */}
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-bold mb-2 flex items-center">
-                    <FaUserFriends className="mr-2" /> Co-Lead
-                  </h3>
-                  {getCategoryLeaderInfo(selectedGame, "coLead") ? (
-                    <>
-                      <p>
-                        {getCategoryLeaderInfo(selectedGame, "coLead").Name}
-                      </p>
-                      <p className="text-sm text-gray-500">
-                        {getCategoryLeaderInfo(selectedGame, "coLead")
-                          .ContactNumber || "No contact"}
-                      </p>
-                    </>
-                  ) : (
-                    <p className="text-gray-500">No co-lead assigned</p>
-                  )}
+                <div>
+                  <label className="block text-sm font-medium mb-1">Date</label>
+                  <p className="p-3 bg-gray-50 rounded">
+                    {formatDate(selectedGame.date)}
+                  </p>
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-bold mb-2 flex items-center">
-                    <FaCalendarAlt className="mr-2" /> Date
-                  </h3>
-                  <p>{formatDate(selectedGame.date)}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Time</label>
+                  <p className="p-3 bg-gray-50 rounded">{selectedGame.time}</p>
                 </div>
 
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-bold mb-2 flex items-center">
-                    <FaMoneyBillWave className="mr-2" /> Price
-                  </h3>
-                  <p>{selectedGame.price}</p>
-                </div>
-
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <h3 className="font-bold mb-2 flex items-center">
-                    <FaUsers className="mr-2" /> Max Players
-                  </h3>
-                  <p>{selectedGame.player}</p>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Price</label>
+                  <p className="p-3 bg-gray-50 rounded">${selectedGame.price}</p>
                 </div>
               </div>
 
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-bold mb-2 flex items-center">
-                  <FaMapMarkerAlt className="mr-2" /> Venue
-                </h3>
-                <p>{selectedGame.venue}</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Lead</label>
+                  <p className="p-3 bg-gray-50 rounded">
+                    {selectedGame.lead?.Name || "No lead selected"}
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium mb-1">Co-Lead</label>
+                  <p className="p-3 bg-gray-50 rounded">
+                    {selectedGame.coLead?.Name || "No co-lead selected"}
+                  </p>
+                </div>
               </div>
 
-              <div className="bg-gray-50 p-4 rounded-lg">
-                <h3 className="font-bold mb-2">Description</h3>
-                <p>{selectedGame.description}</p>
+              <div>
+                <label className="block text-sm font-medium mb-1">Venue</label>
+                <p className="p-3 bg-gray-50 rounded">{selectedGame.venue}</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">Max Players</label>
+                <p className="p-3 bg-gray-50 rounded">{selectedGame.player}</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">Description</label>
+                <p className="p-3 bg-gray-50 rounded min-h-[100px]">{selectedGame.description}</p>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium mb-1">Banner Image</label>
+                {selectedGame.gameImageUrl ? (
+                  <img
+                    src={selectedGame.gameImageUrl}
+                    alt="Game Banner"
+                    className="w-full max-h-60 object-contain rounded border"
+                  />
+                ) : (
+                  <div className="p-10 bg-gray-100 rounded text-center text-gray-500">
+                    No banner image available
+                  </div>
+                )}
               </div>
             </div>
           </div>

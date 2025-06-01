@@ -44,7 +44,7 @@ const AdminSidebar = () => {
       title: "SMEC Management",
       icon: <FaProjectDiagram className="md:mr-3 text-lg" />,
         submenu: [
-          // { title: "Create Game", path: "/adminpanel/creategame" },
+          { title: "Create Game", path: "/adminpanel/creategame" },
           { title: "Manage Category", path: "/adminpanel/managecategory" },
           { title: "Manage Game", path: "/adminpanel/managegame" },
           { title: "Judges Panel", path: "/adminpanel/judgesmanagement" },

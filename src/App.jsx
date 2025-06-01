@@ -129,13 +129,13 @@ function App() {
         )}
         {/* Admin Panel Layout */}
        {
-       role === "admin" && (
+        (
           <Route path="/adminpanel" element={<AdminLayout />}>
             {/* Child Routes */}
             <Route path="home" element={<AdminHome />} />
             <Route path="addnewevent" element={<AddNewEvent />} />
             <Route path="manageevents" element={<ManageEvents />} />
-            {/* <Route path="creategame" element={<CreateSmecGame />} /> */}
+            <Route path="creategame" element={<CreateSmecGame />} />
             <Route path="managegame" element={<ManageSmecGame />} />
             <Route path="managecategory" element={<ManageCategory />} />
             <Route path="judgesmanagement" element={<JudgesManagement />} />
