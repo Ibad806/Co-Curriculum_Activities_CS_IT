@@ -585,7 +585,7 @@ const ManageSmecGame = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-medium mb-1">Max Players</label>
+                <label className="block text-sm font-medium mb-1">Max Player</label>
                 <p className="p-3 bg-gray-50 rounded">{selectedGame.player}</p>
               </div>
 
