@@ -129,7 +129,7 @@ function App() {
         )}
         {/* Admin Panel Layout */}
        {
-       role === "admin" && (
+        (
           <Route path="/adminpanel" element={<AdminLayout />}>
             {/* Child Routes */}
             <Route path="home" element={<AdminHome />} />
