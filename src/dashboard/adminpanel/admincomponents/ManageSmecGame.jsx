@@ -27,7 +27,7 @@ const ManageSmecGame = () => {
   const fetchGames = async () => {
     try {
       setLoading(true);
-      const res = await axios.get(AppRoutes.creategames);
+      const res = await axios.get(AppRoutes.creategame);
       setGames(res.data);
       setError(null);
     } catch (err) {
