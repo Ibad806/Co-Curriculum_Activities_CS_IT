@@ -117,7 +117,7 @@ function App() {
           </Route>
         )}
         {/* Judges Panel Layout */}
-        {role === "judge" && (
+        { (
           <Route path="/judgespanel" element={<JudgesLayout />}>
             {/* Child Routes */}
             <Route path="home" element={<JudgesHome />} />
