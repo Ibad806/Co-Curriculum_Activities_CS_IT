@@ -105,7 +105,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/paymentsuccess" element={<PaymentSuccessful />} />
         {/* User Panel Layout */}
-        { role == "user"  && (
+        { (
           <Route path="/userpanel" element={<UserPanel />}>
             {/* Child Routes */}
             <Route path="home" element={<UserHome />} />
@@ -117,7 +117,7 @@ function App() {
           </Route>
         )}
         {/* Judges Panel Layout */}
-        { role == "judge"  && (
+        {  (
           <Route path="/judgespanel" element={<JudgesLayout />}>
             {/* Child Routes */}
             <Route path="home" element={<JudgesHome />} />
