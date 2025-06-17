@@ -28,10 +28,11 @@ const JudgesManagement = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        console.log("Fetching data...");
+        const [judgesRes, gamesRes] = await Promise.all([
+          axios.get(AppRoutes.judge),
+          axios.get(AppRoutes.creategame),
+        ]);
 
-        const judgesRes = await axios.get(AppRoutes.judge);
-        const gamesRes = await axios.get(AppRoutes.creategame);
         setJudges(judgesRes.data);
         setGames(gamesRes.data);
       } catch (error) {
@@ -42,63 +43,66 @@ const JudgesManagement = () => {
   }, []);
 
   const handleGameAssignment = (gameId) => {
-    if (formData.assignedGames.includes(gameId)) {
-      setFormData({ ...formData, assignedGames: [] });
-    } else {
-      setFormData({ ...formData, assignedGames: [gameId] });
-    }
+    setFormData((prev) => ({
+      ...prev,
+      assignedGames: prev.assignedGames?.includes(gameId) ? [] : [gameId],
+    }));
   };
 
   const handleCreateJudge = async (e) => {
     e.preventDefault();
     try {
-      console.log("formData", formData);
-
+      // Send only the necessary data to create judge
       const res = await axios.post(AppRoutes.judge, formData, {
         headers: {
           "Content-Type": "application/json",
         },
       });
+
       setJudges([...judges, res.data.judge]);
       closeModals();
     } catch (error) {
       console.error("Error creating judge:", error);
+      if (error.response) {
+        console.error("Error response data:", error.response.data);
+      }
     }
   };
 
   const handleUpdateJudge = async (e) => {
-    e.preventDefault();
-    try {
-      // Ensure assignedGames is always an array
-      const dataToSend = {
-        ...formData,
-        assignedGames: formData.assignedGames || [],
-      };
+  e.preventDefault();
+  try {
+    const dataToSend = {
+      ...formData,
+      assignedGames: formData.assignedGames,
+    };
 
-      const res = await axios.put(
-        `${AppRoutes.judge}/${selectedJudge._id}`,
-        dataToSend
-      );
-      setJudges((prev) =>
-        prev.map((j) => (j._id === selectedJudge._id ? res.data.judge : j))
-      );
-      closeModals();
-      // alert("Judge updated successfully!");
-    } catch (err) {
-      console.error("Error updating judge:", err);
-      // alert(err.response?.data?.message || "Error updating judge");
-    }
-  };
-
-  // When setting form data for editing
+    await axios.put(`${AppRoutes.judge}/${selectedJudge._id}`, dataToSend);
+    
+    // Refresh judges list after update
+    const judgesRes = await axios.get(AppRoutes.judge);
+    setJudges(judgesRes.data);
+    
+    closeModals();
+  } catch (err) {
+    console.error("Error updating judge:", err);
+  }
+};
   const handleEditJudge = (judge) => {
     setSelectedJudge(judge);
+
+    // Safely get assigned game IDs
+    const assignedGameIds = (judge.assignedGames || []).map((game) =>
+      typeof game === "string" ? game : game._id
+    );
+
     setFormData({
       name: judge.name,
       email: judge.email,
       contact: judge.contact,
-      assignedGames: judge.assignedGames?.map((g) => g._id) || [], // Handle undefined
+      assignedGames: assignedGameIds,
     });
+
     setShowEditModal(true);
   };
 
@@ -126,12 +130,15 @@ const JudgesManagement = () => {
   };
 
   const getGameLists = () => {
-    const assigned = games.filter((g) =>
-      formData.assignedGames.includes(g._id)
-    );
+  const assigned = games.filter((g) =>
+  (formData.assignedGames || []).includes(g._id)
+);
+
+
     const unassigned = games.filter(
-      (g) => !formData.assignedGames.includes(g._id)
-    );
+  (g) => !(formData.assignedGames || []).includes(g._id)
+);
+
     return { assigned, unassigned };
   };
 
@@ -173,55 +180,53 @@ const JudgesManagement = () => {
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-200">
-            {judges.map((judge) => (
-              <tr key={judge._id}>
-                <td className="px-6 py-4 font-medium">{judge.name}</td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center">
-                    <FaEnvelope className="mr-2 text-blue-500" />
-                    {judge.email}
-                  </div>
-                  <div className="flex items-center mt-1">
-                    <FaPhone className="mr-2 text-green-500" />
-                    {judge.contact}
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  {judge.assignedGames.length > 0 ? (
-                    games.find((g) => g._id === judge.assignedGames[0]) ? (
+            {judges.filter(Boolean).map((judge) => { // Add this filter
+    const assignedGameIds = judge.assignedGames || [];
+              const firstGameId = assignedGameIds[0]; // Get first ID safely
+              const assignedGame = games.find((g) => g._id === firstGameId);
+              return (
+                <tr key={judge._id}>
+                  <td className="px-6 py-4 font-medium">{judge.name}</td>
+                  <td className="px-6 py-4">
+                    <div className="flex items-center">
+                      <FaEnvelope className="mr-2 text-blue-500" />
+                      {judge.email}
+                    </div>
+                    <div className="flex items-center mt-1">
+                      <FaPhone className="mr-2 text-green-500" />
+                      {judge.contact}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4">
+                    {assignedGame ? (
                       <div className="bg-gray-100 px-2 py-1 rounded inline-block">
                         <FaGamepad className="mr-1 inline text-purple-500" />
-                        {
-                          games.find((g) => g._id === judge.assignedGames[0])
-                            .title
-                        }
+                        {assignedGame.title}
                       </div>
                     ) : (
-                      <span className="text-gray-400">Game not found</span>
-                    )
-                  ) : (
-                    <span className="text-gray-400">Not assigned</span>
-                  )}
-                </td>
-                <td className="px-6 py-4">
-                  <button
-                    onClick={() => handleEditJudge(judge)}
-                    className="text-blue-500 hover:text-blue-700 mr-4"
-                  >
-                    <FaEdit className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSelectedJudge(judge);
-                      setShowDeleteModal(true);
-                    }}
-                    className="text-red-500 hover:text-red-700"
-                  >
-                    <FaTrash className="w-5 h-5" />
-                  </button>
-                </td>
-              </tr>
-            ))}
+                      <span className="text-gray-400">Not assigned</span>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    <button
+                      onClick={() => handleEditJudge(judge)}
+                      className="text-blue-500 hover:text-blue-700 mr-4"
+                    >
+                      <FaEdit className="w-5 h-5" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setSelectedJudge(judge);
+                        setShowDeleteModal(true);
+                      }}
+                      className="text-red-500 hover:text-red-700"
+                    >
+                      <FaTrash className="w-5 h-5" />
+                    </button>
+                  </td>
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>
@@ -291,6 +296,11 @@ const JudgesManagement = () => {
                     required
                     disabled={showEditModal}
                   />
+                  {showCreateModal && (
+                    <p className="text-sm text-gray-500 mt-1">
+                      Judge will use this email to login with password: 12345678
+                    </p>
+                  )}
                 </div>
 
                 <div className="border-t pt-4">
@@ -385,7 +395,8 @@ const JudgesManagement = () => {
               Are you sure you want to delete judge:
               <br />
               <strong>{selectedJudge.name}</strong>?
-              {selectedJudge.assignedGames.length > 0 && (
+              {selectedJudge?.assignedGames?.length > 0 && (
+
                 <>
                   <br />
                   <span className="text-red-500">

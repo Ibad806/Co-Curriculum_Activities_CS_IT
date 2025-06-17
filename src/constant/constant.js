@@ -17,5 +17,7 @@ export const AppRoutes = {
   getapplication: BASE_URL + "smecpost/application",
   category: BASE_URL + "category/categories",
   usersaccepted: BASE_URL + "category/users/accepted",
-  announcements: BASE_URL + "announcement/announcements"
+  announcements: BASE_URL + "announcement/announcements",
+  judge: BASE_URL + "judge/judges",
+  judgeById: (id) => BASE_URL + `judge/judges/${id}`,
 };
