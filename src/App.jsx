@@ -49,6 +49,7 @@ import NewsDetail from "./pages/NewDetails";
 import Cookies from "js-cookie";
 import ManageCategory from "./dashboard/adminpanel/admincomponents/ManageCategory";
 import CategoryDetailsPage from "./components/CategoryDetailsPage";
+import JudgeLogin from "./dashboard/judgespanel/judgespages/JudgeLogin";
 
 function App() {
   const navigate = useNavigate(); // Replace useHistory with useNavigate
@@ -120,11 +121,12 @@ function App() {
         {  (
           <Route path="/judgespanel" element={<JudgesLayout />}>
             {/* Child Routes */}
-            <Route path="home" element={<JudgesHome />} />
+            <Route path="judge-dashboard" element={<JudgesHome />} />
             <Route path="tournaments" element={<JudgesTournament />} />
             <Route path="matches" element={<JudgesMatches />} />
             <Route path="scoreboard" element={<JudgesScoreboard />} />
             <Route path="profile" element={<JudgesProfile />} />
+            <Route path="judge-login" element={<JudgeLogin />} />
           </Route>
         )}
         {/* Admin Panel Layout */}

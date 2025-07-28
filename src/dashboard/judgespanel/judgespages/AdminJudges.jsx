@@ -3,9 +3,24 @@ import React, { useState } from "react";
 const AdminJudges = () => {
   // Mock data for demonstration
   const initialJudges = [
-    { id: 1, name: "Alice Johnson", email: "alice@example.com", assignedTournaments: "SMEC 2025" },
-    { id: 2, name: "Bob Smith", email: "bob@example.com", assignedTournaments: "Valorant Championship" },
-    { id: 3, name: "Charlie Brown", email: "charlie@example.com", assignedTournaments: "FIFA 2025" },
+    {
+      id: 1,
+      name: "Alice Johnson",
+      email: "alice@example.com",
+      assignedTournaments: "SMEC 2025",
+    },
+    {
+      id: 2,
+      name: "Bob Smith",
+      email: "bob@example.com",
+      assignedTournaments: "Valorant Championship",
+    },
+    {
+      id: 3,
+      name: "Charlie Brown",
+      email: "charlie@example.com",
+      assignedTournaments: "FIFA 2025",
+    },
   ];
 
   const [judges, setJudges] = useState(initialJudges);
@@ -13,7 +28,12 @@ const AdminJudges = () => {
   const [newJudgeEmail, setNewJudgeEmail] = useState("");
 
   // Mock data for tournaments
-  const tournaments = ["SMEC 2025", "Valorant Championship", "FIFA 2025", "Chess Tournament 2025"];
+  const tournaments = [
+    "SMEC 2025",
+    "Valorant Championship",
+    "FIFA 2025",
+    "Chess Tournament 2025",
+  ];
 
   // Function to add a new judge
   const addJudge = () => {
@@ -30,23 +50,30 @@ const AdminJudges = () => {
 
   // Function to assign a tournament to a judge
   const assignTournament = (judgeId, tournament) => {
-    const updatedJudges = judges.map(judge =>
-      judge.id === judgeId ? { ...judge, assignedTournaments: tournament } : judge
+    const updatedJudges = judges.map((judge) =>
+      judge.id === judgeId
+        ? { ...judge, assignedTournaments: tournament }
+        : judge
     );
     setJudges(updatedJudges);
   };
 
   // Function to toggle judge status
   const toggleJudgeStatus = (judgeId) => {
-    const updatedJudges = judges.map(judge =>
-      judge.id === judgeId ? { ...judge, status: judge.status === "Active" ? "Inactive" : "Active" } : judge
+    const updatedJudges = judges.map((judge) =>
+      judge.id === judgeId
+        ? {
+            ...judge,
+            status: judge.status === "Active" ? "Inactive" : "Active",
+          }
+        : judge
     );
     setJudges(updatedJudges);
   };
 
   // Function to remove a judge
   const removeJudge = (judgeId) => {
-    const updatedJudges = judges.filter(judge => judge.id !== judgeId);
+    const updatedJudges = judges.filter((judge) => judge.id !== judgeId);
     setJudges(updatedJudges);
   };
 
@@ -91,12 +118,14 @@ const AdminJudges = () => {
             <tr>
               <th className="pb-4 font-bold text-gray-800">Name</th>
               <th className="pb-4 font-bold text-gray-800">Email</th>
-              <th className="pb-4 font-bold text-gray-800">Assigned Tournaments</th>
+              <th className="pb-4 font-bold text-gray-800">
+                Assigned Tournaments
+              </th>
               <th className="pb-4 font-bold text-gray-800">Actions</th>
             </tr>
           </thead>
           <tbody>
-            {judges.map(judge => (
+            {judges.map((judge) => (
               <tr key={judge.id} className="hover:bg-gray-100">
                 <td className="py-2">{judge.name}</td>
                 <td className="py-2">{judge.email}</td>
@@ -108,8 +137,10 @@ const AdminJudges = () => {
                     defaultValue={judge.assignedTournaments}
                   >
                     <option value="">Assign Tournament</option>
-                    {tournaments.map(tournament => (
-                      <option key={tournament} value={tournament}>{tournament}</option>
+                    {tournaments.map((tournament) => (
+                      <option key={tournament} value={tournament}>
+                        {tournament}
+                      </option>
                     ))}
                   </select>
                 </td>
@@ -134,9 +165,7 @@ const AdminJudges = () => {
 
         {/* No Judges Found */}
         {judges.length === 0 && (
-          <div className="text-center py-6 text-gray-500">
-            No judges found.
-          </div>
+          <div className="text-center py-6 text-gray-500">No judges found.</div>
         )}
       </div>
     </div>

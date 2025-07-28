@@ -23,7 +23,7 @@ const JudgesSidebar = () => {
           <p className="text-sm text-gray-300">judge123@gmail.com</p>
         </div>
         <nav className="mt-6 flex-1">
-          <NavLink to="/judgespanel/home" className="flex items-center p-4 text-base font-medium hover:bg-indigo-700">
+          <NavLink to="/judgespanel/judge-dashboard" className="flex items-center p-4 text-base font-medium hover:bg-indigo-700">
             <FaHome className="mr-3 text-lg" />
             Dashboard
           </NavLink>

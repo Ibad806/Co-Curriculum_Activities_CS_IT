@@ -24,7 +24,9 @@ const Smeccategory = () => {
   }, []);
 
   if (loading) {
-    return <div className="text-white text-center py-10">Loading categories...</div>;
+    return (
+      <div className="text-white text-center py-10">Loading categories...</div>
+    );
   }
 
   return (
@@ -54,3 +56,4 @@ const Smeccategory = () => {
 };
 
 export default Smeccategory;
+

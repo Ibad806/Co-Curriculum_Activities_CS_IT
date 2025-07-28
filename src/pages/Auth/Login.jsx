@@ -43,7 +43,7 @@ export default function LoginForm() {
       if(response.data.data.user.role === "admin") {
         navigate("/adminpanel/home");
       }else if (response.data.data.user.role === "judge") {
-        navigate("/judgespanel/home");
+        navigate("/judgespanel/judge-dashboard");
       }else if(response.data.data.user.role === "isParticipant") {
         navigate("/userpanel/home");
       } else {

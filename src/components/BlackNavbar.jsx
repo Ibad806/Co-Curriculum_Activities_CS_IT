@@ -197,7 +197,7 @@ const BlackNavbar = () => {
                 )}
                 {role === "judge" && (
                   <Link
-                    to="/judgespanel/home"
+                    to="/judgespanel/judges-dashboard"
                     className="block p-2 hover:bg-[#211D70] hover:text-white transition duration-300"
                   >
                     Judges Dashboard
