@@ -19,6 +19,7 @@ const AddNewEvent = () => {
     registrationDeadline: '',
     locationDetails: 'CS&IT Department',
   });
+  const [selectedFile, setSelectedFile] = useState(null); // add this at top
   const navigate = useNavigate();
 
   const subcategoryOptions = {
@@ -35,39 +36,39 @@ const AddNewEvent = () => {
     }));
   };
 
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      // Simulate uploading and getting a file URL
-      // Replace with actual upload logic later
-      const fakeUrl = URL.createObjectURL(file);
-      setFormData((prev) => ({ ...prev, eventimageurl: fakeUrl }));
-    }
-  };
+ const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const fakeUrl = URL.createObjectURL(file);
+    setFormData((prev) => ({ ...prev, eventimageurl: fakeUrl })); // for preview
+    setSelectedFile(file); // for upload
+  }
+};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const payload = {
-      title: formData.title,
-      status: formData.status,
-      startdate: formData.startdate,
-      registrationDeadline: formData.registrationDeadline || formData.startdate,
-      category: formData.category,
-      subcategory: formData.subcategory,
-      description: formData.description,
-      eventimageurl: formData.eventimageurl,
-      ticketPrice: formData.ticketPrice,
-      locationDetails: formData.locationDetails,
-    };
+   const form = new FormData();
+  form.append("title", formData.title);
+  form.append("status", formData.status);
+  form.append("startdate", formData.startdate);
+  form.append("registrationDeadline", formData.registrationDeadline || formData.startdate);
+  form.append("category", formData.category);
+  form.append("subcategory", formData.subcategory);
+  form.append("description", formData.description);
+  form.append("ticketPrice", formData.ticketPrice);
+  form.append("locationDetails", formData.locationDetails)
 
-    try {
-      console.log('Payload:', payload);
-      const res = await axios.post(AppRoutes.event, payload, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
+    if (selectedFile) {
+    form.append("eventBannerImage", selectedFile); // MUST MATCH multer field
+  }
+
+  try {
+    const res = await axios.post(AppRoutes.event, form, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+    });
 
        notification.success({
               message: 'Success',
@@ -75,19 +76,20 @@ const AddNewEvent = () => {
               placement: 'topRight'
             });
 
-            setFormData({
-              title: '',
-              startdate: '',
-              enddate: '',
-              category: '',
-              subcategory: '',
-              description: '',
-              ticketPrice: '',
-              status: 'active',
-              eventimageurl: '',
-              registrationDeadline: '',
-              locationDetails: 'CS&IT Department',
-            });
+             setFormData({
+      title: '',
+      startdate: '',
+      enddate: '',
+      category: '',
+      subcategory: '',
+      description: '',
+      ticketPrice: '',
+      status: 'active',
+      eventimageurl: '',
+      registrationDeadline: '',
+      locationDetails: 'CS&IT Department',
+    });
+
 
             navigate('/adminpanel/manageevents', { replace: true });
 
@@ -237,6 +239,7 @@ const AddNewEvent = () => {
                 onChange={handleFileChange}
                 className="hidden"
                 id="file-upload"
+                name="eventBannerImage"
               />
               <label
                 htmlFor="file-upload"

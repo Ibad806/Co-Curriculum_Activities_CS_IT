@@ -19,6 +19,8 @@ const Allevents = ({ event, desc }) => {
       try {
         setIsLoading(true);
         const response = await axios.get(AppRoutes.event);
+        console.log("Fetched events:", response.data);
+        
         setEvents(response.data);
         setFilteredEvents(response.data);
       } catch (err) {
