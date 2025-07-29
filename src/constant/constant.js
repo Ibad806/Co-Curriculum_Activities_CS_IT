@@ -22,4 +22,5 @@ export const AppRoutes = {
   judge: BASE_URL + "judge/judges",
   judgeById: (id) => BASE_URL + `judge/judges/${id}`,
   judgePanel: BASE_URL + "judge-panel",
+   news: BASE_URL + "news",
 };
