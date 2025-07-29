@@ -2,7 +2,7 @@
 // http://localhost:4000/
 // https://cac-backend-i957.vercel.app/
 
-const devUrl = "https://cac-backend-i957.vercel.app/";
+const devUrl = "http://localhost:4000/";
 export const BASE_URL = devUrl;
 
 export const AppRoutes = {
@@ -22,5 +22,6 @@ export const AppRoutes = {
   judge: BASE_URL + "judge/judges",
   judgeById: (id) => BASE_URL + `judge/judges/${id}`,
   judgePanel: BASE_URL + "judge-panel",
-   news: BASE_URL + "news",
+  news: BASE_URL + "news",
+  player: BASE_URL + "player",
 };

@@ -83,7 +83,7 @@ const CategoryModal = ({
       setNewCategory({ ...newCategory, bannerImage: file });
       setBannerImagePreview(URL.createObjectURL(file));
     }
-  };
+  };  
 
   const removeCardImage = () => {
     setCardImagePreview(null);

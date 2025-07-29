@@ -50,7 +50,8 @@ const AdminSidebar = () => {
           { title: "Judges Panel", path: "/adminpanel/judgesmanagement" },
           { title: "Post Applications", path: "/adminpanel/postapplication" },
           { title: "Ticketing", path: "/adminpanel/ticketmanagement" },
-          { title: "Announcements", path: "/adminpanel/announcements" }
+          { title: "Announcements", path: "/adminpanel/announcements" },
+          { title: "Players List", path: "/adminpanel/playerlist" }
         ]
     },
     // {

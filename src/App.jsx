@@ -50,6 +50,7 @@ import Cookies from "js-cookie";
 import ManageCategory from "./dashboard/adminpanel/admincomponents/ManageCategory";
 import CategoryDetailsPage from "./components/CategoryDetailsPage";
 import JudgeLogin from "./dashboard/judgespanel/judgespages/JudgeLogin";
+import PlayerList from "./dashboard/adminpanel/admincomponents/PlayerList";
 
 function App() {
   const navigate = useNavigate(); // Replace useHistory with useNavigate
@@ -77,9 +78,10 @@ function App() {
     };
   }, [location]); // useEffect depends on location to track path changes
 
-  const [role, setRole] = useState(Cookies.get("user") ? JSON.parse(Cookies.get("user")).role : null); // Get role from cookies
+  const [role, setRole] = useState(
+    Cookies.get("user") ? JSON.parse(Cookies.get("user")).role : null
+  ); // Get role from cookies
   console.log(role);
-
 
   return (
     <>
@@ -95,7 +97,7 @@ function App() {
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/register" element={<RegisterForm />} />
         <Route path="/login" element={<LoginForm />} />
-                  {/* <Route path="generalgame" element={<Generalgames />} />
+        {/* <Route path="generalgame" element={<Generalgames />} />
           <Route path="egame" element={<Egames />} />
           <Route path="geekgame" element={<Geekgames />} /> */}
         <Route path="/smec">
@@ -106,7 +108,7 @@ function App() {
         <Route path="/payment" element={<Payment />} />
         <Route path="/paymentsuccess" element={<PaymentSuccessful />} />
         {/* User Panel Layout */}
-        { (
+        {
           <Route path="/userpanel" element={<UserPanel />}>
             {/* Child Routes */}
             <Route path="home" element={<UserHome />} />
@@ -116,9 +118,9 @@ function App() {
             <Route path="profile" element={<UserProfile />} />
             <Route path="applyforposts" element={<ApplyforPosts />} />
           </Route>
-        )}
+        }
         {/* Judges Panel Layout */}
-        {  (
+        {
           <Route path="/judgespanel" element={<JudgesLayout />}>
             {/* Child Routes */}
             <Route path="judge-dashboard" element={<JudgesHome />} />
@@ -128,10 +130,9 @@ function App() {
             <Route path="profile" element={<JudgesProfile />} />
             <Route path="judge-login" element={<JudgeLogin />} />
           </Route>
-        )}
+        }
         {/* Admin Panel Layout */}
-       {
-        (
+        {
           <Route path="/adminpanel" element={<AdminLayout />}>
             {/* Child Routes */}
             <Route path="home" element={<AdminHome />} />
@@ -146,9 +147,9 @@ function App() {
             <Route path="announcements" element={<Announcements />} />
             <Route path="gallerymanagement" element={<GalleryManagement />} />
             <Route path="news" element={<AdminNews />} />
+             <Route path="playerlist" element={<PlayerList />} />
           </Route>
-         ) }
-        
+        }
       </Routes>
       <BackToCACButton />
     </>
