@@ -42,8 +42,8 @@ const Footer = (props) => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
           <ul>
-            <li className="py-[15px] md:text-[15px] text-[4vw]">0340-2862497</li>
-            <li className="md:text-[15px] text-[4vw]">ibadbilal029@gmail.com</li>
+            <li className="py-[15px] md:text-[15px] text-[4vw]">0340-3462497</li>
+            <li className="md:text-[15px] text-[4vw]">ssuet@gmail.com</li>
           </ul>
         </div>
 
@@ -75,7 +75,7 @@ const Footer = (props) => {
 
       {/* Copyright */}
       <div className="text-center text-sm mt-8 border-t border-gray-700 pt-4">
-        © Copyright 2024, All Rights Reserved by IBAD
+        © Copyright 2025, All Rights Reserved by SSUET
       </div>
     </footer>
   );

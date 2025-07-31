@@ -51,6 +51,7 @@ import ManageCategory from "./dashboard/adminpanel/admincomponents/ManageCategor
 import CategoryDetailsPage from "./components/CategoryDetailsPage";
 import JudgeLogin from "./dashboard/judgespanel/judgespages/JudgeLogin";
 import PlayerList from "./dashboard/adminpanel/admincomponents/PlayerList";
+import JudgePlayerlist from "./dashboard/judgespanel/judgespages/JudgePlayerlist";
 
 function App() {
   const navigate = useNavigate(); // Replace useHistory with useNavigate
@@ -89,6 +90,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/events" element={<Events />} />
+        <Route path="/events/:route" element={<EventPage />} />
         <Route path="/events/qawwali" element={<QawwaliDetails />} />
         <Route path="/events/dinner" element={<DinnerDetails />} />
         <Route path="/events/:id" element={<EventPage />} />
@@ -129,6 +131,7 @@ function App() {
             <Route path="scoreboard" element={<JudgesScoreboard />} />
             <Route path="profile" element={<JudgesProfile />} />
             <Route path="judge-login" element={<JudgeLogin />} />
+            <Route path="playerlist/:gameId" element={<JudgePlayerlist />} />
           </Route>
         }
         {/* Admin Panel Layout */}

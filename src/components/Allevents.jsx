@@ -19,8 +19,15 @@ const Allevents = ({ event, desc }) => {
       try {
         setIsLoading(true);
         const response = await axios.get(AppRoutes.event);
-        setEvents(response.data);
-        setFilteredEvents(response.data);
+        // Ensure we're getting an array from the API
+        const eventsData = Array.isArray(response.data?.events) 
+          ? response.data.events 
+          : Array.isArray(response.data)
+          ? response.data
+          : [];
+        
+        setEvents(eventsData);
+        setFilteredEvents(eventsData);
       } catch (err) {
         setError("Failed to fetch events");
         console.error("Error fetching events:", err);
@@ -33,22 +40,24 @@ const Allevents = ({ event, desc }) => {
   }, []);
 
   useEffect(() => {
-    if (events.length === 0) return;
+    if (!Array.isArray(events)) {
+      setFilteredEvents([]);
+      return;
+    }
     
-    let result = [...events];
+    let results = [...events];
 
     // Apply search filter
     if (searchTerm) {
-      result = result.filter(
-        (event) =>
-          event.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-          event.locationDetails.toLowerCase().includes(searchTerm.toLowerCase())
+      results = results.filter(event =>
+        event.title?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        event.locationDetails?.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
 
     // Apply date filter
     if (selectedDate) {
-      result = result.filter((event) => {
+      results = results.filter((event) => {
         const eventStartDate = new Date(event.startdate);
         const filterDate = new Date(selectedDate);
         return eventStartDate.toDateString() === filterDate.toDateString();
@@ -57,7 +66,7 @@ const Allevents = ({ event, desc }) => {
 
     // Apply sorting
     if (sortBy) {
-      result = result.sort((a, b) => {
+      results = results.sort((a, b) => {
         switch (sortBy) {
           case "date":
             return new Date(a.startdate) - new Date(b.startdate);
@@ -67,14 +76,14 @@ const Allevents = ({ event, desc }) => {
               parseFloat(b.ticketPrice || "0")
             );
           case "name":
-            return a.title.localeCompare(b.title);
+            return a.title?.localeCompare(b.title);
           default:
             return 0;
         }
       });
     }
 
-    setFilteredEvents(result);
+    setFilteredEvents(results);
   }, [searchTerm, selectedDate, sortBy, events]);
 
   const handleSearch = (term) => {
@@ -89,26 +98,12 @@ const Allevents = ({ event, desc }) => {
     setSortBy(sortValue);
   };
 
-  // Helper function to calculate days left
   const calculateDaysLeft = (eventDate) => {
     const today = new Date();
     const eventDateObj = new Date(eventDate);
     const diffTime = eventDateObj - today;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays < 0 ? 0 : diffDays;
-  };
-
-  // Helper function to generate dynamic links
-  const generateEventLink = (event) => {
-    if (event.subcategory === "SMCE") {
-      return "/smec";
-    } else if (event.subcategory === "Annual Dinner") {
-      return "/events/dinner";
-    } else if (event.subcategory === "Qawali night") {
-      return "/events/qawwali";
-    } else {
-      return `/events/${event.title.replace(/\s+/g, "-").toLowerCase()}`;
-    }
   };
 
   if (isLoading) {
@@ -131,10 +126,10 @@ const Allevents = ({ event, desc }) => {
     <div className="min-h-screen w-full mt-28">
       <div className="container mx-auto px-4 md:px-8 py-8">
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-4">
-          {event}
+          {event || "All Events"}
         </h1>
         <p className="text-center text-gray-600 text-sm sm:text-base lg:text-lg mb-8">
-          {desc}
+          {desc || "Explore upcoming events in the Computer Science Department"}
         </p>
 
         <EventsFilter
@@ -144,25 +139,31 @@ const Allevents = ({ event, desc }) => {
         />
 
         <div className="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {filteredEvents.map((event) => {
-            const daysLeft = calculateDaysLeft(event.startdate);
-            return (
-              <Link 
-                to={generateEventLink(event)} 
-                state={{ eventData: event }} 
-                key={event._id}
-              >
-                <EventCard
-                  image={event.eventimageurl}
-                  title={event.title}
-                  location={event.locationDetails}
-                  price={event.ticketPrice ? `$${event.ticketPrice}` : "Free"}
-                  dateRange={new Date(event.startdate).toLocaleDateString()}
-                  daysLeft={daysLeft}
-                />
-              </Link>
-            );
-          })}
+          {Array.isArray(filteredEvents) && filteredEvents.length > 0 ? (
+            filteredEvents.map((event) => {
+              const daysLeft = calculateDaysLeft(event.startdate);
+              return (
+                <Link 
+                  to={`/events/${event.customRoute || event._id}`} 
+                  key={event._id}
+                >
+                  <EventCard
+                    image={event.bannerImage}
+                    title={event.title}
+                    location={event.locationDetails}
+                    price={event.ticketPrice ? `$${event.ticketPrice}` : "Free"}
+                    dateRange={new Date(event.startdate).toLocaleDateString()}
+                    daysLeft={daysLeft}
+                    category={event.category}
+                  />
+                </Link>
+              );
+            })
+          ) : (
+            <div className="col-span-full text-center py-12">
+              <p className="text-gray-500">No events found matching your criteria</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

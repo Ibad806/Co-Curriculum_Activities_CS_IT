@@ -27,9 +27,9 @@ const JudgesSidebar = () => {
             <FaHome className="mr-3 text-lg" />
             Dashboard
           </NavLink>
-          <NavLink to="/judgespanel/tournaments" className="flex items-center p-4 text-base font-medium hover:bg-indigo-700">
+          <NavLink to="/judgespanel/playerlist/:gameId" className="flex items-center p-4 text-base font-medium hover:bg-indigo-700">
             <FaTrophy className="mr-3 text-lg" />
-            Tournaments
+            Player
           </NavLink>
             <NavLink to="/judgespanel/matches" className="flex items-center p-4 text-base font-medium hover:bg-indigo-700">
               <FaClipboard className="mr-3 text-lg" />
