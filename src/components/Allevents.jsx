@@ -19,7 +19,6 @@ const Allevents = ({ event, desc }) => {
       try {
         setIsLoading(true);
         const response = await axios.get(AppRoutes.event);
-<<<<<<< HEAD
         // Ensure we're getting an array from the API
         const eventsData = Array.isArray(response.data?.events) 
           ? response.data.events 
@@ -29,12 +28,6 @@ const Allevents = ({ event, desc }) => {
         
         setEvents(eventsData);
         setFilteredEvents(eventsData);
-=======
-        console.log("Fetched events:", response.data);
-        
-        setEvents(response.data);
-        setFilteredEvents(response.data);
->>>>>>> 2e14725d6bf9c67935919abbe5dbfbcde1b8db64
       } catch (err) {
         setError("Failed to fetch events");
         console.error("Error fetching events:", err);
