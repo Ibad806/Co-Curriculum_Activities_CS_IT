@@ -16,12 +16,16 @@ const AddNewEvent = () => {
     locationDetails: 'CS&IT Department',
     registrationDeadline: ''
   });
+<<<<<<< HEAD
   
   const [bannerImage, setBannerImage] = useState(null);
   const [bannerPreview, setBannerPreview] = useState('');
   const [galleryImages, setGalleryImages] = useState([]);
   const [galleryPreviews, setGalleryPreviews] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+=======
+  const [selectedFile, setSelectedFile] = useState(null); // add this at top
+>>>>>>> 2e14725d6bf9c67935919abbe5dbfbcde1b8db64
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -32,6 +36,7 @@ const AddNewEvent = () => {
     }));
   };
 
+<<<<<<< HEAD
   const handleBannerChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -57,6 +62,16 @@ const AddNewEvent = () => {
       setBannerPreview(URL.createObjectURL(file));
     }
   };
+=======
+ const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const fakeUrl = URL.createObjectURL(file);
+    setFormData((prev) => ({ ...prev, eventimageurl: fakeUrl })); // for preview
+    setSelectedFile(file); // for upload
+  }
+};
+>>>>>>> 2e14725d6bf9c67935919abbe5dbfbcde1b8db64
 
   const handleGalleryChange = (e) => {
     const files = Array.from(e.target.files);
@@ -135,6 +150,7 @@ const AddNewEvent = () => {
   
   setIsSubmitting(true);
 
+<<<<<<< HEAD
   try {
     const formPayload = new FormData();
     
@@ -154,6 +170,28 @@ const AddNewEvent = () => {
         'Content-Type': 'multipart/form-data',
       },
       timeout: 30000
+=======
+   const form = new FormData();
+  form.append("title", formData.title);
+  form.append("status", formData.status);
+  form.append("startdate", formData.startdate);
+  form.append("registrationDeadline", formData.registrationDeadline || formData.startdate);
+  form.append("category", formData.category);
+  form.append("subcategory", formData.subcategory);
+  form.append("description", formData.description);
+  form.append("ticketPrice", formData.ticketPrice);
+  form.append("locationDetails", formData.locationDetails)
+
+    if (selectedFile) {
+    form.append("eventBannerImage", selectedFile); // MUST MATCH multer field
+  }
+
+  try {
+    const res = await axios.post(AppRoutes.event, form, {
+      headers: {
+        "Content-Type": "multipart/form-data"
+      }
+>>>>>>> 2e14725d6bf9c67935919abbe5dbfbcde1b8db64
     });
 
     notification.success({
@@ -162,7 +200,24 @@ const AddNewEvent = () => {
       placement: 'topRight'
     });
 
+<<<<<<< HEAD
     navigate('/adminpanel/manageevents');
+=======
+             setFormData({
+      title: '',
+      startdate: '',
+      enddate: '',
+      category: '',
+      subcategory: '',
+      description: '',
+      ticketPrice: '',
+      status: 'active',
+      eventimageurl: '',
+      registrationDeadline: '',
+      locationDetails: 'CS&IT Department',
+    });
+
+>>>>>>> 2e14725d6bf9c67935919abbe5dbfbcde1b8db64
 
   } catch (err) {
     console.error('Error:', err);
@@ -204,12 +259,21 @@ const AddNewEvent = () => {
             <div>
               <label className="block text-sm font-medium mb-2 text-gray-600">Event Title *</label>
               <input
+<<<<<<< HEAD
                 type="text"
                 name="title"
                 value={formData.title}
                 onChange={handleChange}
                 className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Enter event title"
+=======
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+                className="hidden"
+                id="file-upload"
+                name="eventBannerImage"
+>>>>>>> 2e14725d6bf9c67935919abbe5dbfbcde1b8db64
               />
             </div>
 
