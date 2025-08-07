@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Smeccard = ({ title, image, category, id }) => {
   
   const cleanTitle = title.toLowerCase().replace(/[\s-]/g, '');
-  const categoryUrl = `/smec/${cleanTitle}?id=${id}`;
+  const categoryUrl = `/events/smec/${cleanTitle}?id=${id}`;
 
 
   return (

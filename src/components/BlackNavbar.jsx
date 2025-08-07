@@ -74,7 +74,7 @@ const BlackNavbar = () => {
         }`}
       >
         <Link
-          to="/"
+          to="/events/smec"
           className="text-lg font-medium text-white hover:text-[#211D70] transition duration-500"
         >
           <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center">
@@ -88,7 +88,7 @@ const BlackNavbar = () => {
         </Link>
         <div className="hidden md:flex items-center space-x-8">
           <Link
-            to="/smec"
+            to="/events/smec"
             className="text-lg font-medium text-white hover:text-[#211D70] transition duration-300"
           >
             Home

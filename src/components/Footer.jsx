@@ -51,24 +51,24 @@ const Footer = (props) => {
         <div>
           <h3 className="text-lg font-semibold mb-4">Location</h3>
           <ul>
-            <li className="py-[15px] md:text-[15px] text-[4vw]">483920, Karachi</li>
-            <li className="md:text-[15px] text-[4vw]">Myasnitskaya 22/2/5, Office 4</li>
+            <li className="py-[15px] md:text-[15px] text-[4vw]">75300, Karachi</li>
+            <li className="md:text-[15px] text-[4vw]">ST-16 Main University Rd, Block 5 Gulshan-e-Iqbal, Karachi</li>
           </ul>
         </div>
       </div>
 
       {/* Social Icons */}
       <div className="flex justify-center space-x-10 mt-10">
-        <a href="#" className="hover:text-blue-500 bg-white rounded-[50%] p-2">
+        <a href="#" className="hover:text-blue-500  rounded-[50%] p-2">
           <FaTwitter />
         </a>
-        <a href="#" className="hover:text-blue-600 bg-white rounded-[50%] p-2">
+        <a href="#" className="hover:text-blue-600  rounded-[50%] p-2">
           <FaFacebookF />
         </a>
-        <a href="#" className=" hover:text-pink-500 bg-white rounded-[50%] p-2">
+        <a href="#" className=" hover:text-pink-500  rounded-[50%] p-2">
           <FaInstagram />
         </a>
-        <a href="#" className="hover:text-gray-500 bg-white rounded-[50%] p-2">
+        <a href="#" className="hover:text-gray-500 rounded-[50%] p-2">
           <FaGithub />
         </a>
       </div>

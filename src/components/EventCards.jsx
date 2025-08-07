@@ -49,19 +49,29 @@ const EventCard = ({ image, title, location, price, dateRange, daysLeft, categor
 
         <div className="flex justify-between items-center mt-4">
           <div className="text-lg font-bold text-gray-800">
-            {price}
+             {/* {category === 'ticketing' ? 'Ticketed' : 'Free'} */}
           </div>
-          <Button className="bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white py-2 px-4 rounded-md">
+          <Button className="bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-black py-2 px-4 rounded-md">
             View Details
           </Button>
         </div>
       </div>
 
-      {daysLeft <= 3 && (
-        <div className="absolute top-4 right-4 bg-red-500 text-white py-1 px-3 rounded-lg text-xs font-bold animate-pulse">
+
+
+      {daysLeft <= 1 ? (
+  daysLeft > 0 ? (
+    <div className="absolute top-4 right-4 bg-red-500 text-white py-1 px-3 rounded-lg text-xs font-bold animate-pulse">
           Hurry! Ending Soon
         </div>
-      )}
+  ) : (
+    <div className="absolute top-4 right-4 bg-red-500 text-white py-1 px-3 rounded-lg text-xs font-bold animate-pulse">
+          Event Ended
+        </div>
+  )
+) : null}
+
+       
     </div>
   );
 };

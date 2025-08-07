@@ -18,6 +18,9 @@ const Gamedetails = () => {
 
   const [quantity, setQuantity] = useState(1);
 
+  console.log("Selected Game:", selectedGame);
+  
+
   const {
     title,
     image,

@@ -21,9 +21,9 @@ const EventSlider = ({ heading, para }) => {
       try {
         setIsLoading(true);
         const response = await axios.get(AppRoutes.event);
-        console.log("Fetched events:", response.data);
+        console.log("Fetched events:", response.data.events);
 
-        setEvents(response.data);
+        setEvents(response.data.events);
       } catch (err) {
         setError("Failed to fetch events");
         console.error("Error fetching events:", err);
@@ -32,6 +32,8 @@ const EventSlider = ({ heading, para }) => {
       }
     };
 
+    console.log("enents lenght" , events.length);
+    
     fetchEvents();
   }, []);
 
@@ -57,13 +59,13 @@ const EventSlider = ({ heading, para }) => {
           768: { slidesPerView: 2 },
           640: { slidesPerView: 1 },
         }}
-        className="mt-8"
+        className="p-8"
       >
         {events.length > 0 ? (
           events.map((event) => (
             <SwiperSlide key={event.id} className="flex justify-center items-center">
               <EventCard
-                image={event.eventimageurl}
+                image={event.bannerImage}
                 title={event.title}
                 location={event.locationDetails}
                 price={event.ticketPrice}

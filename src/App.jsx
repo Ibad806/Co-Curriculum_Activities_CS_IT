@@ -102,7 +102,7 @@ function App() {
         {/* <Route path="generalgame" element={<Generalgames />} />
           <Route path="egame" element={<Egames />} />
           <Route path="geekgame" element={<Geekgames />} /> */}
-        <Route path="/smec">
+        <Route path="/events/smec">
           <Route index element={<Smec />} />
           <Route path=":category" element={<CategoryDetailsPage />} />
           <Route path=":category/:title" element={<Gamepage />} />

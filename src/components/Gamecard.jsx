@@ -39,7 +39,7 @@ const titlelower = title.toLowerCase().replace(/[\s-]/g, '');
         playerslot,
       })
     );
-    navigate(`/smec/${cleanTitle}/${titlelower}`);
+    navigate(`/events/smec/${cleanTitle}/${titlelower}`);
   };
 
   return (
