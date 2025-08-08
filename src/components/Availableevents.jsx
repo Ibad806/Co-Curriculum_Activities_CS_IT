@@ -29,7 +29,7 @@ const Availableevents = () => {
         
         const now = new Date();
         const upcomingEvents = eventsData.filter(event => 
-          new Date(event.enddate) > now
+          new Date(event.startdate) > now
         );
         
         const sortedEvents = [...upcomingEvents].sort((a, b) => 

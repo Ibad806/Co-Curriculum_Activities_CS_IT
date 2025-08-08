@@ -21,9 +21,9 @@ const ManageEvents = () => {
   const fetchEvents = async () => {
     try {
       const res = await axios.get(AppRoutes.event);
-      console.log("response", res.data);
+      console.log("response", res.data.events);
       
-      setEvents(res.data);
+      setEvents(res.data.events);
       setFilteredEvents(res.data); // Initialize filtered events with all events
     } catch (err) {
       console.error('Error fetching events:', err);

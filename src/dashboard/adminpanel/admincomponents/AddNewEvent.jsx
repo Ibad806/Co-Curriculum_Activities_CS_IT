@@ -14,7 +14,8 @@ const AddNewEvent = () => {
     description: '',
     status: 'active',
     locationDetails: 'CS&IT Department',
-    registrationDeadline: ''
+    registrationDeadline: '',
+    ticketPrice: '' // New field for ticket price
   });
   
   const [bannerImage, setBannerImage] = useState(null);
@@ -116,6 +117,19 @@ const AddNewEvent = () => {
       }
     }
 
+    // Validate ticket price when category is ticketing
+    if (formData.category === 'ticketing') {
+      const price = parseFloat(formData.ticketPrice);
+      if (isNaN(price) || price <= 0) {
+        notification.error({
+          message: 'Validation Error',
+          description: 'Please enter a valid ticket price (greater than 0)',
+          placement: 'topRight'
+        });
+        return false;
+      }
+    }
+
     if (!bannerImage) {
       notification.error({
         message: 'Validation Error',
@@ -129,62 +143,71 @@ const AddNewEvent = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  
-  if (!validateForm()) return;
-  
-  setIsSubmitting(true);
-
-  try {
-    const formPayload = new FormData();
+    e.preventDefault();
     
-    // Append all form data as JSON string
-    formPayload.append('data', JSON.stringify(formData));
+    if (!validateForm()) return;
     
-    // Append banner image with correct field name
-    formPayload.append('bannerImage', bannerImage);
-    
-    // Append gallery images with correct field name
-    galleryImages.forEach((image, index) => {
-      formPayload.append('galleryImages', image);
-    });
+    setIsSubmitting(true);
 
-    const res = await axios.post(AppRoutes.event, formPayload, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-      timeout: 30000
-    });
+    try {
+      // Prepare data to send
+      const dataToSend = {
+        ...formData,
+        // Convert ticketPrice to number if it's a ticketing event
+        ticketPrice: formData.category === 'ticketing' 
+          ? parseFloat(formData.ticketPrice) 
+          : 0
+      };
 
-    notification.success({
-      message: 'Success',
-      description: 'Event created successfully!',
-      placement: 'topRight'
-    });
+      const formPayload = new FormData();
+      
+      // Append all form data as JSON string
+      formPayload.append('data', JSON.stringify(dataToSend));
+      
+      // Append banner image
+      formPayload.append('bannerImage', bannerImage);
+      
+      // Append gallery images
+      galleryImages.forEach((image) => {
+        formPayload.append('galleryImages', image);
+      });
 
-    navigate('/adminpanel/manageevents');
+      const res = await axios.post(AppRoutes.event, formPayload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+        timeout: 30000
+      });
 
-  } catch (err) {
-    console.error('Error:', err);
-    
-    let errorMessage = 'Failed to create event. Please try again.';
-    
-    if (err.response?.data?.message) {
-      errorMessage = err.response.data.message;
-    } else if (err.message) {
-      errorMessage = err.message;
+      notification.success({
+        message: 'Success',
+        description: 'Event created successfully!',
+        placement: 'topRight'
+      });
+
+      navigate('/adminpanel/manageevents');
+
+    } catch (err) {
+      console.error('Error:', err);
+      
+      let errorMessage = 'Failed to create event. Please try again.';
+      
+      if (err.response?.data?.message) {
+        errorMessage = err.response.data.message;
+      } else if (err.message) {
+        errorMessage = err.message;
+      }
+
+      notification.error({
+        message: 'Error',
+        description: errorMessage,
+        placement: 'topRight',
+        duration: 5
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-
-    notification.error({
-      message: 'Error',
-      description: errorMessage,
-      placement: 'topRight',
-      duration: 5
-    });
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+  };
 
   return (
     <div className="p-6 max-w-5xl mx-auto bg-white rounded-lg shadow-md">
@@ -261,6 +284,23 @@ const AddNewEvent = () => {
                 <option value="ticketing">Ticketing</option>
               </select>
             </div>
+
+            {/* Conditionally render ticket price field */}
+            {formData.category === 'ticketing' && (
+              <div>
+                <label className="block text-sm font-medium mb-2 text-gray-600">Ticket Price (PKR) *</label>
+                <input
+                  type="number"
+                  name="ticketPrice"
+                  value={formData.ticketPrice}
+                  onChange={handleChange}
+                  className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  placeholder="Enter ticket price"
+                  min="1"
+                  step="any"
+                />
+              </div>
+            )}
 
             <div>
               <label className="block text-sm font-medium mb-2 text-gray-600">Event Location</label>
